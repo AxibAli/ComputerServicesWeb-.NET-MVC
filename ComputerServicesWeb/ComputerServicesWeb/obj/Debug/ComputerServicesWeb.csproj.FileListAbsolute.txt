@@ -1,0 +1,3 @@
+C:\Users\Azib\source\repos\ComputerServicesWeb-.NET-MVC\ComputerServicesWeb\ComputerServicesWeb\obj\Debug\ComputerServicesWeb.csproj.AssemblyReference.cache
+C:\Users\Azib\source\repos\ComputerServicesWeb-.NET-MVC\ComputerServicesWeb\ComputerServicesWeb\obj\Debug\ComputerServicesWeb.Migrations.Initial.resources
+C:\Users\Azib\source\repos\ComputerServicesWeb-.NET-MVC\ComputerServicesWeb\ComputerServicesWeb\obj\Debug\ComputerServicesWeb.csproj.GenerateResource.cache
