@@ -111,3 +111,4 @@ C:\Users\DELL\Desktop\ComputerServicesWeb-.NET-MVC\ComputerServicesWeb\ComputerS
 C:\Users\DELL\Desktop\ComputerServicesWeb-.NET-MVC\ComputerServicesWeb\ComputerServicesWeb\obj\Debug\ComputerServicesWeb.csproj.CopyComplete
 C:\Users\DELL\Desktop\ComputerServicesWeb-.NET-MVC\ComputerServicesWeb\ComputerServicesWeb\obj\Debug\ComputerServicesWeb.dll
 C:\Users\DELL\Desktop\ComputerServicesWeb-.NET-MVC\ComputerServicesWeb\ComputerServicesWeb\obj\Debug\ComputerServicesWeb.pdb
+C:\Users\DELL\Desktop\ComputerServicesWeb-.NET-MVC\ComputerServicesWeb\ComputerServicesWeb\obj\Debug\ComputerServicesWeb.Migrations.role.resources
