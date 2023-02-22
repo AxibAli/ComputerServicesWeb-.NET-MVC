@@ -42,5 +42,8 @@ namespace ComputerServicesWeb.Models
         {
             return new ApplicationDbContext();
         }
+
+        public DbSet<IdentityUserRole> UserRoles { get; set; }
+
     }
 }
