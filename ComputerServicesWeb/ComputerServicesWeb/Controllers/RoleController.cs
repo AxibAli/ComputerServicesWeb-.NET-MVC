@@ -82,6 +82,7 @@ namespace ComputerServicesWeb.Controllers
             return View(new RoleViewModel(role));
         }
 
+        [HttpPost]
         public async Task<ActionResult> DeleteConfirmed(string id)
         {
             var role = await RoleManager.FindByIdAsync(id);
