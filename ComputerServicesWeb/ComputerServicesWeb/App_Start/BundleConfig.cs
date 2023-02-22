@@ -9,7 +9,12 @@ namespace ComputerServicesWeb
         public static void RegisterBundles(BundleCollection bundles)
         {
             bundles.Add(new ScriptBundle("~/bundles/jquery").Include(
-                        "~/Scripts/jquery-{version}.js"));
+                "~/Content/AdminAssest/libs/jquery/jquery.min.js",
+                "~/Content/AdminAssest/libs/bootstrap/js/bootstrap.bundle.min.js",
+                "~/Content/AdminAssest/libs/metismenu/metisMenu.min.js",
+                "~/Content/AdminAssest/libs/simplebar/simplebar.min.js", 
+                "~/Content/AdminAssest/libs/node-waves/waves.min.js" 
+                ));
 
             bundles.Add(new ScriptBundle("~/bundles/jqueryval").Include(
                         "~/Scripts/jquery.validate*"));
@@ -25,6 +30,8 @@ namespace ComputerServicesWeb
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
                       "~/Content/site.css"));
+
+
         }
     }
 }
