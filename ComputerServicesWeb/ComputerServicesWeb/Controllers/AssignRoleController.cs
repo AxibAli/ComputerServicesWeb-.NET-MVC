@@ -3,6 +3,7 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
@@ -14,6 +15,8 @@ namespace ComputerServicesWeb.Controllers
     {
         // GET: AssignRole
         ApplicationDbContext _dbcontext = new ApplicationDbContext();
+        log4net.ILog errlogger = log4net.LogManager.GetLogger("ErrorLogFile");
+
 
         public ActionResult Index()
         {
@@ -35,27 +38,32 @@ namespace ComputerServicesWeb.Controllers
                 {
                     users.Add(new SelectListItem { Text = user.UserName, Value = user.Id });
                 }
-
             }
-
             ViewBag.RolesList = roles;
             ViewBag.UsersList = users;
-
             return View();
         }
         
         [HttpPost]
         public ActionResult Assign(FormCollection form)
         {
-            
-            var role_id = form["RolesList"].ToString();
-            var User_id = form["UsersList"].ToString();
+            try
+            {
+                if (form.Count > 0)
+                {
+                    var role_id = form["RolesList"].ToString();
+                    var User_id = form["UsersList"].ToString();
 
-            _dbcontext.UserRoles.Add(new IdentityUserRole { RoleId=role_id,UserId=User_id });
-            _dbcontext.SaveChanges();
+                    _dbcontext.UserRoles.Add(new IdentityUserRole { RoleId = role_id, UserId = User_id });
+                    _dbcontext.SaveChanges();
 
+                }
+            }
+            catch (Exception ex)
+            {
+                errlogger.Error(ex.Message);
+            }
             return RedirectToAction("Index");
         }
-
     }
 }
