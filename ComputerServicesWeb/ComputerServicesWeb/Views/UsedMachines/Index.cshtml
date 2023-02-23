@@ -1,0 +1,49 @@
+﻿@model ComputerServicesWeb.Models.UsedMachineModels
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Add Machine Information</h2>
+<hr />
+
+@using (Html.BeginForm("MachineInformation", "UsedMachines", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+
+    <div class="mb-3">
+        <label for="BrandName" class="form-label">Brand name:</label>
+        @Html.TextBoxFor(m => m.Brand, new { @class = "form-control", @id = "BrandName" })
+    </div>
+    <div class="mb-3">
+        <label for="SelectPicture" class="form-label">Upload Picture:</label>
+        @Html.TextBox("file", "", new { type = "file",@class="form-control",@id= "SelectPicture" })
+    </div>
+    <div class="mb-3">
+        <label for="Type" class="form-label">Type:</label>
+        @Html.DropDownListFor(m => m.Type, new List<SelectListItem> { new SelectListItem { Text = "Desktop all in one", Value = "1" }, new SelectListItem { Text = "Desktop case", Value = "2" }, new SelectListItem { Text = "Monitor", Value = "3" }, new SelectListItem { Text = "Laptop", Value = "3" } }, "Please select", new { @class = "form-control" })
+    </div>
+    <div class="mb-3">
+        <label for="Ram" class="form-label">Ram:</label>
+        @Html.TextBoxFor(m => m.Ram, new { @class = "form-control", @id = "Ram" })
+    </div>
+    <div class="mb-3">
+        <label for="Harddisk" class="form-label">Hard disk:</label>
+        @Html.TextBoxFor(m => m.Harddisk, new { @class = "form-control", @id = "Harddisk" })
+    </div>
+    <div class="mb-3">
+        <label for="ScreenSize" class="form-label">Screen size:</label>
+        @Html.TextBoxFor(m => m.ScreenSize, new { @class = "form-control", @id = "ScreenSize" })
+    </div>
+    <div class="mb-3">
+        <label for="ModelNo" class="form-label">Model no:</label>
+        @Html.TextBoxFor(m => m.ModelNo, new { @class = "form-control", @id = "ModelNo" })
+    </div>
+    <div class="mb-3">
+        <label for="Processor" class="form-label">Processor:</label>
+        @Html.TextBoxFor(m => m.Processor, new { @class = "form-control", @id = "Processor" })
+    </div>
+    <div class="mb-3">
+        <label for="OtherInfo" class="form-label">Other Information:</label>
+        @Html.TextAreaFor(m => m.OtherInformation, new { @class = "form-control", @id = "OtherInfo" })
+    </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+}
