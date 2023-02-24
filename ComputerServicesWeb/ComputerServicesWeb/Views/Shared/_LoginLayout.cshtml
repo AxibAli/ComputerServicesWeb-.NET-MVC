@@ -6,33 +6,71 @@
     <title>@ViewBag.Title</title>
 
     <meta charset="utf-8" />
-    @*<title> Login </title>*@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta content="Premium Multipurpose Admin & Dashboard Template" name="description" />
     <meta content="Themesdesign" name="author" />
-    <!-- App favicon -->
-    <link rel="shortcut icon" href="~/Content/AdminAssest/images/favicon.ico">
 
-    <!-- Bootstrap Css -->
-    <link href="~/Content/AdminAssest/css/bootstrap.min.css" id="bootstrap-style" rel="stylesheet" type="text/css" />
-    <!-- Icons Css -->
-    <link href="~/Content/AdminAssest/css/icons.min.css" rel="stylesheet" type="text/css" />
-    <!-- App Css-->
-    <link href="~/Content/AdminAssest/css/app.min.css" id="app-style" rel="stylesheet" type="text/css" />
+    <!--begin::Fonts(mandatory for all pages)-->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter:300,400,500,600,700" />
+    <!--end::Fonts-->
+    <!--begin::Global Stylesheets Bundle(mandatory for all pages)-->
+    <link href="~/Content/assets/plugins/global/plugins.bundle.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/assets/css/style.bundle.css" rel="stylesheet" type="text/css" />
+    <!--end::Global Stylesheets Bundle-->
+
 </head>
-<body class="auth-body-bg">
-    <div>
-        @RenderBody()
+<body id="kt_body" class="app-blank app-blank">
+    <!--begin::Theme mode setup on page load-->
+    <script>var defaultThemeMode = "light"; var themeMode; if (document.documentElement) { if (document.documentElement.hasAttribute("data-bs-theme-mode")) { themeMode = document.documentElement.getAttribute("data-bs-theme-mode"); } else { if (localStorage.getItem("data-bs-theme") !== null) { themeMode = localStorage.getItem("data-bs-theme"); } else { themeMode = defaultThemeMode; } } if (themeMode === "system") { themeMode = window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light"; } document.documentElement.setAttribute("data-bs-theme", themeMode); }</script>
+    <!--end::Theme mode setup on page load-->
+
+    <div class="d-flex flex-column flex-root" id="kt_app_root">
+        <!--begin::Authentication - Sign-in -->
+        <div class="d-flex flex-column flex-lg-row flex-column-fluid">
+            <!--begin::Aside-->
+            <div class="d-flex flex-lg-row-fluid w-lg-50 bgi-size-cover bgi-position-center" style="background-image: url(/Content/assets/media/misc/auth-bg.png)">
+                <!--begin::Content-->
+                <div class="d-flex flex-column flex-center p-6 p-lg-10 w-100">
+                    <!--begin::Logo-->
+                    <a href="../../demo1/dist/index.html" class="mb-0 mb-lg-20">
+                        <img alt="Logo" src="~/Content/assets/media/logos/default-white.svg" class="h-40px h-lg-50px" />
+                    </a>
+                    <!--end::Logo-->
+                    <!--begin::Image-->
+                    <img class="d-none d-lg-block mx-auto w-300px w-lg-75 w-xl-500px mb-10 mb-lg-20" src="/Content/assets/media/misc/auth-screens.png" alt="" />
+                    <!--end::Image-->
+                    <!--begin::Title-->
+                    <h1 class="d-none d-lg-block text-white fs-2qx fw-bold text-center mb-7">Fast, Efficient and Productive</h1>
+                    <!--end::Title-->
+                    <!--begin::Text-->
+                    <div class="d-none d-lg-block text-white fs-base text-center">
+                        In this kind of post,
+                        <a href="#" class="opacity-75-hover text-warning fw-semibold me-1">the blogger</a>introduces a person they’ve interviewed
+                        <br />and provides some background information about
+                        <a href="#" class="opacity-75-hover text-warning fw-semibold me-1">the interviewee</a>and their
+                        <br />work following this is a transcript of the interview.
+                    </div>
+                    <!--end::Text-->
+                </div>
+                <!--end::Content-->
+            </div>
+            <!--begin::Aside-->
+            <div class="d-flex flex-column flex-lg-row-fluid w-lg-50 p-10">
+                @RenderBody()
+            </div>
+
+        </div>
+        <!--end::Authentication - Sign-in-->
     </div>
-
-    <!-- JAVASCRIPT -->
-
-    <script src="~/Content/AdminAssest/libs/jquery/jquery.min.js"></script>
-    <script src="~/Content/AdminAssest/libs/bootstrap/js/bootstrap.bundle.min.js"></script>
-    <script src="~/Content/AdminAssest/libs/metismenu/metisMenu.min.js"></script>
-    <script src="~/Content/AdminAssest/libs/simplebar/simplebar.min.js"></script>
-    <script src="~/Content/AdminAssest/libs/node-waves/waves.min.js"></script>
-    <script src="~/Content/AdminAssest/js/app.js"></script>
-
+    <!--begin::Javascript-->
+    <script>var hostUrl = "~/Content/assets/";</script>
+    <!--begin::Global Javascript Bundle(mandatory for all pages)-->
+    <script src="~/Content/assets/plugins/global/plugins.bundle.js"></script>
+    <script src="~/Content/assets/js/scripts.bundle.js"></script>
+    <!--end::Global Javascript Bundle-->
+    <!--begin::Custom Javascript(used for this page only)-->
+    <script src="~/Content/assets/js/custom/authentication/sign-in/general.js"></script>
+    <!--end::Custom Javascript-->
+    <!--end::Javascript-->
 </body>
 </html>
