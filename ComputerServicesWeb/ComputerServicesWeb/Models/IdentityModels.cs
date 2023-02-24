@@ -46,6 +46,6 @@ namespace ComputerServicesWeb.Models
         public DbSet<IdentityUserRole> UserRoles { get; set; }
         public DbSet<IdentityUserClaim> Claims { get; set; }
         public DbSet<IdentityUserLogin> Logins { get; set; }
-        //public DbSet<UsedMachineModels> usedMachines { get; set; }
+        public DbSet<UsedMachineModels> usedMachines { get; set; }
     }
 }

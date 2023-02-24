@@ -53,6 +53,9 @@
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.4.4\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
+    <Reference Include="log4net, Version=2.0.15.0, Culture=neutral, PublicKeyToken=669e0ddf0bb1aa2a, processorArchitecture=MSIL">
+      <HintPath>..\packages\log4net.2.0.15\lib\net45\log4net.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
@@ -175,6 +178,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\RoleController.cs" />
+    <Compile Include="Controllers\UsedMachinesController.cs" />
     <Compile Include="DataBase\Migrations\202302201131373_Initial.cs" />
     <Compile Include="DataBase\Migrations\202302201131373_Initial.designer.cs">
       <DependentUpon>202302201131373_Initial.cs</DependentUpon>
@@ -182,6 +186,10 @@
     <Compile Include="DataBase\Migrations\202302211501511_role.cs" />
     <Compile Include="DataBase\Migrations\202302211501511_role.designer.cs">
       <DependentUpon>202302211501511_role.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DataBase\Migrations\202302231011263_AddUsedMachineTable.cs" />
+    <Compile Include="DataBase\Migrations\202302231011263_AddUsedMachineTable.Designer.cs">
+      <DependentUpon>202302231011263_AddUsedMachineTable.cs</DependentUpon>
     </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -191,6 +199,7 @@
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\RoleViewModel.cs" />
+    <Compile Include="Models\UsedMachineModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
@@ -2464,6 +2473,7 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
+    <Content Include="Uploads\Atlas-Honda-Bikes-Price-Increased...jpg" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -2506,6 +2516,7 @@
     <Content Include="Views\Shared\_AdminLayout.cshtml" />
     <Content Include="Views\Home\Service.cshtml" />
     <Content Include="Views\Admin\Index.cshtml" />
+    <Content Include="Views\UsedMachines\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -2529,6 +2540,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="DataBase\Migrations\202302211501511_role.resx">
       <DependentUpon>202302211501511_role.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DataBase\Migrations\202302231011263_AddUsedMachineTable.resx">
+      <DependentUpon>202302231011263_AddUsedMachineTable.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
