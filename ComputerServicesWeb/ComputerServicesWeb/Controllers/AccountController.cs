@@ -12,7 +12,6 @@ using ComputerServicesWeb.Models;
 
 namespace ComputerServicesWeb.Controllers
 {
-    [Authorize]
     public class AccountController : Controller
     {
         private ApplicationSignInManager _signInManager;
@@ -79,6 +78,7 @@ namespace ComputerServicesWeb.Controllers
             switch (result)
             {
                 case SignInStatus.Success:
+                    Session["UserName"] = model.Email;
                     return RedirectToLocal(returnUrl);
                 case SignInStatus.LockedOut:
                     return View("Lockout");

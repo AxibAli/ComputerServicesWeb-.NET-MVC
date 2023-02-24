@@ -10,7 +10,6 @@ using ComputerServicesWeb.Models;
 
 namespace ComputerServicesWeb.Controllers
 {
-    [Authorize]
     public class ManageController : Controller
     {
         private ApplicationSignInManager _signInManager;

@@ -1,4 +1,5 @@
-﻿using ComputerServicesWeb.Models;
+﻿using ComputerServicesWeb.Infrastructure;
+using ComputerServicesWeb.Models;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using System;
@@ -11,6 +12,7 @@ using System.Web.Mvc;
 
 namespace ComputerServicesWeb.Controllers
 {
+    [CustomAuthFilter]
     public class AssignRoleController : Controller
     {
         // GET: AssignRole

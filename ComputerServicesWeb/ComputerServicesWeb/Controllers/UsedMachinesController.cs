@@ -1,4 +1,5 @@
-﻿using ComputerServicesWeb.Models;
+﻿using ComputerServicesWeb.Infrastructure;
+using ComputerServicesWeb.Models;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -8,6 +9,7 @@ using System.Web.Mvc;
 
 namespace ComputerServicesWeb.Controllers
 {
+    [CustomAuthFilter]
     public class UsedMachinesController : Controller
     {
         ApplicationDbContext _db = new ApplicationDbContext();
