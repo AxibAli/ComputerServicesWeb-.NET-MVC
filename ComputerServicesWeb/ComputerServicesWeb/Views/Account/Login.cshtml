@@ -5,137 +5,85 @@
     Layout = "~/Views/Shared/_LoginLayout.cshtml";
 }
 
-<h2>@ViewBag.Title</h2>
-<div class="bg-overlay"></div>
-<div class="wrapper-page">
-    <div class="container-fluid p-0">
-        <div class="card">
-            <div class="card-body">
-
-                <div class="text-center mt-4">
-                    <div class="mb-3">
-                        <a href="index.html" class="auth-logo">
-                            <img src="~/Content/AdminAssest/images/logo-dark.png" height="30" class="logo-dark mx-auto" alt="">
-                            <img src="~/Content/AdminAssest/images/logo-light.png" height="30" class="logo-light mx-auto" alt="">
-                        </a>
-                    </div>
-                </div>
-                <h4 class="text-muted text-center font-size-18"><b>Sign In</b></h4>
-
-                <div class="p-3">
-
-                    <form class="form-horizontal mt-3" method="post" @*action="index.html"*@>
-                        <section id="loginForm">
-                            @*@using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
-                                {*@
-                            @Html.AntiForgeryToken()
-                            <div class="form-group mb-3 row">
-                                <div class="col-12">
-                                    @*<input class="form-control" type="text" required="" placeholder="Username">*@
-                                    @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
-                                    @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger" })
-                                </div>
-                            </div>
-
-                            <div class="form-group mb-3 row">
-                                <div class="col-12">
-                                    @*<input class="form-control" type="password" required="" placeholder="Password">*@
-                                    @Html.PasswordFor(m => m.Password, new { @class = "form-control" })
-                                    @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
-                                </div>
-                            </div>
-
-                            <div class="form-group mb-3 row">
-                                <div class="col-12">
-                                    <div class="custom-control custom-checkbox">
-                                        @*<input type="checkbox" class="custom-control-input" id="customCheck1">
-                                            <label class="form-label ms-1" for="customCheck1">Remember me</label>*@
-                                        @Html.CheckBoxFor(m => m.RememberMe)
-                                        @Html.LabelFor(m => m.RememberMe)
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="form-group mb-3 text-center row mt-3 pt-1">
-                                <div class="col-12">
-                                    @*<button class="btn btn-info w-100 waves-effect waves-light" type="submit">Log In</button>*@
-                                    <input type="submit" value="Log in" class="btn btn-info w-100 waves-effect waves-light" />
-                                </div>
-                            </div>
-
-                            <div class="form-group mb-0 row mt-2">
-                                <div class="col-sm-7 mt-3">
-                                    <a href="auth-recoverpw.html" class="text-muted"><i class="mdi mdi-lock"></i> Forgot your password?</a>
-                                </div>
-                                <div class="col-sm-5 mt-3">
-                                    <a href="auth-register.html" class="text-muted"><i class="mdi mdi-account-circle"></i> Create an account</a>
-                                </div>
-                            </div>
-                            @*}*@
-                        </section>
-                    </form>
-
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-
-<!-- end -->
-@*<div class="col-md-8">
-        <section id="loginForm">
-            @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
-            {
+<!--begin::Body-->
+<!--begin::Form-->
+<div class="d-flex flex-center flex-column flex-lg-row-fluid">
+    <!--begin::Wrapper-->
+    <div class="w-lg-500px p-10">
+        <!--begin::Form-->
+        <form class="form w-100" id="kt_sign_in_form" method="post">
+            <section id="loginForm">
                 @Html.AntiForgeryToken()
-                <h4>Use a local account to log in.</h4>
-                <hr />
-                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-                <div class="form-group">
-                    @Html.LabelFor(m => m.Email, new { @class = "col-md-2 control-label" })
-                    <div class="col-md-10">
-                        @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
+                @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+                {
+                    <!--begin::Heading-->
+                    <div class="text-center mb-11">
+                        <!--begin::Title-->
+                        <h1 class="text-dark fw-bolder mb-3">Sign In</h1>
+                        <!--end::Title-->
+                        <!--begin::Subtitle-->
+                        <div class="text-gray-500 fw-semibold fs-6">Your Social Campaigns</div>
+                        <!--end::Subtitle=-->
+                    </div>
+                    <!--begin::Heading-->
+                    <!--begin::Input group=-->
+                    <div class="fv-row mb-8">
+                        <!--begin::Email-->
+                        @Html.TextBoxFor(m => m.Email, new { type = "text", placeholder = "Email", name = "email", autocomplete = "off", @class = "form-control bg-transparent" })
                         @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger" })
+                        <!--end::Email-->
                     </div>
-                </div>
-                <div class="form-group">
-                    @Html.LabelFor(m => m.Password, new { @class = "col-md-2 control-label" })
-                    <div class="col-md-10">
-                        @Html.PasswordFor(m => m.Password, new { @class = "form-control" })
+                    <!--end::Input group=-->
+                    <div class="fv-row mb-3">
+                        <!--begin::Password-->
+                        @Html.PasswordFor(m => m.Password, new { type = "password", placeholder = "Password", name = "password", autocomplete = "off", @class = "form-control bg-transparent" })
                         @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
+                        <!--end::Password-->
                     </div>
-                </div>
-                <div class="form-group">
-                    <div class="col-md-offset-2 col-md-10">
-                        <div class="checkbox">
-                            @Html.CheckBoxFor(m => m.RememberMe)
-                            @Html.LabelFor(m => m.RememberMe)
+                    <!--end::Input group=-->
+                    <!--begin::Wrapper-->
+                    <div class="d-flex flex-stack flex-wrap gap-3 fs-base fw-semibold mb-8">
+                        <div></div>
+                        <div class="form-group mb-3 row">
+                            <div class="col-12">
+                                <div class="custom-control custom-checkbox">
+                                    @Html.CheckBoxFor(m => m.RememberMe)
+                                    @Html.LabelFor(m => m.RememberMe)
+                                </div>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="form-group">
-                    <div class="col-md-offset-2 col-md-10">
-                        <input type="submit" value="Log in" class="btn btn-default" />
+                    <!--end::Wrapper-->
+                    <!--begin::Submit button-->
+                    <div class="d-grid mb-10">
+                        <button type="submit" value="Log in" class="btn btn-primary">
+                            <!--begin::Indicator label-->
+                            <span class="indicator-label">Sign In</span>
+                            <!--end::Indicator label-->
+                            <!--begin::Indicator progress-->
+                            <span class="indicator-progress">
+                                Please wait...
+                                <span class="spinner-border spinner-border-sm align-middle ms-2"></span>
+                            </span>
+                            <!--end::Indicator progress-->
+                        </button>
                     </div>
-                </div>
-                <p>
-                    @Html.ActionLink("Register as a new user", "Register")
-                </p>
-                 Enable this once you have account confirmation enabled for password reset functionality
-                    <p>
-                        @Html.ActionLink("Forgot your password?", "ForgotPassword")
-                    </p>
-            }
-        </section>
-    </div>*@
-@*<div class="col-md-4">
-        <section id="socialLoginForm">
-            @Html.Partial("_ExternalLoginsListPartial", new ExternalLoginListViewModel { ReturnUrl = ViewBag.ReturnUrl })
-        </section>
-    </div>*@
+                }
+                <!--end::Submit button-->
+            </section>
+        </form>
+        <!--end::Form-->
+    </div>
+    <!--end::Wrapper-->
+</div>
+<!--end::Form-->
+<!--begin::Footer-->
+<div class="d-flex flex-center flex-wrap px-5">
+    <!--begin::Links-->
+    <div class="d-flex fw-semibold text-primary fs-base">
 
-
-@*@section Scripts {
-        @Scripts.Render("~/bundles/jqueryval")
-    }*@
-
-
+    </div>
+    <!--end::Links-->
+</div>
+<!--end::Footer-->
+<!--end::Body-->

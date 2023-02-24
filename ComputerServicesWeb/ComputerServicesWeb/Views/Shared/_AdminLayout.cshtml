@@ -295,7 +295,7 @@
                                     <!--end::Menu item-->
                                     <!--begin::Menu item-->
                                     <div class="menu-item px-5">
-                                        <a href="../../demo1/dist/authentication/layouts/corporate/sign-in.html" class="menu-link px-5">Sign Out</a>
+                                        <a href="@Url.Action("LogOff","Account")"  class="menu-link px-5">Sign Out</a>
                                     </div>
                                     <!--end::Menu item-->
                                 </div>
@@ -555,11 +555,6 @@
     </div>
     <!--end::App-->
 
-
-
-    @*<div>
-        @RenderBody()
-    </div>*@
 
     <!--begin::Javascript-->
     <script>var hostUrl = "assets/";</script>
