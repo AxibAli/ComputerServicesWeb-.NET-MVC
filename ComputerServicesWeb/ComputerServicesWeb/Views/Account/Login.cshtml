@@ -1,4 +1,4 @@
-﻿@using ComputerServicesWeb.Models
+﻿`@using ComputerServicesWeb.Models
 @model LoginViewModel
 @{
     ViewBag.Title = "Login";
@@ -29,8 +29,8 @@
                     <!--begin::Input group=-->
                     <div class="fv-row mb-8">
                         <!--begin::Email-->
-                        @Html.TextBoxFor(m => m.Email, new { type = "text", placeholder = "Email", name = "email", autocomplete = "off", @class = "form-control bg-transparent" })
-                        @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger" })
+                        @Html.TextBoxFor(m => m.Username, new { type = "text", placeholder = "Username", name = "email", autocomplete = "off", @class = "form-control bg-transparent" })
+                        @Html.ValidationMessageFor(m => m.Username, "", new { @class = "text-danger" })
                         <!--end::Email-->
                     </div>
                     <!--end::Input group=-->
