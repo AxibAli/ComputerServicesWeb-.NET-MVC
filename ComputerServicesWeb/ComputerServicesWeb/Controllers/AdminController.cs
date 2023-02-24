@@ -6,17 +6,13 @@ using System.Web.Mvc;
 
 namespace ComputerServicesWeb.Controllers
 {
-    public class HomeController : Controller
+    public class AdminController : Controller
     {
+        
+        // GET: Admin
         public ActionResult Index()
         {
             return View();
         }
-
-        public ActionResult Service()
-        {
-            return View();
-        }
-
     }
 }

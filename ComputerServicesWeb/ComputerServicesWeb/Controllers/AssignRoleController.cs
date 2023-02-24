@@ -15,7 +15,7 @@ namespace ComputerServicesWeb.Controllers
     {
         // GET: AssignRole
         ApplicationDbContext _dbcontext = new ApplicationDbContext();
-        log4net.ILog errlogger = log4net.LogManager.GetLogger("ErrorLogFile");
+        //log4net.ILog errlogger = log4net.LogManager.GetLogger("ErrorLogFile");
 
 
         public ActionResult Index()
@@ -61,7 +61,7 @@ namespace ComputerServicesWeb.Controllers
             }
             catch (Exception ex)
             {
-                errlogger.Error(ex.Message);
+                //errlogger.Error(ex.Message);
             }
             return RedirectToAction("Index");
         }
