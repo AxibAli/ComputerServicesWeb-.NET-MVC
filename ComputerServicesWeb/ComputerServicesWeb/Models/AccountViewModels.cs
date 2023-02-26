@@ -64,6 +64,8 @@ namespace ComputerServicesWeb.Models
 
         [Display(Name = "Remember me?")]
         public bool RememberMe { get; set; }
+
+        public string PicturePath { get; set; }
     }
 
     public class RegisterViewModel
