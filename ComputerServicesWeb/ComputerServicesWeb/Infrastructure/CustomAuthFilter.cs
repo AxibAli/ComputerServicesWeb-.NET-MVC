@@ -12,7 +12,7 @@ namespace ComputerServicesWeb.Infrastructure
     {
         public void OnAuthentication(AuthenticationContext filterContext)
         {
-            if (string.IsNullOrEmpty(Convert.ToString(filterContext.HttpContext.Session["UserName"])))
+            if (string.IsNullOrEmpty(Convert.ToString(filterContext.HttpContext.Session["UserId"])))
             {
                 filterContext.Result = new HttpUnauthorizedResult();
             }

@@ -38,7 +38,7 @@ namespace ComputerServicesWeb.Controllers
                 {
                     Brand = form["Brand"].ToString(),
                     Harddisk = form["Harddisk"].ToString(),
-                    PicturePath = _path,
+                    PicturePath = $"/Uploads/{file.FileName}",
                     ModelNo = form["ModelNo"].ToString(),
                     OtherInformation=form["OtherInformation"].ToString(),
                     Processor=form["Processor"].ToString(),

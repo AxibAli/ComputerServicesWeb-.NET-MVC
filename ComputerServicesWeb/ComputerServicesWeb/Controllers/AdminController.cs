@@ -2,6 +2,7 @@
 using ComputerServicesWeb.Models;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -18,16 +19,17 @@ namespace ComputerServicesWeb.Controllers
         {
             return View();
         }
+
         public ActionResult MyProfile()
         {
-            string username = Session["UserName"].ToString();
-            var user_info = _db.Users.Where(m => m.UserName == username).FirstOrDefault();
+            string user_id = Session["UserId"].ToString();
+            var user_info = _db.Users.Where(m => m.Id == user_id).FirstOrDefault();
 
             var model = new ProfileModel
             {
                 Email= user_info.Email,
                 PhoneNumber= user_info.PhoneNumber,
-                UserName=username
+                UserName=user_info.UserName
 
             };
 
@@ -35,10 +37,22 @@ namespace ComputerServicesWeb.Controllers
         }
 
         [HttpPost]
-        public ActionResult UpdateProfile(ProfileModel model)
+        public ActionResult UpdateProfile(ProfileModel model,HttpPostedFileBase file)
         {
+            string _path = "";
+            if (file.ContentLength > 0)
+            {
+                string _FileName = Path.GetFileName(file.FileName);
+                _path = Path.Combine(Server.MapPath("~/Uploads"), _FileName);
+                file.SaveAs(_path);
+            }
 
-            return View();
-        }
+            var user = _db.Users.ToList().Where(x=>x.UserName==model.UserName).FirstOrDefault();
+            user.UserPicturePath= $"/Uploads/{file.FileName}";
+            _db.Entry(user).State = System.Data.Entity.EntityState.Modified;
+            _db.SaveChanges();
+
+            return RedirectToAction("Index");
+         }
     }
 }
