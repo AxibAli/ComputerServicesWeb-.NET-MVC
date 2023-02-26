@@ -81,6 +81,7 @@ namespace ComputerServicesWeb.Controllers
             {
                 case SignInStatus.Success:
                     var user_info = _db.Users.Where(m => m.UserName == model.Username).FirstOrDefault();
+                    
                     var user_role = _db.UserRoles.Where(m => m.UserId == user_info.Id).FirstOrDefault();
                     string role= _db.Roles.Where(m => m.Id == user_role.RoleId).Select(m => m.Name).Single();
 

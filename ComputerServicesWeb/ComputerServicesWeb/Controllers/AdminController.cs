@@ -46,19 +46,19 @@ namespace ComputerServicesWeb.Controllers
                 if (file.ContentLength > 0)
                 {
                     string _FileName = Path.GetFileName(file.FileName);
-                    _path = Path.Combine(Server.MapPath("~/Uploads"), _FileName);
+                    _path = Path.Combine(Server.MapPath("~/Uploads/UserPictures/"), _FileName);
                     file.SaveAs(_path);
                 }
 
                 var user = _db.Users.Where(x => x.UserName == model.UserName).FirstOrDefault();
-                user.UserPicturePath = $"/Uploads/{file.FileName}";
+                user.UserPicturePath = $"/Uploads/UserPictures/{file.FileName}";
                 user.Email = model.Email;
                 user.PhoneNumber = model.PhoneNumber;
 
                 _db.Entry(user).State = System.Data.Entity.EntityState.Modified;
                 _db.SaveChanges();
 
-                DisplayUserInfo.profile_picture_path = $"/Uploads/{file.FileName}";
+                DisplayUserInfo.profile_picture_path = $"/Uploads/UserPictures/{file.FileName}";
             }
             else
             {
