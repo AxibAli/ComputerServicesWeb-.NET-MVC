@@ -18,7 +18,9 @@
     <!--begin::Content-->
     <div id="kt_account_settings_profile_details" class="collapse show">
         <!--begin::Form-->
-        <form id="kt_account_profile_details_form" class="form">
+        @*<form id="kt_account_profile_details_form" class="form">*@
+        @using(Html.BeginForm("UpdateProfile", "Admin", FormMethod.Post, new { enctype = "multipart/form-data" })) 
+        { 
             <!--begin::Card body-->
             <div class="card-body border-top p-9">
                 <!--begin::Input group-->
@@ -31,15 +33,15 @@
                         <!--begin::Image input-->
                         <div class="image-input image-input-outline" data-kt-image-input="true" style="background-image: url('assets/media/svg/avatars/blank.svg')">
                             <!--begin::Preview existing avatar-->
-                            <div class="image-input-wrapper w-125px h-125px" style="background-image: url('')"></div>
+                            <div class="image-input-wrapper w-125px h-125px" style="background-image: url(assets/media/avatars/300-1.jpg)"></div>
                             <!--end::Preview existing avatar-->
                             <!--begin::Label-->
                             <label class="btn btn-icon btn-circle btn-active-color-primary w-25px h-25px bg-body shadow" data-kt-image-input-action="change" data-bs-toggle="tooltip" title="Change avatar">
                                 <i class="bi bi-pencil-fill fs-7"></i>
                                 <!--begin::Inputs-->
                                 @*<input type="file" name="avatar" accept=".png, .jpg, .jpeg" />
-        <input type="hidden" name="avatar_remove" />*@
-                                @Html.TextBox("avatar","", new { type = "file", accept = ".png, .jpg, .jpeg", id = "check", })
+                                <input type="hidden" name="avatar_remove" />*@
+                                @Html.TextBox("file", "", new { @name="avatar",@type="file",@id="profile_picture", @accept = ".png, .jpg, .jpeg" })
                                 <!--end::Inputs-->
                             </label>
                             <!--end::Label-->
@@ -48,7 +50,7 @@
                                 <i class="bi bi-x fs-2"></i>
                             </span>
                             <!--end::Cancel-->
-                            <!--begin::Remove-->
+                           <!--begin::Remove-->
                             <span class="btn btn-icon btn-circle btn-active-color-primary w-25px h-25px bg-body shadow" data-kt-image-input-action="remove" data-bs-toggle="tooltip" title="Remove avatar">
                                 <i class="bi bi-x fs-2"></i>
                             </span>
@@ -74,7 +76,7 @@
                             <!--begin::Col-->
                             <div class="col-lg-12 fv-row">
                                 @*<input type="text" name="fname" class="form-control form-control-lg form-control-solid mb-3 mb-lg-0" placeholder="Username" />*@
-                                @Html.TextBoxFor(m => m.UserName, new { type = "text", name = "fname", @class= "form-control form-control-lg form-control-solid mb-3 mb-lg-0", placeholder="Username"  })
+                                @Html.TextBoxFor(m => m.UserName, new { @type = "text", @name = "fname", @class= "form-control form-control-lg form-control-solid mb-3 mb-lg-0", @placeholder="Username", @readonly = "readonly" })
                                 
                             </div>
                             <!--end::Col-->
@@ -92,7 +94,7 @@
                     <!--begin::Col-->
                     <div class="col-lg-8 fv-row">
                         @*<input type="text" name="company" class="form-control form-control-lg form-control-solid" placeholder="Email"  />*@
-                        @Html.TextBoxFor(m => m.Email, new { type = "text", name = "fname", @class = "form-control form-control-lg form-control-solid mb-3 mb-lg-0", placeholder = "Email"  })
+                        @Html.TextBoxFor(m => m.Email, new { @type = "text", @name = "fname", @class = "form-control form-control-lg form-control-solid mb-3 mb-lg-0", @placeholder = "Email", @readonly = "readonly" })
                     </div>
                     <!--end::Col-->
                 </div>
@@ -101,14 +103,14 @@
                 <div class="row mb-6">
                     <!--begin::Label-->
                     <label class="col-lg-4 col-form-label fw-semibold fs-6">
-                        <span class="">Contact Phone</span>
-                        @*<i class="fas fa-exclamation-circle ms-1 fs-7" data-bs-toggle="tooltip" title="Phone number must be active"></i>*@
+                        <span class="required">Contact Phone</span>
+                        <i class="fas fa-exclamation-circle ms-1 fs-7" data-bs-toggle="tooltip" title="Phone number must be active"></i>
                     </label>
                     <!--end::Label-->
                     <!--begin::Col-->
                     <div class="col-lg-8 fv-row">
                         @*<input type="tel" name="phone" class="form-control form-control-lg form-control-solid" placeholder="Phone number"/>*@
-                        @Html.TextBoxFor(m => m.PhoneNumber, new { type = "text", name = "fname", @class = "form-control form-control-lg form-control-solid mb-3 mb-lg-0", placeholder = "Phone number"  })
+                        @Html.TextBoxFor(m => m.PhoneNumber, new { @type = "text", @name = "fname", @class = "form-control form-control-lg form-control-solid mb-3 mb-lg-0", @placeholder = "Phone number", @readonly = "readonly" })
                     </div>
                     <!--end::Col-->
                 </div>
@@ -117,10 +119,12 @@
             <!--end::Card body-->
             <!--begin::Actions-->
             <div class="card-footer d-flex justify-content-end py-6 px-9">
+                <button type="reset" class="btn btn-light btn-active-light-primary me-2">Edit</button>
                 <button type="submit" class="btn btn-primary" id="kt_account_profile_details_submit">Save Changes</button>
             </div>
             <!--end::Actions-->
-        </form>
+        }
+        @*</form>*@
         <!--end::Form-->
     </div>
     <!--end::Content-->

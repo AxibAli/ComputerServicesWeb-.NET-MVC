@@ -9,11 +9,9 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using ComputerServicesWeb.Models;
-using ComputerServicesWeb.Infrastructure;
 
 namespace ComputerServicesWeb.Controllers
 {
-    [CustomAuthFilter]
     public class AccountController : Controller
     {
         private ApplicationSignInManager _signInManager;
@@ -81,13 +79,11 @@ namespace ComputerServicesWeb.Controllers
             switch (result)
             {
                 case SignInStatus.Success:
-                    var Userdata = _db.Users.Where(m => m.UserName == model.Username).FirstOrDefault();
-                   
-                    Session["Email"] = Userdata.Email;
-                    Session["UserName"] = Userdata.UserName;
-                    Session["UserPicturePath"] = Userdata.UserPicturePath;
+                    var user_info = _db.Users.Where(m => m.UserName == model.Username).FirstOrDefault();
+                    Session["UserId"] = user_info.Id;
+                    DisplayUserInfo.email = user_info.Email;
+                    DisplayUserInfo.profile_picture_path = user_info.UserPicturePath;
                     return RedirectToLocal(returnUrl);
-
                 case SignInStatus.LockedOut:
                     return View("Lockout");
                 case SignInStatus.RequiresVerification:
@@ -159,29 +155,19 @@ namespace ComputerServicesWeb.Controllers
         {
             if (ModelState.IsValid)
             {
-                var user = new ApplicationUser 
-                { 
-                    UserName = model.Username,
-                    Email = model.Email,
-                    IsActive=true,
-                    CreatedOn=DateTime.Now,
-                    UserPicturePath = @"~/Uploads/UserPictures/blank.png"
-
-                };
-                Session["Password"] = model.Password;
+                var user = new ApplicationUser { UserName = model.Username, Email = model.Email, IsActive=true, CreatedOn=DateTime.Now };
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
                     await SignInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false);
-
+                    
                     // For more information on how to enable account confirmation and password reset please visit https://go.microsoft.com/fwlink/?LinkID=320771
                     // Send an email with this link
                     // string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
                     // var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
                     // await UserManager.SendEmailAsync(user.Id, "Confirm your account", "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>");
 
-                    //return RedirectToAction("Index", "Admin");
-                    return View();
+                    return RedirectToAction("Index", "Admin");
                 }
                 AddErrors(result);
             }
