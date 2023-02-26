@@ -7,9 +7,11 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using ComputerServicesWeb.Models;
+using ComputerServicesWeb.Infrastructure;
 
 namespace ComputerServicesWeb.Controllers
 {
+    [CustomAuthFilter]
     public class ManageController : Controller
     {
         private ApplicationSignInManager _signInManager;

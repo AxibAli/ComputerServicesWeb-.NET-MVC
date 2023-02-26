@@ -9,6 +9,7 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using ComputerServicesWeb.Models;
+using ComputerServicesWeb.Infrastructure;
 
 namespace ComputerServicesWeb.Controllers
 {
@@ -80,9 +81,15 @@ namespace ComputerServicesWeb.Controllers
             {
                 case SignInStatus.Success:
                     var user_info = _db.Users.Where(m => m.UserName == model.Username).FirstOrDefault();
+                    var user_role = _db.UserRoles.Where(m => m.UserId == user_info.Id).FirstOrDefault();
+                    string role= _db.Roles.Where(m => m.Id == user_role.RoleId).Select(m => m.Name).Single();
+
+
                     Session["UserId"] = user_info.Id;
+                    DisplayUserInfo.Username = user_info.UserName;
                     DisplayUserInfo.email = user_info.Email;
                     DisplayUserInfo.profile_picture_path = user_info.UserPicturePath;
+                    DisplayUserInfo.role = role;
                     return RedirectToLocal(returnUrl);
                 case SignInStatus.LockedOut:
                     return View("Lockout");

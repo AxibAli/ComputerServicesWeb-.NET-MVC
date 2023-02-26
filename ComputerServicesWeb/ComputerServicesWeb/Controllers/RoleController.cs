@@ -7,9 +7,11 @@ using static ComputerServicesWeb.ApplicationSignInManager;
 using Microsoft.AspNet.Identity.Owin;
 using ComputerServicesWeb.Models;
 using System.Threading.Tasks;
+using ComputerServicesWeb.Infrastructure;
 
 namespace ComputerServicesWeb.Controllers
 {
+    [CustomAuthFilter]
     public class RoleController : Controller
     {
         private ApplicationRoleManager _roleManager;

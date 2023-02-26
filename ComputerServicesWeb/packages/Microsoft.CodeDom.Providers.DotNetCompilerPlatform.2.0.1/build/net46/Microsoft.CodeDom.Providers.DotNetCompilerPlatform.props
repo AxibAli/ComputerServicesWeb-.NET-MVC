@@ -27,19 +27,19 @@
       <FileWrites Include="$(RoslynToolsDestinationFolder)\*" />
     </ItemGroup>
   </Target>
-  <Target Name="CheckIfShouldKillVBCSCompiler">
+  <!--<Target Name="CheckIfShouldKillVBCSCompiler">
     <CheckIfVBCSCompilerWillOverride src="$(RoslynToolPath)\VBCSCompiler.exe" dest="$(RoslynToolsDestinationFolder)\VBCSCompiler.exe">
       <Output TaskParameter="WillOverride" PropertyName="ShouldKillVBCSCompiler" />
     </CheckIfVBCSCompilerWillOverride>
-  </Target>
-  <Target Name = "KillVBCSCompilerBeforeCopy" BeforeTargets="CopyRoslynCompilerFilesToOutputDirectory" DependsOnTargets="LocateRoslynToolsDestinationFolder;CheckIfShouldKillVBCSCompiler" >
+  </Target>-->
+  <!--<Target Name = "KillVBCSCompilerBeforeCopy" BeforeTargets="CopyRoslynCompilerFilesToOutputDirectory" DependsOnTargets="LocateRoslynToolsDestinationFolder;CheckIfShouldKillVBCSCompiler" >
     <KillProcess ProcessName="VBCSCompiler" ImagePath="$(RoslynToolsDestinationFolder)" Condition="'$(ShouldKillVBCSCompiler)' == 'True'" />
-  </Target>
-  <Target Name = "KillVBCSCompilerBeforeClean" AfterTargets="BeforeClean" DependsOnTargets="LocateRoslynToolsDestinationFolder">
+  </Target>-->
+  <!--<Target Name = "KillVBCSCompilerBeforeClean" AfterTargets="BeforeClean" DependsOnTargets="LocateRoslynToolsDestinationFolder">
     <KillProcess ProcessName="VBCSCompiler" ImagePath="$(RoslynToolsDestinationFolder)" />
-  </Target>
-  <UsingTask TaskName="KillProcess" TaskFactory="CodeTaskFactory" AssemblyFile="$(MSBuildToolsPath)\Microsoft.Build.Tasks.v4.0.dll">
-    <ParameterGroup>
+  </Target>-->
+  <!--<UsingTask TaskName="KillProcess" TaskFactory="CodeTaskFactory" AssemblyFile="$(MSBuildToolsPath)\Microsoft.Build.Tasks.v4.0.dll">-->
+    <!--<ParameterGroup>
       <ProcessName ParameterType="System.String" Required="true" />
       <ImagePath ParameterType="System.String" Required="true" />
     </ParameterGroup>
@@ -88,7 +88,7 @@
                 ]]>
       </Code>
     </Task>
-  </UsingTask>
+  </UsingTask>-->
   <UsingTask TaskName="CheckIfVBCSCompilerWillOverride" TaskFactory="CodeTaskFactory" AssemblyFile="$(MSBuildToolsPath)\Microsoft.Build.Tasks.v4.0.dll">
     <ParameterGroup>
       <Src ParameterType="System.String" Required="true" />

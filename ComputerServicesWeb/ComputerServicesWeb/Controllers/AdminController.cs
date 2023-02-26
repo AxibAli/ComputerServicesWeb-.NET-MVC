@@ -39,18 +39,40 @@ namespace ComputerServicesWeb.Controllers
         [HttpPost]
         public ActionResult UpdateProfile(ProfileModel model,HttpPostedFileBase file)
         {
-            string _path = "";
-            if (file.ContentLength > 0)
+
+            if (file != null)
             {
-                string _FileName = Path.GetFileName(file.FileName);
-                _path = Path.Combine(Server.MapPath("~/Uploads"), _FileName);
-                file.SaveAs(_path);
+                string _path = "";
+                if (file.ContentLength > 0)
+                {
+                    string _FileName = Path.GetFileName(file.FileName);
+                    _path = Path.Combine(Server.MapPath("~/Uploads"), _FileName);
+                    file.SaveAs(_path);
+                }
+
+                var user = _db.Users.Where(x => x.UserName == model.UserName).FirstOrDefault();
+                user.UserPicturePath = $"/Uploads/{file.FileName}";
+                user.Email = model.Email;
+                user.PhoneNumber = model.PhoneNumber;
+
+                _db.Entry(user).State = System.Data.Entity.EntityState.Modified;
+                _db.SaveChanges();
+
+                DisplayUserInfo.profile_picture_path = $"/Uploads/{file.FileName}";
+            }
+            else
+            {
+                var user = _db.Users.Where(x => x.UserName == model.UserName).FirstOrDefault();
+                user.PhoneNumber = model.PhoneNumber;
+                user.Email = model.Email;
+                _db.Entry(user).State = System.Data.Entity.EntityState.Modified;
+                _db.SaveChanges();
+
+                DisplayUserInfo.email = model.Email;
             }
 
-            var user = _db.Users.ToList().Where(x=>x.UserName==model.UserName).FirstOrDefault();
-            user.UserPicturePath= $"/Uploads/{file.FileName}";
-            _db.Entry(user).State = System.Data.Entity.EntityState.Modified;
-            _db.SaveChanges();
+            
+
 
             return RedirectToAction("Index");
          }
