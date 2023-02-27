@@ -39,6 +39,7 @@ namespace ComputerServicesWeb.Controllers
         [HttpPost]
         public ActionResult UpdateProfile(ProfileModel model,HttpPostedFileBase file)
         {
+            string user_id = Session["UserId"].ToString();
 
             if (file != null)
             {
@@ -46,34 +47,35 @@ namespace ComputerServicesWeb.Controllers
                 if (file.ContentLength > 0)
                 {
                     string _FileName = Path.GetFileName(file.FileName);
-                    _path = Path.Combine(Server.MapPath("~/Uploads/UserPictures/"), _FileName);
+                    _path = Path.Combine(Server.MapPath("~/Uploads/"), _FileName);
                     file.SaveAs(_path);
                 }
 
-                var user = _db.Users.Where(x => x.UserName == model.UserName).FirstOrDefault();
-                user.UserPicturePath = $"/Uploads/UserPictures/{file.FileName}";
+                var user = _db.Users.Where(x => x.Id == user_id).FirstOrDefault();
+                user.UserPicturePath = $"/Uploads/{file.FileName}";
                 user.Email = model.Email;
                 user.PhoneNumber = model.PhoneNumber;
+                user.UserName = model.UserName;
 
                 _db.Entry(user).State = System.Data.Entity.EntityState.Modified;
                 _db.SaveChanges();
 
-                DisplayUserInfo.profile_picture_path = $"/Uploads/UserPictures/{file.FileName}";
+                DisplayUserInfo.profile_picture_path = $"/Uploads/{file.FileName}";
+                DisplayUserInfo.email = model.Email;
+                DisplayUserInfo.Username = model.UserName;
             }
             else
             {
-                var user = _db.Users.Where(x => x.UserName == model.UserName).FirstOrDefault();
+                var user = _db.Users.Where(x => x.Id == user_id).FirstOrDefault();
                 user.PhoneNumber = model.PhoneNumber;
                 user.Email = model.Email;
+                user.UserName = model.UserName;
                 _db.Entry(user).State = System.Data.Entity.EntityState.Modified;
                 _db.SaveChanges();
 
                 DisplayUserInfo.email = model.Email;
+                DisplayUserInfo.Username = model.UserName;
             }
-
-            
-
-
             return RedirectToAction("Index");
          }
     }

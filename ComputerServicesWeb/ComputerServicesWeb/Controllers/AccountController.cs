@@ -80,11 +80,17 @@ namespace ComputerServicesWeb.Controllers
             switch (result)
             {
                 case SignInStatus.Success:
+
+                    string role = "";
+
                     var user_info = _db.Users.Where(m => m.UserName == model.Username).FirstOrDefault();
                     
                     var user_role = _db.UserRoles.Where(m => m.UserId == user_info.Id).FirstOrDefault();
-                    string role= _db.Roles.Where(m => m.Id == user_role.RoleId).Select(m => m.Name).Single();
-
+                    
+                    if (user_role != null)
+                    {
+                        role = _db.Roles.Where(m => m.Id == user_role.RoleId).Select(m => m.Name).Single();
+                    }
 
                     Session["UserId"] = user_info.Id;
                     DisplayUserInfo.Username = user_info.UserName;
@@ -404,6 +410,9 @@ namespace ComputerServicesWeb.Controllers
         public ActionResult LogOff()
         {
             Session.Clear();
+            DisplayUserInfo.Username = "";
+            DisplayUserInfo.email = "";
+            DisplayUserInfo.profile_picture_path = "";
             AuthenticationManager.SignOut(DefaultAuthenticationTypes.ApplicationCookie);
             return RedirectToAction("Login", "Account");
         }
