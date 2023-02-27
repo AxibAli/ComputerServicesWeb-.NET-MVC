@@ -77,5 +77,49 @@ namespace ComputerServicesWeb.Controllers
         {
             return View();
         }
+        [HttpPost]
+        public ActionResult Services(FormCollection form, HttpPostedFileBase file)
+        {
+            try
+            {
+                string _path = "";
+                if (file.ContentLength > 0)
+                {
+                    string _FileName = Path.GetFileName(file.FileName);
+                    _path = Path.Combine(Server.MapPath("~/Uploads"), _FileName);
+                    file.SaveAs(_path);
+                }
+
+                var obj = new ServicesModel
+                {
+                    Name = form["Name"].ToString(),
+                    Description = form["Description"].ToString(),
+                    PicturePath = $"/Uploads/{file.FileName}",
+                    
+
+                };
+
+                _db.services.Add(obj);
+                _db.SaveChanges();
+            }
+            catch (Exception ex)
+            {
+                errlogger.Error(ex.Message);
+            }
+            return RedirectToAction("GetAllServices");
+        }
+
+        public ActionResult GetAllServices() 
+        {
+            var model = _db.services.ToList();
+            return View(model);
+        }
+        [HttpGet]
+        public ActionResult GetAllServices(int? pageNumber)
+        {
+            var records = _db.services.ToList().ToPagedList(pageNumber ?? 1, 6);
+            return View(records);
+        }
+
     }
 }

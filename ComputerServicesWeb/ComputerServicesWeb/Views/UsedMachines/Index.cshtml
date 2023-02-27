@@ -49,11 +49,11 @@
 
                 <div class="mb-3">
                     <label for="BrandName" class="form-label">Brand name:</label>
-                    @Html.TextBoxFor(m => m.Brand, new { @class = "form-control", @id = "BrandName" })
+                    @Html.TextBoxFor(m => m.Brand, new { @class = "form-control", id = "BrandName" })
                 </div>
                 <div class="mb-3">
                     <label for="SelectPicture" class="form-label">Upload Picture:</label>
-                    @Html.TextBox("file", "", new { type = "file", @class = "form-control", @id = "SelectPicture" })
+                    @Html.TextBox("file", "", new { type = "file", @class = "form-control", id = "SelectPicture" })
                 </div>
                 <div class="mb-3">
                     <label for="Type" class="form-label">Type:</label>
@@ -61,27 +61,27 @@
                 </div>
                 <div class="mb-3">
                     <label for="Ram" class="form-label">Ram:</label>
-                    @Html.TextBoxFor(m => m.Ram, new { @class = "form-control", @id = "Ram" })
+                    @Html.TextBoxFor(m => m.Ram, new { @class = "form-control", id = "Ram" })
                 </div>
                 <div class="mb-3">
                     <label for="Harddisk" class="form-label">Hard disk:</label>
-                    @Html.TextBoxFor(m => m.Harddisk, new { @class = "form-control", @id = "Harddisk" })
+                    @Html.TextBoxFor(m => m.Harddisk, new { @class = "form-control", id = "Harddisk" })
                 </div>
                 <div class="mb-3">
                     <label for="ScreenSize" class="form-label">Screen size:</label>
-                    @Html.TextBoxFor(m => m.ScreenSize, new { @class = "form-control", @id = "ScreenSize" })
+                    @Html.TextBoxFor(m => m.ScreenSize, new { @class = "form-control", id = "ScreenSize" })
                 </div>
                 <div class="mb-3">
                     <label for="ModelNo" class="form-label">Model no:</label>
-                    @Html.TextBoxFor(m => m.ModelNo, new { @class = "form-control", @id = "ModelNo" })
+                    @Html.TextBoxFor(m => m.ModelNo, new { @class = "form-control", id = "ModelNo" })
                 </div>
                 <div class="mb-3">
                     <label for="Processor" class="form-label">Processor:</label>
-                    @Html.TextBoxFor(m => m.Processor, new { @class = "form-control", @id = "Processor" })
+                    @Html.TextBoxFor(m => m.Processor, new { @class = "form-control", id = "Processor" })
                 </div>
                 <div class="mb-3">
                     <label for="OtherInfo" class="form-label">Other Information:</label>
-                    @Html.TextAreaFor(m => m.OtherInformation, new { @class = "form-control", @id = "OtherInfo" })
+                    @Html.TextAreaFor(m => m.OtherInformation, new { @class = "form-control", id = "OtherInfo", maxlength = "50" })
                 </div>
                 <button type="submit" class="btn btn-primary">Submit</button>
             }

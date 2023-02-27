@@ -7,9 +7,10 @@
     ViewBag.Title = "GetAllUsedMachines";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
-@*<link href="assets/plugins/custom/datatables/datatables.bundle.css" rel="stylesheet" type="text/css" />*@
 
-<style>
+<link href="~/Content/assets/css/CardsStyle.css" rel="stylesheet" />
+
+@*<style>
     .card {
         box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
         transition: 0.3s;
@@ -28,7 +29,12 @@
         width: 100% !important;
         height: 100% !important;
     }
-</style>
+    .CardDescription
+    {
+        height:auto;
+
+    }
+</style>*@
 
 
 
@@ -79,30 +85,32 @@
                     {
                         foreach (var item in Model)
                         {
-                            <div class="card col-lg-3 col-md-4 col-sm-6 col-6" style=" margin-right: 20px;">
-                                <div class="product-banner c-cap">
-                                    <img src="@item.PicturePath" alt="">
-                                </div>
-                                <div class="product-title">
-                                    <div class="title-description">
-                                        <h5>@item.Brand</h5>
-                                        <p>Description</p>
-                                        <ul id="" class="highlights text-left hidden-xs">
-                                            <li>@item.Ram</li>
-                                            <li>@item.ScreenSize</li>
-                                            <li>@item.Type</li>
-                                            <li>@item.Processor</li>
-                                            <li>@item.ModelNo</li>
-                                            <li>@item.OtherInformation</li>
-                                        </ul>
-                                    </div>
-                                    <div class="price-card mt-3">
-                                        <span class="cart">
-                                            <a href="">View Details</a>
-                                        </span>
-                                    </div>
-                                </div>
-                            </div>
+                                        <div class="card">
+                                            <div class="inner-card">
+                                                <div class="img-wrapper">
+                                                    <img src="@item.PicturePath" alt="">
+                                                </div>
+                                                <div class="content">
+                                                    <h1 class="card-heading">@item.Brand</h1>
+                                                    <p><b>Description</b></p>
+                                                    <ul id="" class="highlights text-left hidden-xs">
+                                                        <li><b>Ram </b>@item.Ram</li>
+                                                        <li><b>Hard Disk </b>@item.Harddisk</li>
+                                                        <li><b>Screen Size </b>@item.ScreenSize</li>
+                                                        <li><b>Type </b>@item.Type</li>
+                                                        <li><b>Processor </b>@item.Processor</li>
+                                                        <li><b>Model No </b>@item.ModelNo</li>
+                                                    </ul>
+                                                    <p data-max-characters="50">
+                                                        @item.OtherInformation
+                                                    </p>
+                                                </div>
+                                                <div class="btn-wrapper">
+                                                    <button class="view-btn" data-src="@item.PicturePath">View</button>
+                                                </div>
+                                            </div>
+                                        </div>
+
                         }
                     }
                     else
@@ -110,7 +118,7 @@
                         <h4>No Record Found!</h4>
                     }
                 </div>
-            </section>
+           </section>
         </div>
 
 
@@ -126,5 +134,14 @@
 
 
 @Scripts.Render("~/Scripts/jquery-3.4.1.min.js")
+
+<script>
+    $("p").each(function (index, currentText) {
+        var length = $(this).attr("data-max-characters");
+        var texts = $(this).text().split(" ", length).join(" ");
+        $(this).text(texts);
+    });
+
+</script>
 @Scripts.Render("~/Content/assets/js/pagination.js")
 
