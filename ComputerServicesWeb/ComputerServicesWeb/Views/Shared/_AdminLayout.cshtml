@@ -285,28 +285,33 @@
                                                 </div>
                                                 <a href="#" class="fw-semibold text-muted text-hover-primary fs-7">
                                                     @*@Session["Email"]*@
-                                                @DisplayUserInfo.email
-                                            </a>
+                                                    @DisplayUserInfo.email
+                                                </a>
+                                            </div>
+                                            <!--end::Username-->
                                         </div>
-                                        <!--end::Username-->
                                     </div>
+                                    <!--end::Menu item-->
+                                    <!--begin::Menu separator-->
+                                    <div class="separator my-2"></div>
+                                    <!--end::Menu separator-->
+                                    <!--begin::Menu item-->
+                                    <div class="menu-item px-5">
+                                        <a href="~/Admin/MyProfile" class="menu-link px-5">My Profile</a>
+                                    </div>
+                                    <!--end::Menu item-->
+                                    <!--begin::Menu item-->
+                                    <div class="menu-item px-5">
+                                        <a href="~/Manage/ChangePassword" class="menu-link px-5">Change Password</a>
+                                    </div>
+                                    <!--end::Menu item-->
+                                    <!--begin::Menu item-->
+                                    <div class="menu-item px-5">
+                                        @*<a  href="@Url.Action("LogOff","Account")"  class="menu-link px-5">Sign Out</a>*@
+                                        @Html.ActionLink("Sign out", "LogOff", "Account", null, new { @class = "menu-link px-5" })
+                                    </div>
+                                    <!--end::Menu item-->
                                 </div>
-                                <!--end::Menu item-->
-                                <!--begin::Menu separator-->
-                                <div class="separator my-2"></div>
-                                <!--end::Menu separator-->
-                                <!--begin::Menu item-->
-                                <div class="menu-item px-5">
-                                    <a href="~/Admin/MyProfile" class="menu-link px-5">My Profile</a>
-                                </div>
-                                <!--end::Menu item-->
-                                <!--begin::Menu item-->
-                                <div class="menu-item px-5">
-                                    @*<a  href="@Url.Action("LogOff","Account")"  class="menu-link px-5">Sign Out</a>*@
-                                    @Html.ActionLink("Sign out", "LogOff", "Account", null, new { @class = "menu-link px-5" })
-                                </div>
-                                <!--end::Menu item-->
-                            </div>
                             <!--end::User account menu-->
                             <!--end::Menu wrapper-->
                         </div>
