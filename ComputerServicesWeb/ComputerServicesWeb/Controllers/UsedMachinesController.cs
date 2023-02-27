@@ -1,5 +1,6 @@
 ﻿using ComputerServicesWeb.Infrastructure;
 using ComputerServicesWeb.Models;
+using PagedList;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -60,8 +61,17 @@ namespace ComputerServicesWeb.Controllers
 
         public ActionResult GetAllUsedMachines() 
         {
-            return View();
+            var model = _db.usedMachines.ToList();
+            return View(model);
         }
+
+        [HttpGet]
+        public ActionResult GetAllUsedMachines(int? pageNumber)
+        {
+            var records = _db.usedMachines.ToList().ToPagedList(pageNumber ?? 1, 6);
+            return View(records);
+        }
+
 
         public ActionResult Services() 
         {

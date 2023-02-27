@@ -413,6 +413,7 @@ namespace ComputerServicesWeb.Controllers
             DisplayUserInfo.Username = "";
             DisplayUserInfo.email = "";
             DisplayUserInfo.profile_picture_path = "";
+            DisplayUserInfo.role = "";
             AuthenticationManager.SignOut(DefaultAuthenticationTypes.ApplicationCookie);
             return RedirectToAction("Login", "Account");
         }

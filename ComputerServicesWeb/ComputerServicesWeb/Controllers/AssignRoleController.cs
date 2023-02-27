@@ -59,6 +59,8 @@ namespace ComputerServicesWeb.Controllers
                     _dbcontext.UserRoles.Add(new IdentityUserRole { RoleId = role_id, UserId = User_id });
                     _dbcontext.SaveChanges();
 
+                    DisplayUserInfo.role = _dbcontext.Roles.Where(x => x.Id == role_id).Select(x=>x.Name).Single();
+
                 }
             }
             catch (Exception ex)
