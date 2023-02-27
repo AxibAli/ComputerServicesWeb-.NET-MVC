@@ -58,6 +58,11 @@ namespace ComputerServicesWeb.Controllers
             return RedirectToAction("Index");
         }
 
+        public ActionResult GetAllUsedMachines() 
+        {
+            return View();
+        }
+
         public ActionResult Services() 
         {
             return View();
