@@ -4,8 +4,28 @@
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
 
+<style>
+.card {
+        box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+        transition: 0.3s;
+        width: 25%;
+    }
+
+        .card:hover {
+            box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+        }
+
+    .container {
+        padding: 2px 16px;
+    }
+
+    .c-cap img {
+        width: 100% !important;
+        height: 100% !important;
+    }
 
 
+</style>
 
 <!--begin::Toolbar-->
 <div id="kt_app_toolbar" class="app-toolbar py-3 py-lg-6">
@@ -39,6 +59,9 @@
     </div>
     <!--end::Toolbar container-->
 </div>
+
+
+
 <!--end::Toolbar-->
 <!--begin::Content-->
 <div id="kt_app_content" class="app-content flex-column-fluid">
@@ -47,12 +70,11 @@
         <div>
 
 
-
-            <div class="product-section">
+            <div class="product-section" style="background-color: white;">
                 <section class="container">
-                    <div class="title">PRODUCTS</div>
                     <div class="row">
-                        <div class="col-lg-3 col-md-4 col-sm-6 col-6">
+
+                        <div class="card col-lg-3 col-md-4 col-sm-6 col-6" style=" margin-right: 20px;">
                             <div class="product-banner c-cap">
                                 <img src="~/Content/assets/images/computer.jpg" alt="">
                             </div>
@@ -79,9 +101,10 @@
             </div>
 
 
-
         </div>
     </div>
     <!--end::Content container-->
 </div>
 <!--end::Content-->
+
+
