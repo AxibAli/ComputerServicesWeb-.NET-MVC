@@ -13,13 +13,16 @@ namespace ComputerServicesWeb.Controllers
         ApplicationDbContext _db = new ApplicationDbContext();
         public ActionResult Index()
         {
-            var model = _db.usedMachines.ToList();
-            return View(model);
+            HomeViewModel homeViewModel = new HomeViewModel();
+            homeViewModel.usedMachines = _db.usedMachines.ToList();
+            homeViewModel.services = _db.services.ToList();
+            return View(homeViewModel);
         }
 
         public ActionResult Service()
         {
-            return View();
+            var model = _db.services.ToList();
+            return View(model);
         }
 
     }
