@@ -57,8 +57,10 @@ namespace ComputerServicesWeb.Controllers
                     var role_id = form["RolesList"].ToString();
                     var User_id = form["UsersList"].ToString();
 
+                    //check if user exist
                     int count = _dbcontext.UserRoles.Where(x => x.UserId == User_id).Count();
 
+                    //if user not exist add user to database with current role.Else delete user with old role and then add user with new role.
                     if (count == 0)
                     {
                         _dbcontext.UserRoles.Add(new IdentityUserRole { RoleId = role_id, UserId = User_id });
