@@ -10,34 +10,6 @@
 
 <link href="~/Content/assets/css/CardsStyle.css" rel="stylesheet" />
 
-@*<style>
-        .card {
-            box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
-            transition: 0.3s;
-            width: 25%;
-        }
-
-            .card:hover {
-                box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
-            }
-
-        .container {
-            padding: 2px 16px;
-        }
-
-        .c-cap img {
-            width: 100% !important;
-            height: 100% !important;
-        }
-        .CardDescription
-        {
-            height:auto;
-
-        }
-    </style>*@
-
-
-
 <!--begin::Toolbar-->
 <div id="kt_app_toolbar" class="app-toolbar py-3 py-lg-6">
     <!--begin::Toolbar container-->
@@ -70,9 +42,6 @@
     </div>
     <!--end::Toolbar container-->
 </div>
-
-
-
 <!--end::Toolbar-->
 <!--begin::Content-->
 <div id="kt_app_content" class="app-content flex-column-fluid">
@@ -91,6 +60,7 @@
                                         <img src="@item.PicturePath" alt="">
                                     </div>
                                     <div class="content">
+                                        <input type="hidden" id="Id" name="Id" value="@item.id">
                                         <h1 class="card-heading">@item.Brand</h1>
                                         <p><b>Description</b></p>
                                         <ul id="" class="highlights text-left hidden-xs">
@@ -101,19 +71,12 @@
                                             <li><b>Processor </b>@item.Processor</li>
                                             <li><b>Model No </b>@item.ModelNo</li>
                                         </ul>
-                                        <p data-max-characters="50">
-                                            @item.OtherInformation
-                                        </p>
-
                                     </div>
-                                    @*<div class="row">
-                                            <svg width="24" stroke-width="1.5" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"> <path d="M20 12V5.74853C20 5.5894 19.9368 5.43679 19.8243 5.32426L16.6757 2.17574C16.5632 2.06321 16.4106 2 16.2515 2H4.6C4.26863 2 4 2.26863 4 2.6V21.4C4 21.7314 4.26863 22 4.6 22H11" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" /> <path d="M8 10H16M8 6H12M8 14H11" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" /> <path d="M16 5.4V2.35355C16 2.15829 16.1583 2 16.3536 2C16.4473 2 16.5372 2.03725 16.6036 2.10355L19.8964 5.39645C19.9628 5.46275 20 5.55268 20 5.64645C20 5.84171 19.8417 6 19.6464 6H16.6C16.2686 6 16 5.73137 16 5.4Z" fill="currentColor" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" /> <path d="M17.9541 16.9394L18.9541 15.9394C19.392 15.5015 20.102 15.5015 20.5399 15.9394V15.9394C20.9778 16.3773 20.9778 17.0873 20.5399 17.5252L19.5399 18.5252M17.9541 16.9394L14.963 19.9305C14.8131 20.0804 14.7147 20.2741 14.6821 20.4835L14.4394 22.0399L15.9957 21.7973C16.2052 21.7646 16.3988 21.6662 16.5487 21.5163L19.5399 18.5252M17.9541 16.9394L19.5399 18.5252" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" /> </svg>
-                                            <svg width="24" stroke-width="1.5" height="24" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"> <g> <path fill="none" d="M0 0h24v24H0z" /> <path d="M7 4V2h10v2h5v2h-2v15a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V6H2V4h5zM6 6v14h12V6H6zm3 3h2v8H9V9zm4 0h2v8h-2V9z" /> </g> </svg>
-                                        </div>*@
+
                                     <div class="btn-wrapper">
-                                        <button class="view-btn" data-src="@item.PicturePath">View</button>
-                                        <a href="@Url.Action("ServiceEdit","UsedMachines")"><svg width="24" stroke-width="1.5" height="32" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"> <path d="M20 12V5.74853C20 5.5894 19.9368 5.43679 19.8243 5.32426L16.6757 2.17574C16.5632 2.06321 16.4106 2 16.2515 2H4.6C4.26863 2 4 2.26863 4 2.6V21.4C4 21.7314 4.26863 22 4.6 22H11" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" /> <path d="M8 10H16M8 6H12M8 14H11" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" /> <path d="M16 5.4V2.35355C16 2.15829 16.1583 2 16.3536 2C16.4473 2 16.5372 2.03725 16.6036 2.10355L19.8964 5.39645C19.9628 5.46275 20 5.55268 20 5.64645C20 5.84171 19.8417 6 19.6464 6H16.6C16.2686 6 16 5.73137 16 5.4Z" fill="currentColor" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" /> <path d="M17.9541 16.9394L18.9541 15.9394C19.392 15.5015 20.102 15.5015 20.5399 15.9394V15.9394C20.9778 16.3773 20.9778 17.0873 20.5399 17.5252L19.5399 18.5252M17.9541 16.9394L14.963 19.9305C14.8131 20.0804 14.7147 20.2741 14.6821 20.4835L14.4394 22.0399L15.9957 21.7973C16.2052 21.7646 16.3988 21.6662 16.5487 21.5163L19.5399 18.5252M17.9541 16.9394L19.5399 18.5252" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" /></svg></a>
-                                        <a href="@Url.Action("ServiceDelete","UsedMachines")"><svg width="24" stroke-width="1.5" height="32" xmlns="http://www.w3.org/2000/svg"  fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16"> <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z" /> <path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z" /> </svg></a>
+                                        <button class="view-btn" data-bs-toggle="modal" data-bs-target="#kt_modal_Service_Description" onclick="loadDescription('@item.OtherInformation')">More Detail</button>
+                                        <a href="#" data-bs-toggle="modal" data-bs-target="#kt_modal_Update_UsedMachine" onclick="EditRecord(@item.id)"><svg width="24" stroke-width="1.5" height="32" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"> <path d="M20 12V5.74853C20 5.5894 19.9368 5.43679 19.8243 5.32426L16.6757 2.17574C16.5632 2.06321 16.4106 2 16.2515 2H4.6C4.26863 2 4 2.26863 4 2.6V21.4C4 21.7314 4.26863 22 4.6 22H11" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" /> <path d="M8 10H16M8 6H12M8 14H11" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" /> <path d="M16 5.4V2.35355C16 2.15829 16.1583 2 16.3536 2C16.4473 2 16.5372 2.03725 16.6036 2.10355L19.8964 5.39645C19.9628 5.46275 20 5.55268 20 5.64645C20 5.84171 19.8417 6 19.6464 6H16.6C16.2686 6 16 5.73137 16 5.4Z" fill="currentColor" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" /> <path d="M17.9541 16.9394L18.9541 15.9394C19.392 15.5015 20.102 15.5015 20.5399 15.9394V15.9394C20.9778 16.3773 20.9778 17.0873 20.5399 17.5252L19.5399 18.5252M17.9541 16.9394L14.963 19.9305C14.8131 20.0804 14.7147 20.2741 14.6821 20.4835L14.4394 22.0399L15.9957 21.7973C16.2052 21.7646 16.3988 21.6662 16.5487 21.5163L19.5399 18.5252M17.9541 16.9394L19.5399 18.5252" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" /></svg></a>
+                                        <a href="@Url.Action("ServiceDelete","UsedMachines")"><svg width="24" stroke-width="1.5" height="32" xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16"> <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z" /> <path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z" /> </svg></a>
                                     </div>
                                 </div>
                             </div>
@@ -134,6 +97,143 @@
     <!--end::Content-->
 </div>
 
+@* Modal for ServiceDescription *@
+
+<div class="modal fade" id="kt_modal_Service_Description" tabindex="-1" aria-hidden="true">
+    <!--begin::Modal dialog-->
+    <div class="modal-dialog modal-dialog-centered mw-650px">
+        <!--begin::Modal content-->
+        <div class="modal-content">
+            <!--begin::Modal header-->
+            <div class="modal-header">
+                <!--begin::Modal title-->
+                <h2>Used Machine Details</h2>
+                <!--end::Modal title-->
+                <!--begin::Close-->
+                <div class="btn btn-sm btn-icon btn-active-color-primary" data-bs-dismiss="modal">
+                    <!--begin::Svg Icon | path: icons/duotune/arrows/arr061.svg-->
+                    <span class="svg-icon svg-icon-1">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <rect opacity="0.5" x="6" y="17.3137" width="16" height="2" rx="1" transform="rotate(-45 6 17.3137)" fill="currentColor" />
+                            <rect x="7.41422" y="6" width="16" height="2" rx="1" transform="rotate(45 7.41422 6)" fill="currentColor" />
+                        </svg>
+                    </span>
+                    <!--end::Svg Icon-->
+                </div>
+                <!--end::Close-->
+            </div>
+            <!--end::Modal header-->
+            <!--begin::Modal body-->
+            <div class="modal-body scroll-y mx-5 mx-xl-15 my-7">
+                <!--begin::Form-->
+                <form id="kt_modal_new_card_form" class="form" action="#">
+                    <!--begin::Input group-->
+                    <div>
+                        <h2 id="desc"></h2>
+                    </div>
+                    <!--end::Input group-->
+                </form>
+                <!--end::Form-->
+            </div>
+            <!--end::Modal body-->
+        </div>
+        <!--end::Modal content-->
+    </div>
+    <!--end::Modal dialog-->
+</div>
+
+@* Modal for Update Used Machine*@
+
+<div class="modal fade" id="kt_modal_Update_UsedMachine" tabindex="-1" aria-hidden="true">
+    <!--begin::Modal dialog-->
+    <div class="modal-dialog modal-dialog-centered mw-650px">
+        <!--begin::Modal content-->
+        <div class="modal-content">
+            <!--begin::Modal header-->
+            <div class="modal-header">
+                <!--begin::Modal title-->
+                <h2>Update Used Machine</h2>
+                <!--end::Modal title-->
+                <!--begin::Close-->
+                <div class="btn btn-sm btn-icon btn-active-color-primary" data-bs-dismiss="modal">
+                    <!--begin::Svg Icon | path: icons/duotune/arrows/arr061.svg-->
+                    <span class="svg-icon svg-icon-1">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <rect opacity="0.5" x="6" y="17.3137" width="16" height="2" rx="1" transform="rotate(-45 6 17.3137)" fill="currentColor" />
+                            <rect x="7.41422" y="6" width="16" height="2" rx="1" transform="rotate(45 7.41422 6)" fill="currentColor" />
+                        </svg>
+                    </span>
+                    <!--end::Svg Icon-->
+                </div>
+                <!--end::Close-->
+            </div>
+            <!--end::Modal header-->
+            <!--begin::Modal body-->
+            <div class="modal-body scroll-y mx-5 mx-xl-15 my-7">
+                <!--begin::Form-->
+                <form id="kt_modal_new_card_form" class="form" action="#">
+                    <input type="hidden" id="Id" name="Id">
+                    <div class="mb-3">
+                        <label for="BrandName" class="form-label">Brand name:</label>
+                        <input type="text" class="form-control form-control-solid" placeholder="" id="BrandName" />
+                    </div>
+                    <div class="mb-3">
+                        <label for="SelectPicture" class="form-label">Upload Picture:</label>
+
+                        @Html.TextBox("file", "", new { type = "file", @class = "form-control", id = "SelectPicture" })
+                    </div>
+                    <div class="col-6">
+                        <label for="Type" class="form-label">Type:</label>
+                        <select class="form-select form-select-solid" data-control="select2" data-hide-search="true" id="Type">
+                            <option></option>
+                            <option value="Desktop All in One">Desktop All in One</option>
+                            <option value="Desktop Case">Desktop Case</option>
+                            <option value="Monitor">Monitor</option>
+                            <option value="Laptop">Laptop</option>
+                        </select>
+                    </div>
+                    <div class="row fv-row">
+                        <div class="col-md-4 fv-row">
+                            <label for="Ram" class="form-label">Ram:</label>
+                            <input type="text" class="form-control form-control-solid" placeholder="" id="Ram" />
+                        </div>
+                        <div class="col-md-4 fv-row">
+                            <label for="Harddisk" class="form-label">Hard disk:</label>
+                            <input type="text" class="form-control form-control-solid" placeholder="" id="HardDisk" />
+                        </div>
+                        </div>
+                        <div class="col-md-4 fv-row">
+                            <label for="ScreenSize" class="form-label">Screen size:</label>
+                            <input type="text" class="form-control form-control-solid" placeholder="" id="ScreenSize" />
+                        </div>
+                        <div class="col-md-4 fv-row">
+                            <label for="ModelNo" class="form-label">Model no:</label>
+                            <input type="text" class="form-control form-control-solid" placeholder="" id="ModelNo" />
+                        </div>
+                        <div class="col-6">
+                            <label for="Processor" class="form-label">Processor:</label>
+                            <input type="text" class="form-control form-control-solid" placeholder="" id="Processor" />
+                        </div>
+                        <div class="mb-3">
+                            <label for="OtherInfo" class="form-label">Other Information:</label>
+                            <input type="text" class="form-control form-control-solid" placeholder="" maxlength="50" id="OtherInformation" />
+                        </div>
+
+                        <div class="text-center pt-15">
+                            <button type="reset" id="kt_modal_new_card_cancel" class="btn btn-light me-3">Discard</button>
+
+                            <a class="btn btn-primary" href="#" id="UpdateRecord">Update Details</a>
+                        </div>
+                </form>
+                <!--end::Form-->
+            </div>
+            <!--end::Modal body-->
+        </div>
+        <!--end::Modal content-->
+    </div>
+    <!--end::Modal dialog-->
+</div>
+
 @Html.PagedListPager(Model, pageNumber => Url.Action("GetAllUsedMachines", new
 {
  pageNumber
@@ -143,12 +243,58 @@
 @Scripts.Render("~/Scripts/jquery-3.4.1.min.js")
 
 <script>
-    $("p").each(function (index, currentText) {
-        var length = $(this).attr("data-max-characters");
-        var texts = $(this).text().split(" ", length).join(" ");
-        $(this).text(texts);
-    });
+    function loadDescription(description) {
+        $("#desc").html(description);
+    }
 
+
+    //Show The Popup Modal For Edit  Record
+    function EditRecord(usedMachines_ID) {
+        debugger;
+        var url = "/UsedMachines/GetusedMachinesById?usedMachines_ID=" + usedMachines_ID;
+
+        $.ajax({
+            type: "GET",
+            url: url,
+            success: function (data) {
+                var obj = JSON.parse(data);
+                $("#ID").val(obj.id);
+                $("#BrandName").val(obj.Brand);
+                $("#Type").val(obj.Type);
+                $("#Ram").val(obj.Ram);
+                $("#HardDisk").val(obj.Harddisk);
+                $("#ScreenSize").val(obj.ScreenSize);
+                $("#ModelNo").val(obj.ModelNo);
+                $("#Processor").val(obj.Processor);
+                $("#OtherInformation").val(obj.OtherInformation);
+                $("#SelectPicture").val(obj.PicturePath);
+
+            }
+        })
+    }
+
+    $("#SaveAdminRecord").click(function () {
+
+        var data = {
+            adminid: $('#AdminId').val(),
+            adminname: $('#AdminFullName').val(),
+            adminemail: $('#AdminEmail').val(),
+            admincontact: $('#AdminContact').val(),
+            adminpass: $('#AdminPass').val(),
+            admingender: $('#AdminGender').val()
+        }
+        $.ajax({
+            type: "Post",
+            url: "/Admin/UpdateDataInDatabase",
+            data: data,
+            success: function (result) {
+                alert("Successfully Updated....");
+                window.location.href = "/Admin/Dashboard";
+                $("#MyModal").modal("hide");
+            }
+        })
+    })
 </script>
+
 @Scripts.Render("~/Content/assets/js/pagination.js")
 

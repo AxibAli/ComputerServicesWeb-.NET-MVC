@@ -57,7 +57,12 @@
                 </div>
                 <div class="mb-3">
                     <label for="Type" class="form-label">Type:</label>
-                    @Html.DropDownListFor(m => m.Type, new List<SelectListItem> { new SelectListItem { Text = "Desktop all in one", Value = "1" }, new SelectListItem { Text = "Desktop case", Value = "2" }, new SelectListItem { Text = "Monitor", Value = "3" }, new SelectListItem { Text = "Laptop", Value = "3" } }, "Please select", new { @class = "form-control" })
+                    @Html.DropDownListFor(m => m.Type, new List<SelectListItem>
+               { new SelectListItem { Text = "Desktop All in One", Value = "Desktop All in One" },
+                   new SelectListItem { Text = "Desktop Case", Value = "Desktop Case" },
+                   new SelectListItem { Text = "Monitor", Value = "Monitor" }
+                   , new SelectListItem { Text = "Laptop", Value = "Laptop" }
+               }, "Please select", new { @class = "form-control" })
                 </div>
                 <div class="mb-3">
                     <label for="Ram" class="form-label">Ram:</label>

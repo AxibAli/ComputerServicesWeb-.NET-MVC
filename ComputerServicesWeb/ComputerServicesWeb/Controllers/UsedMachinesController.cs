@@ -1,6 +1,7 @@
 ﻿using ComputerServicesWeb.Infrastructure;
 using ComputerServicesWeb.Models;
 using Microsoft.AspNet.Identity;
+using Newtonsoft.Json;
 using PagedList;
 using System;
 using System.Collections.Generic;
@@ -15,9 +16,8 @@ namespace ComputerServicesWeb.Controllers
     public class UsedMachinesController : Controller
     {
         ApplicationDbContext _db = new ApplicationDbContext();
-        log4net.ILog errlogger = log4net.LogManager.GetLogger("ErrorLogFile");
 
-        // GET: UsedMachines
+        #region Used Machines
         public ActionResult Index()
         {
             return View();
@@ -26,8 +26,7 @@ namespace ComputerServicesWeb.Controllers
         [HttpPost]
         public ActionResult MachineInformation(FormCollection form, HttpPostedFileBase file)
         {
-            try
-            {
+         
                 string _path = "";
                 string FileName = "";
 
@@ -61,11 +60,7 @@ namespace ComputerServicesWeb.Controllers
                 _db.SaveChanges();
            
                 TempData["Message"] = "Post Posted Successfully ";
-            }
-            catch(Exception ex)
-            {
-                errlogger.Error(ex.Message);
-            }
+           
             return RedirectToAction("GetAllUsedMachines");
         }
 
@@ -82,7 +77,20 @@ namespace ComputerServicesWeb.Controllers
             return View(records);
         }
 
+        public JsonResult GetusedMachinesById(int usedMachines_ID)
+        {
+            var model = _db.usedMachines.Where(x => x.id == usedMachines_ID).SingleOrDefault();
+            string value = string.Empty;
+            value = JsonConvert.SerializeObject(model, Formatting.Indented, new JsonSerializerSettings
+            {
+                ReferenceLoopHandling = ReferenceLoopHandling.Ignore
+            });
+            return Json(value, JsonRequestBehavior.AllowGet);
+        }
 
+        #endregion
+
+        #region Services Actions
         public ActionResult Services() 
         {
             return View();
@@ -90,8 +98,7 @@ namespace ComputerServicesWeb.Controllers
         [HttpPost]
         public ActionResult Services(FormCollection form, HttpPostedFileBase file)
         {
-            try
-            {
+          
                 string _path = "";
                 string FileName = "";
                 if (file.ContentLength > 0)
@@ -115,11 +122,8 @@ namespace ComputerServicesWeb.Controllers
 
                 _db.services.Add(obj);
                 _db.SaveChanges();
-            }
-            catch (Exception ex)
-            {
-                errlogger.Error(ex.Message);
-            }
+            
+          
             return RedirectToAction("GetAllServices");
         }
 
@@ -139,9 +143,12 @@ namespace ComputerServicesWeb.Controllers
         {
             return View();
         }
+
         public ActionResult ServiceEdit()
         {
             return View();
         }
+        #endregion
+
     }
 }
