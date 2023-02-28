@@ -1,4 +1,5 @@
 ﻿using ComputerServicesWeb.Models;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -23,6 +24,17 @@ namespace ComputerServicesWeb.Controllers
         {
             var model = _db.services.ToList();
             return View(model);
+        }
+
+        public ActionResult ServiceForhome()
+        {
+            var model = _db.services.OrderByDescending(x=>x.id).ToList();
+            string value = string.Empty;
+            value = JsonConvert.SerializeObject(model, Formatting.Indented, new JsonSerializerSettings
+            {
+                ReferenceLoopHandling = ReferenceLoopHandling.Ignore
+            });
+            return Json(value, JsonRequestBehavior.AllowGet);
         }
 
     }
