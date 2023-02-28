@@ -1,5 +1,6 @@
 ﻿using ComputerServicesWeb.Infrastructure;
 using ComputerServicesWeb.Models;
+using Microsoft.AspNet.Identity;
 using PagedList;
 using System;
 using System.Collections.Generic;
@@ -28,10 +29,17 @@ namespace ComputerServicesWeb.Controllers
             try
             {
                 string _path = "";
+                string FileName = "";
+
                 if (file.ContentLength > 0)
                 {
-                    string _FileName = Path.GetFileName(file.FileName);
-                    _path = Path.Combine(Server.MapPath("~/Uploads"), _FileName);
+                    FileName = Path.GetFileNameWithoutExtension(file.FileName);
+                    string Extension = Path.GetExtension(file.FileName);
+
+                    FileName = FileName + DateTime.Now.ToString("yymmssfff") + Extension;
+
+
+                    _path = Path.Combine(Server.MapPath("~/Uploads"), FileName);
                     file.SaveAs(_path);
                 }
 
@@ -39,7 +47,7 @@ namespace ComputerServicesWeb.Controllers
                 {
                     Brand = form["Brand"].ToString(),
                     Harddisk = form["Harddisk"].ToString(),
-                    PicturePath = $"/Uploads/{file.FileName}",
+                    PicturePath = $"/Uploads/{FileName}",
                     ModelNo = form["ModelNo"].ToString(),
                     OtherInformation=form["OtherInformation"].ToString(),
                     Processor=form["Processor"].ToString(),
@@ -56,19 +64,19 @@ namespace ComputerServicesWeb.Controllers
             {
                 errlogger.Error(ex.Message);
             }
-            return RedirectToAction("Index");
+            return RedirectToAction("GetAllUsedMachines");
         }
 
         public ActionResult GetAllUsedMachines() 
         {
-            var model = _db.usedMachines.ToList();
+            var model = _db.usedMachines.OrderByDescending(x=>x.id).ToList();
             return View(model);
         }
 
         [HttpGet]
         public ActionResult GetAllUsedMachines(int? pageNumber)
         {
-            var records = _db.usedMachines.ToList().ToPagedList(pageNumber ?? 1, 6);
+            var records = _db.usedMachines.OrderByDescending(x => x.id).ToList().ToPagedList(pageNumber ?? 1, 6);
             return View(records);
         }
 
@@ -83,10 +91,19 @@ namespace ComputerServicesWeb.Controllers
             try
             {
                 string _path = "";
+                string FileName = "";
                 if (file.ContentLength > 0)
                 {
-                    string _FileName = Path.GetFileName(file.FileName);
-                    _path = Path.Combine(Server.MapPath("~/Uploads"), _FileName);
+
+
+
+                    FileName = Path.GetFileNameWithoutExtension(file.FileName);
+                    string Extension = Path.GetExtension(file.FileName);
+
+                    FileName = FileName + DateTime.Now.ToString("yymmssfff") + Extension;
+
+
+                    _path = Path.Combine(Server.MapPath("~/Uploads"), FileName);
                     file.SaveAs(_path);
                 }
 
@@ -94,7 +111,7 @@ namespace ComputerServicesWeb.Controllers
                 {
                     Name = form["Name"].ToString(),
                     Description = form["Description"].ToString(),
-                    PicturePath = $"/Uploads/{file.FileName}",
+                    PicturePath = $"/Uploads/{FileName}",
                     
 
                 };
@@ -111,13 +128,13 @@ namespace ComputerServicesWeb.Controllers
 
         public ActionResult GetAllServices() 
         {
-            var model = _db.services.ToList();
+            var model = _db.services.OrderByDescending(x => x.id).ToList();
             return View(model);
         }
         [HttpGet]
         public ActionResult GetAllServices(int? pageNumber)
         {
-            var records = _db.services.ToList().ToPagedList(pageNumber ?? 1, 6);
+            var records = _db.services.OrderByDescending(x => x.id).ToList().ToPagedList(pageNumber ?? 1, 6);
             return View(records);
         }
 

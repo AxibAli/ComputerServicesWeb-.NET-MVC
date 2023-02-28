@@ -44,15 +44,22 @@ namespace ComputerServicesWeb.Controllers
             if (file != null)
             {
                 string _path = "";
+                string FileName = "";
+
                 if (file.ContentLength > 0)
                 {
-                    string _FileName = Path.GetFileName(file.FileName);
-                    _path = Path.Combine(Server.MapPath("~/Uploads/"), _FileName);
+                    FileName = Path.GetFileNameWithoutExtension(file.FileName);
+                    string Extension = Path.GetExtension(file.FileName);
+
+                    FileName = FileName + DateTime.Now.ToString("yymmssfff") + Extension;
+
+
+                    _path = Path.Combine(Server.MapPath("~/Uploads/UserPictures/"), FileName);
                     file.SaveAs(_path);
                 }
 
                 var user = _db.Users.Where(x => x.Id == user_id).FirstOrDefault();
-                user.UserPicturePath = $"/Uploads/{file.FileName}";
+                user.UserPicturePath = $"/Uploads/UserPictures/{FileName}";
                 user.Email = model.Email;
                 user.PhoneNumber = model.PhoneNumber;
                 user.UserName = model.UserName;
@@ -60,7 +67,7 @@ namespace ComputerServicesWeb.Controllers
                 _db.Entry(user).State = System.Data.Entity.EntityState.Modified;
                 _db.SaveChanges();
 
-                DisplayUserInfo.profile_picture_path = $"/Uploads/{file.FileName}";
+                DisplayUserInfo.profile_picture_path = $"/Uploads/UserPictures/{FileName}";
                 DisplayUserInfo.email = model.Email;
                 DisplayUserInfo.Username = model.UserName;
             }
