@@ -9,6 +9,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
+using static ComputerServicesWeb.ApplicationSignInManager;
 
 namespace ComputerServicesWeb.Controllers
 {
@@ -56,11 +57,24 @@ namespace ComputerServicesWeb.Controllers
                     var role_id = form["RolesList"].ToString();
                     var User_id = form["UsersList"].ToString();
 
-                    _dbcontext.UserRoles.Add(new IdentityUserRole { RoleId = role_id, UserId = User_id });
-                    _dbcontext.SaveChanges();
+                    int count = _dbcontext.UserRoles.Where(x => x.UserId == User_id).Count();
+
+                    if (count == 0)
+                    {
+                        _dbcontext.UserRoles.Add(new IdentityUserRole { RoleId = role_id, UserId = User_id });
+                        _dbcontext.SaveChanges();
+                    }
+                    else
+                    {
+                        var user = _dbcontext.UserRoles.Where(x => x.UserId == User_id).FirstOrDefault();
+                        _dbcontext.UserRoles.Remove(user);
+                        _dbcontext.SaveChanges();
+
+                        _dbcontext.UserRoles.Add(new IdentityUserRole { RoleId = role_id, UserId = User_id });
+                        _dbcontext.SaveChanges();
+                    }
 
                     DisplayUserInfo.role = _dbcontext.Roles.Where(x => x.Id == role_id).Select(x=>x.Name).Single();
-
                 }
             }
             catch (Exception ex)

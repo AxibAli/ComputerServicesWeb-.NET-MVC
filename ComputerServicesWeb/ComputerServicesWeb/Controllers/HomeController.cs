@@ -21,7 +21,7 @@ namespace ComputerServicesWeb.Controllers
 
         public ActionResult Service()
         {
-            var model = _db.services.ToList();
+            var model = _db.services.OrderByDescending(x=>x.id).ToList();
             return View(model);
         }
 
