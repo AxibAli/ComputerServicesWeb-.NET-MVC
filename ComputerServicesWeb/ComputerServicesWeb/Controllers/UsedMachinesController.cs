@@ -59,6 +59,8 @@ namespace ComputerServicesWeb.Controllers
 
                 _db.usedMachines.Add(obj);
                 _db.SaveChanges();
+           
+                TempData["Message"] = "Post Posted Successfully ";
             }
             catch(Exception ex)
             {
