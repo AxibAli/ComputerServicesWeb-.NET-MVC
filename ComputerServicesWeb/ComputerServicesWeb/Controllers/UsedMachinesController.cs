@@ -135,5 +135,13 @@ namespace ComputerServicesWeb.Controllers
             return View(records);
         }
 
+        public ActionResult ServiceDelete()
+        {
+            return View();
+        }
+        public ActionResult ServiceEdit()
+        {
+            return View();
+        }
     }
 }
