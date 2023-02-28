@@ -94,9 +94,6 @@ namespace ComputerServicesWeb.Controllers
                 string FileName = "";
                 if (file.ContentLength > 0)
                 {
-
-
-
                     FileName = Path.GetFileNameWithoutExtension(file.FileName);
                     string Extension = Path.GetExtension(file.FileName);
 
@@ -112,8 +109,6 @@ namespace ComputerServicesWeb.Controllers
                     Name = form["Name"].ToString(),
                     Description = form["Description"].ToString(),
                     PicturePath = $"/Uploads/{FileName}",
-                    
-
                 };
 
                 _db.services.Add(obj);
