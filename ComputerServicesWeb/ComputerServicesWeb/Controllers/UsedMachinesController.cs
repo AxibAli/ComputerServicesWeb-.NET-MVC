@@ -88,6 +88,17 @@ namespace ComputerServicesWeb.Controllers
             return Json(value, JsonRequestBehavior.AllowGet);
         }
 
+        public JsonResult UpdateusedMachine(UsedMachineModels data)
+        {
+
+            
+
+
+            return Json( JsonRequestBehavior.AllowGet);
+
+
+        }
+
         #endregion
 
         #region Services Actions

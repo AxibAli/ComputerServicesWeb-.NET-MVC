@@ -60,7 +60,6 @@
                                         <img src="@item.PicturePath" alt="">
                                     </div>
                                     <div class="content">
-                                        <input type="hidden" id="Id" name="Id" value="@item.id">
                                         <h1 class="card-heading">@item.Brand</h1>
                                         <p><b>Description</b></p>
                                         <ul id="" class="highlights text-left hidden-xs">
@@ -172,7 +171,6 @@
             <div class="modal-body scroll-y mx-5 mx-xl-15 my-7">
                 <!--begin::Form-->
                 <form id="kt_modal_new_card_form" class="form" action="#">
-                    <input type="hidden" id="Id" name="Id">
                     <div class="mb-3">
                         <label for="BrandName" class="form-label">Brand name:</label>
                         <input type="text" class="form-control form-control-solid" placeholder="" id="BrandName" />
@@ -182,31 +180,33 @@
 
                         @Html.TextBox("file", "", new { type = "file", @class = "form-control", id = "SelectPicture" })
                     </div>
-                    <div class="col-6">
-                        <label for="Type" class="form-label">Type:</label>
-                        <select class="form-select form-select-solid" data-control="select2" data-hide-search="true" id="Type">
-                            <option></option>
-                            <option value="Desktop All in One">Desktop All in One</option>
-                            <option value="Desktop Case">Desktop Case</option>
-                            <option value="Monitor">Monitor</option>
-                            <option value="Laptop">Laptop</option>
-                        </select>
-                    </div>
                     <div class="row fv-row">
-                        <div class="col-md-4 fv-row">
+                        <div class="col-6">
+                            <label for="Type" class="form-label">Type:</label>
+                            <select class="form-select form-select-solid" data-control="select2" data-hide-search="true" id="Type">
+                                <option value="Desktop All in One">Desktop All in One</option>
+                                <option value="Desktop Case">Desktop Case</option>
+                                <option value="Monitor">Monitor</option>
+                                <option value="Laptop">Laptop</option>
+                            </select>
+                        </div>
+                        <div class="col-6">
                             <label for="Ram" class="form-label">Ram:</label>
                             <input type="text" class="form-control form-control-solid" placeholder="" id="Ram" />
                         </div>
-                        <div class="col-md-4 fv-row">
+                    </div>
+                    <div class="row fv-row">
+                        <div class="col-6">
                             <label for="Harddisk" class="form-label">Hard disk:</label>
                             <input type="text" class="form-control form-control-solid" placeholder="" id="HardDisk" />
                         </div>
-                        </div>
-                        <div class="col-md-4 fv-row">
+                        <div class="col-6">
                             <label for="ScreenSize" class="form-label">Screen size:</label>
                             <input type="text" class="form-control form-control-solid" placeholder="" id="ScreenSize" />
                         </div>
-                        <div class="col-md-4 fv-row">
+                    </div>
+                    <div class="row fv-row">
+                        <div class="col-6">
                             <label for="ModelNo" class="form-label">Model no:</label>
                             <input type="text" class="form-control form-control-solid" placeholder="" id="ModelNo" />
                         </div>
@@ -214,16 +214,19 @@
                             <label for="Processor" class="form-label">Processor:</label>
                             <input type="text" class="form-control form-control-solid" placeholder="" id="Processor" />
                         </div>
-                        <div class="mb-3">
-                            <label for="OtherInfo" class="form-label">Other Information:</label>
-                            <input type="text" class="form-control form-control-solid" placeholder="" maxlength="50" id="OtherInformation" />
-                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="OtherInfo" class="form-label">Other Information:</label>
+                        <input type="text" class="form-control form-control-solid" placeholder="" maxlength="50" id="OtherInformation" />
+                        <input type="hidden" id="postid" >
 
-                        <div class="text-center pt-15">
-                            <button type="reset" id="kt_modal_new_card_cancel" class="btn btn-light me-3">Discard</button>
+                    </div>
 
-                            <a class="btn btn-primary" href="#" id="UpdateRecord">Update Details</a>
-                        </div>
+                    <div class="text-center pt-15">
+                        <button type="reset" id="kt_modal_new_card_cancel" class="btn btn-light me-3">Discard</button>
+
+                        <a class="btn btn-primary" href="#" id="UpdateRecord">Update Details</a>
+                    </div>
                 </form>
                 <!--end::Form-->
             </div>
@@ -258,7 +261,7 @@
             url: url,
             success: function (data) {
                 var obj = JSON.parse(data);
-                $("#ID").val(obj.id);
+                $("#postid").val(obj.id);
                 $("#BrandName").val(obj.Brand);
                 $("#Type").val(obj.Type);
                 $("#Ram").val(obj.Ram);
@@ -273,24 +276,29 @@
         })
     }
 
-    $("#SaveAdminRecord").click(function () {
-
+    $("#UpdateRecord").click(function () {
+        debugger;
         var data = {
-            adminid: $('#AdminId').val(),
-            adminname: $('#AdminFullName').val(),
-            adminemail: $('#AdminEmail').val(),
-            admincontact: $('#AdminContact').val(),
-            adminpass: $('#AdminPass').val(),
-            admingender: $('#AdminGender').val()
+            id: $('#postid').val(),
+            brand: $('#BrandName').val(),
+            type: $('#Type').val(),
+            ram: $('#Ram').val(),
+            harddisk: $('#HardDisk').val(),
+            screensize: $('#ScreenSize').val(),
+            modelno: $('#ModelNo').val(),
+            processor: $('#Processor').val(),
+            otherinformation: $('#OtherInformation').val(),
+            picturepath: $('#SelectPicture').val()
+
         }
         $.ajax({
             type: "Post",
-            url: "/Admin/UpdateDataInDatabase",
+            url: "/UsedMachines/UpdateusedMachine",
             data: data,
             success: function (result) {
                 alert("Successfully Updated....");
                 window.location.href = "/Admin/Dashboard";
-                $("#MyModal").modal("hide");
+                $("#kt_modal_Update_UsedMachine").modal("hide");
             }
         })
     })
