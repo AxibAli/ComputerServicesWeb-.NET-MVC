@@ -309,8 +309,10 @@
                                     <!--end::Menu item-->
                                     <!--begin::Menu item-->
                                     <div class="menu-item px-5">
-                                        @*<a  href="@Url.Action("LogOff","Account")"  class="menu-link px-5">Sign Out</a>*@
-                                        @Html.ActionLink("Sign out", "LogOff", "Account", null, new { @class = "menu-link px-5" })
+
+                                        <a  href="#" data-bs-toggle="modal" data-bs-target="#kt_modal_logout"  class="menu-link px-5">Sign Out</a>
+
+                                        @*@Html.ActionLink("Sign out", "LogOff", "Account", null, new { @class = "menu-link px-5" })*@
                                     </div>
                                     <!--end::Menu item-->
                                 </div>
@@ -384,6 +386,7 @@
                                         <div class="menu-item">
                                             <!--begin:Menu link-->
                                             <a class="menu-link" href="@Url.Action("Index", "Admin")">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-house" viewBox="0 0 16 16"> <path fill-rule="evenodd" d="M2 13.5V7h1v6.5a.5.5 0 0 0 .5.5h9a.5.5 0 0 0 .5-.5V7h1v6.5a1.5 1.5 0 0 1-1.5 1.5h-9A1.5 1.5 0 0 1 2 13.5zm11-11V6l-2-2V2.5a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5z" /> <path fill-rule="evenodd" d="M7.293 1.5a1 1 0 0 1 1.414 0l6.647 6.646a.5.5 0 0 1-.708.708L8 2.207 1.354 8.854a.5.5 0 1 1-.708-.708L7.293 1.5z" /> </svg>
                                                 <span class="menu-bullet">
                                                     <span class="bullet bullet-line"></span>
                                                 </span>
@@ -399,6 +402,7 @@
                                         <div class="menu-item">
                                             <!--begin:Menu link-->
                                             <a class="menu-link" href="@Url.Action("Register", "Account")">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-users"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
                                                 <span class="menu-bullet">
                                                     <span class="bullet bullet-line"></span>
                                                 </span>
@@ -532,6 +536,49 @@
                     @RenderBody()
 
                 </div>
+
+                @* Modal for Logout *@
+
+                <div class="modal fade" id="kt_modal_logout" tabindex="-1" aria-hidden="true">
+                    <!--begin::Modal dialog-->
+                    <div class="modal-dialog modal-dialog-centered mw-650px">
+                        <!--begin::Modal content-->
+                        <div class="modal-content">
+                            <!--begin::Modal header-->
+                            <div class="modal-header">
+                                <!--begin::Modal title-->
+                                <h2>Ready to Leave?</h2>
+                                <!--end::Modal title-->
+                                <!--begin::Close-->
+                                <div class="btn btn-sm btn-icon btn-active-color-primary" data-bs-dismiss="modal">
+                                    <!--begin::Svg Icon | path: icons/duotune/arrows/arr061.svg-->
+                                    <span class="svg-icon svg-icon-1">
+                                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <rect opacity="0.5" x="6" y="17.3137" width="16" height="2" rx="1" transform="rotate(-45 6 17.3137)" fill="currentColor" />
+                                            <rect x="7.41422" y="6" width="16" height="2" rx="1" transform="rotate(45 7.41422 6)" fill="currentColor" />
+                                        </svg>
+                                    </span>
+                                    <!--end::Svg Icon-->
+                                </div>
+                                <!--end::Close-->
+                            </div>
+                            <!--end::Modal header-->
+                            <!--begin::Modal body-->
+                            <div class="modal-body scroll-y mx-5 mx-xl-15 my-7">
+                                    <h4>Select "Logout" below if you are ready to end your current session.</h4>
+                                    <div class="text-center pt-15">
+                                        <button class="btn btn-primary" onclick="location.href='@Url.Action("LogOff", "Account")'">Logout</button>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--end::Modal body-->
+                        </div>
+                        <!--end::Modal content-->
+                    </div>
+                    <!--end::Modal dialog-->
+                </div>
+
+
                 <!--begin::Footer-->
                 <div id="kt_app_footer" class="app-footer">
                     <!--begin::Footer container-->
@@ -550,7 +597,7 @@
             <!--end:::Main-->
         </div>
         <!--end::Wrapper-->
-    </div>
+    
     <!--end::Page-->
     <!--end::App-->
     <!--begin::Javascript-->

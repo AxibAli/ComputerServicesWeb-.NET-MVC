@@ -208,6 +208,9 @@
         @RenderBody()
         <hr />
     </div>
+
+   
+
     <footer class="footer">
         <div class="container">
             <div class="d-flex custom-footer justify align-items-center ">
@@ -237,14 +240,12 @@
                 type: "GET",
                 url: "Home/ServiceForhome",
                 dataType: 'json',
-                success: function (data)
-                {
+                success: function (data) {
                     var parsed_data = $.parseJSON(data);
-                    for (var i = 0; i < 4; i++)
-                    {
-                        $('#service'+i+' img').attr('src', parsed_data[i].PicturePath);
-                        $('#service'+i+' .title-description h5').text(parsed_data[i].Name);
-                        $('#service'+i+' .title-description p').text(parsed_data[i].Description);
+                    for (var i = 0; i < 4; i++) {
+                        $('#service' + i + ' img').attr('src', parsed_data[i].PicturePath);
+                        $('#service' + i + ' .title-description h5').text(parsed_data[i].Name);
+                        $('#service' + i + ' .title-description p').text(parsed_data[i].Description);
                     }
                 }
             });
