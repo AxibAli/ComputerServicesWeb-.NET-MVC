@@ -73,9 +73,9 @@ namespace ComputerServicesWeb.Controllers
             var records = _db.usedMachines.OrderByDescending(x => x.id).ToList().ToPagedList(pageNumber ?? 1, 6);
             return View(records);
         }
-        public ActionResult GetusedMachinesById(int usedMachines_ID)
+        public ActionResult GetusedMachinesById(int usedMachine_ID)
         {
-            var model = _db.usedMachines.Where(x => x.id == usedMachines_ID).SingleOrDefault();
+            var model = _db.usedMachines.Where(x => x.id == usedMachine_ID).SingleOrDefault();
             string value = string.Empty;
             value = JsonConvert.SerializeObject(model, Formatting.Indented, new JsonSerializerSettings
             {
@@ -131,8 +131,12 @@ namespace ComputerServicesWeb.Controllers
 
             return Json(true,JsonRequestBehavior.AllowGet);
         }
-        public ActionResult UsedMachineDelete(int usedMachines_ID)
+        public ActionResult UsedMachineDelete(int usedMachine_ID)
         {
+            var usedMachine = _db.usedMachines.Where(x => x.id == usedMachine_ID).FirstOrDefault();
+            _db.usedMachines.Remove(usedMachine);
+            _db.SaveChanges();
+
             return Json(true,JsonRequestBehavior.AllowGet);
         }
         #endregion
@@ -186,9 +190,9 @@ namespace ComputerServicesWeb.Controllers
             return View(records);
         }
 
-        public ActionResult GetServiceById(int usedMachines_ID)
+        public ActionResult GetServiceById(int service_ID)
         {
-            var model = _db.usedMachines.Where(x => x.id == usedMachines_ID).SingleOrDefault();
+            var model = _db.services.Where(x => x.id == service_ID).SingleOrDefault();
             string value = string.Empty;
             value = JsonConvert.SerializeObject(model, Formatting.Indented, new JsonSerializerSettings
             {
@@ -198,7 +202,7 @@ namespace ComputerServicesWeb.Controllers
         }
         public ActionResult UpdateService(string data, HttpPostedFileBase file)
         {
-            UsedMachineModels model = JsonConvert.DeserializeObject<UsedMachineModels>(data);
+            ServicesModel model = JsonConvert.DeserializeObject<ServicesModel>(data);
             string FileName = "";
             string _path = "";
 
@@ -212,40 +216,31 @@ namespace ComputerServicesWeb.Controllers
                     _path = Path.Combine(Server.MapPath("~/Uploads"), FileName);
                     file.SaveAs(_path);
 
-                    var usedmachine = _db.usedMachines.Where(x => x.id == model.id).FirstOrDefault();
-                    usedmachine.PicturePath = $"/Uploads/{FileName}";
-                    usedmachine.Brand = model.Brand;
-                    usedmachine.Harddisk = model.Harddisk;
-                    usedmachine.Type = model.Type;
-                    usedmachine.ScreenSize = model.ScreenSize;
-                    usedmachine.Ram = model.Ram;
-                    usedmachine.Processor = model.Processor;
-                    usedmachine.OtherInformation = model.OtherInformation;
-                    usedmachine.ModelNo = model.ModelNo;
-                    _db.Entry(usedmachine).State = System.Data.Entity.EntityState.Modified;
+                    var service = _db.services.Where(x => x.id == model.id).FirstOrDefault();
+                    service.PicturePath = $"/Uploads/{FileName}";
+                    service.Name = model.Name;
+                    service.Description = model.Description;
+                    _db.Entry(service).State = System.Data.Entity.EntityState.Modified;
                     _db.SaveChanges();
                 }
             }
             else
             {
-                var usedmachine = _db.usedMachines.Where(x => x.id == model.id).FirstOrDefault();
-                usedmachine.PicturePath = model.existingpicturepath;
-                usedmachine.Brand = model.Brand;
-                usedmachine.Harddisk = model.Harddisk;
-                usedmachine.Type = model.Type;
-                usedmachine.ScreenSize = model.ScreenSize;
-                usedmachine.Ram = model.Ram;
-                usedmachine.Processor = model.Processor;
-                usedmachine.OtherInformation = model.OtherInformation;
-                usedmachine.ModelNo = model.ModelNo;
-                _db.Entry(usedmachine).State = System.Data.Entity.EntityState.Modified;
+                var service = _db.services.Where(x => x.id == model.id).FirstOrDefault();
+                service.PicturePath = model.existingpicturepath;
+                service.Name = model.Name;
+                service.Description = model.Description;
+                _db.Entry(service).State = System.Data.Entity.EntityState.Modified;
                 _db.SaveChanges();
             }
 
             return Json(true, JsonRequestBehavior.AllowGet);
         }
-        public ActionResult ServiceDelete(int usedMachines_ID)
+        public ActionResult ServiceDelete(int service_ID)
         {
+            var service = _db.services.Where(x => x.id == service_ID).FirstOrDefault();
+            _db.services.Remove(service);
+            _db.SaveChanges();
             return Json(true, JsonRequestBehavior.AllowGet);
         }
         #endregion

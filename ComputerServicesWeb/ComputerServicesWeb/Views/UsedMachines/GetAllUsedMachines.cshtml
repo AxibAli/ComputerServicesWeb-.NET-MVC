@@ -258,9 +258,9 @@
 
 
     //For Get  Record
-    function EditRecord(usedMachines_ID) {
+    function EditRecord(usedMachine_ID) {
         debugger;
-        var url = "/UsedMachines/GetusedMachinesById?usedMachines_ID=" + usedMachines_ID;
+        var url = "/UsedMachines/GetusedMachinesById?usedMachine_ID=" + usedMachine_ID;
 
         $.ajax({
             type: "GET",
@@ -320,9 +320,9 @@
     })
 
     //For Delete  Record
-    function DeleteRecord(usedMachines_ID) {
+    function DeleteRecord(usedMachine_ID) {
         debugger;
-        var url = "/UsedMachines/UsedMachineDelete?usedMachines_ID=" + usedMachines_ID;
+        var url = "/UsedMachines/UsedMachineDelete?usedMachine_ID=" + usedMachine_ID;
 
         $.ajax({
             type: "POST",

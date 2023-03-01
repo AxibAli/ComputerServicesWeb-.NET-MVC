@@ -170,52 +170,18 @@
                 <!--begin::Form-->
                 <form id="kt_modal_new_card_form" class="form" action="#">
                     <div class="mb-3">
-                        <label for="BrandName" class="form-label">Brand name:</label>
-                        <input type="text" class="form-control form-control-solid" placeholder="" id="BrandName" />
+                        <label for="BrandName" class="form-label">Service Name:</label>
+                        <input type="text" class="form-control form-control-solid" placeholder="" id="ServiceName" />
                     </div>
                     <div class="mb-3">
                         <label for="SelectPicture" class="form-label">Upload Picture:</label>
 
                         @Html.TextBox("file", "", new { type = "file", @class = "form-control", id = "SelectPicture" })
                     </div>
-                    <div class="row fv-row">
-                        <div class="col-6">
-                            <label for="Type" class="form-label">Type:</label>
-                            <select class="form-select form-select-solid" id="Type">
-                                <option value="Desktop All in One">Desktop All in One</option>
-                                <option value="Desktop Case">Desktop Case</option>
-                                <option value="Monitor">Monitor</option>
-                                <option value="Laptop">Laptop</option>
-                            </select>
-                        </div>
-                        <div class="col-6">
-                            <label for="Ram" class="form-label">Ram:</label>
-                            <input type="text" class="form-control form-control-solid" placeholder="" id="Ram" />
-                        </div>
-                    </div>
-                    <div class="row fv-row">
-                        <div class="col-6">
-                            <label for="Harddisk" class="form-label">Hard disk:</label>
-                            <input type="text" class="form-control form-control-solid" placeholder="" id="HardDisk" />
-                        </div>
-                        <div class="col-6">
-                            <label for="ScreenSize" class="form-label">Screen size:</label>
-                            <input type="text" class="form-control form-control-solid" placeholder="" id="ScreenSize" />
-                        </div>
-                    </div>
-                    <div class="row fv-row">
-                        <div class="col-6">
-                            <label for="ModelNo" class="form-label">Model no:</label>
-                            <input type="text" class="form-control form-control-solid" placeholder="" id="ModelNo" />
-                        </div>
-                        <div class="col-6">
-                            <label for="Processor" class="form-label">Processor:</label>
-                            <input type="text" class="form-control form-control-solid" placeholder="" id="Processor" />
-                        </div>
-                    </div>
+                
                     <div class="mb-3">
                         <label for="OtherInfo" class="form-label">Other Information:</label>
-                        <input type="text" class="form-control form-control-solid" placeholder="" maxlength="50" id="OtherInformation" />
+                        <input type="text" class="form-control form-control-solid" placeholder="" maxlength="50" id="ServiceDescription" />
                         <input type="hidden" id="postid">
                         <input type="hidden" id="ExistingPicture">
 
@@ -263,8 +229,8 @@
             success: function (data) {
                 var obj = JSON.parse(data);
                 $("#postid").val(obj.id);
-                $("#BrandName").val(obj.Brand);
-                $("#OtherInformation").val(obj.OtherInformation);
+                $("#ServiceName").val(obj.Name);
+                $("#ServiceDescription").val(obj.Description);
                 $("#ExistingPicture").val(obj.PicturePath);
 
             }
@@ -277,14 +243,8 @@
         var formData = new FormData();
         var data = {
             id: $('#postid').val(),
-            brand: $('#BrandName').val(),
-            type: $('#Type').val(),
-            ram: $('#Ram').val(),
-            harddisk: $('#HardDisk').val(),
-            screensize: $('#ScreenSize').val(),
-            modelno: $('#ModelNo').val(),
-            processor: $('#Processor').val(),
-            otherinformation: $('#OtherInformation').val(),
+            Name: $('#ServiceName').val(),
+            Description: $('#ServiceDescription').val(),
             existingpicturepath: $('#ExistingPicture').val(),
         }
 
@@ -309,9 +269,9 @@
     })
 
     //For Delete  Record
-    function DeleteRecord(usedMachines_ID) {
+    function DeleteRecord(service_ID) {
         debugger;
-        var url = "/UsedMachines/ServiceDelete?usedMachines_ID=" + usedMachines_ID;
+        var url = "/UsedMachines/ServiceDelete?service_ID=" + service_ID;
 
         $.ajax({
             type: "POST",
