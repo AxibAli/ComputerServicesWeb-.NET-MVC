@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Web;
 
@@ -17,5 +18,9 @@ namespace ComputerServicesWeb.Models
         public string  ModelNo { get; set; }
         public string  Processor { get; set; }
         public string  OtherInformation { get; set; }
+
+        [NotMapped]
+        public string existingpicturepath { get; set; }
+    
     }
 }
