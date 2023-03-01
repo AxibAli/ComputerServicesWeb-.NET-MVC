@@ -1331,7 +1331,7 @@
     <Content Include="Content\assets\media\illustrations\unitedpalms-1\8.png" />
     <Content Include="Content\assets\media\illustrations\unitedpalms-1\9-dark.png" />
     <Content Include="Content\assets\media\illustrations\unitedpalms-1\9.png" />
-    <Content Include="Content\assets\media\logos\default-dark.svg" />
+    <Content Include="Content\assets\media\logos\default-dark.png" />
     <Content Include="Content\assets\media\logos\default-small-dark.svg" />
     <Content Include="Content\assets\media\logos\default-small.svg" />
     <Content Include="Content\assets\media\logos\default-white.svg" />
