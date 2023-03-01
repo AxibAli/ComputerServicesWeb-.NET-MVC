@@ -183,7 +183,7 @@
                     <div class="row fv-row">
                         <div class="col-6">
                             <label for="Type" class="form-label">Type:</label>
-                            <select class="form-select form-select-solid" data-control="select2" data-hide-search="true" id="Type">
+                            <select class="form-select form-select-solid" id="Type">
                                 <option value="Desktop All in One">Desktop All in One</option>
                                 <option value="Desktop Case">Desktop Case</option>
                                 <option value="Monitor">Monitor</option>
@@ -218,7 +218,9 @@
                     <div class="mb-3">
                         <label for="OtherInfo" class="form-label">Other Information:</label>
                         <input type="text" class="form-control form-control-solid" placeholder="" maxlength="50" id="OtherInformation" />
-                        <input type="hidden" id="postid" >
+                        <input type="hidden" id="postid">
+                        <input type="hidden" id="ExistingPicture">
+
 
                     </div>
 
@@ -263,14 +265,14 @@
                 var obj = JSON.parse(data);
                 $("#postid").val(obj.id);
                 $("#BrandName").val(obj.Brand);
-                $("#Type").val(obj.Type);
+                 $("#Type").val(obj.Type);
                 $("#Ram").val(obj.Ram);
                 $("#HardDisk").val(obj.Harddisk);
                 $("#ScreenSize").val(obj.ScreenSize);
                 $("#ModelNo").val(obj.ModelNo);
                 $("#Processor").val(obj.Processor);
                 $("#OtherInformation").val(obj.OtherInformation);
-                $("#SelectPicture").val(obj.PicturePath);
+                $("#ExistingPicture").val(obj.PicturePath);
 
             }
         })
@@ -278,6 +280,7 @@
 
     $("#UpdateRecord").click(function () {
         debugger;
+        var formData = new FormData();
         var data = {
             id: $('#postid').val(),
             brand: $('#BrandName').val(),
@@ -288,16 +291,26 @@
             modelno: $('#ModelNo').val(),
             processor: $('#Processor').val(),
             otherinformation: $('#OtherInformation').val(),
-            picturepath: $('#SelectPicture').val()
-
+            existingpicturepath: $('#ExistingPicture').val(),
+            /*picturepath: $('#SelectPicture').val(),*/
         }
+
+        formData.append("data", JSON.stringify(data));
+
+        var file = document.getElementById('SelectPicture').files[0];
+        formData.append("file", file);
+
         $.ajax({
-            type: "Post",
+            type: "POST",
             url: "/UsedMachines/UpdateusedMachine",
-            data: data,
+            data: formData,
+            dataType: 'json',
+            contentType: false,
+            processData: false,
             success: function (result) {
                 alert("Successfully Updated....");
-                window.location.href = "/Admin/Dashboard";
+                /*window.location.href = "/Admin/Dashboard";*/
+                location.reload();
                 $("#kt_modal_Update_UsedMachine").modal("hide");
             }
         })

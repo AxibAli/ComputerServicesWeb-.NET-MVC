@@ -22,7 +22,6 @@ namespace ComputerServicesWeb.Controllers
         {
             return View();
         }
-
         [HttpPost]
         public ActionResult MachineInformation(FormCollection form, HttpPostedFileBase file)
         {
@@ -63,21 +62,18 @@ namespace ComputerServicesWeb.Controllers
            
             return RedirectToAction("GetAllUsedMachines");
         }
-
         public ActionResult GetAllUsedMachines() 
         {
             var model = _db.usedMachines.OrderByDescending(x=>x.id).ToList();
             return View(model);
         }
-
         [HttpGet]
         public ActionResult GetAllUsedMachines(int? pageNumber)
         {
             var records = _db.usedMachines.OrderByDescending(x => x.id).ToList().ToPagedList(pageNumber ?? 1, 6);
             return View(records);
         }
-
-        public JsonResult GetusedMachinesById(int usedMachines_ID)
+        public ActionResult GetusedMachinesById(int usedMachines_ID)
         {
             var model = _db.usedMachines.Where(x => x.id == usedMachines_ID).SingleOrDefault();
             string value = string.Empty;
@@ -87,18 +83,58 @@ namespace ComputerServicesWeb.Controllers
             });
             return Json(value, JsonRequestBehavior.AllowGet);
         }
-
-        public JsonResult UpdateusedMachine(UsedMachineModels data)
+        public ActionResult UpdateusedMachine(string data, HttpPostedFileBase file)
         {
+            UsedMachineModels model = JsonConvert.DeserializeObject<UsedMachineModels>(data);
+            string FileName = "";
+            string _path = "";
 
-            
+            if (file!=null)
+            {
+                if (file.ContentLength > 0)
+                {
+                    FileName = Path.GetFileNameWithoutExtension(file.FileName);
+                    string Extension = Path.GetExtension(file.FileName);
+                    FileName = FileName + DateTime.Now.ToString("yymmssfff") + Extension;
+                    _path = Path.Combine(Server.MapPath("~/Uploads"), FileName);
+                    file.SaveAs(_path);
 
+                    var usedmachine = _db.usedMachines.Where(x => x.id == model.id).FirstOrDefault();
+                    usedmachine.PicturePath = $"/Uploads/{FileName}";
+                    usedmachine.Brand = model.Brand;
+                    usedmachine.Harddisk = model.Harddisk;
+                    usedmachine.Type = model.Type;
+                    usedmachine.ScreenSize = model.ScreenSize;
+                    usedmachine.Ram = model.Ram;
+                    usedmachine.Processor = model.Processor;
+                    usedmachine.OtherInformation = model.OtherInformation;
+                    usedmachine.ModelNo = model.ModelNo;
+                    _db.Entry(usedmachine).State = System.Data.Entity.EntityState.Modified;
+                    _db.SaveChanges();
+                }
+            }
+            else
+            {
+                var usedmachine = _db.usedMachines.Where(x => x.id == model.id).FirstOrDefault();
+                usedmachine.PicturePath = model.existingpicturepath;
+                usedmachine.Brand = model.Brand;
+                usedmachine.Harddisk = model.Harddisk;
+                usedmachine.Type = model.Type;
+                usedmachine.ScreenSize = model.ScreenSize;
+                usedmachine.Ram = model.Ram;
+                usedmachine.Processor = model.Processor;
+                usedmachine.OtherInformation = model.OtherInformation;
+                usedmachine.ModelNo = model.ModelNo;
+                _db.Entry(usedmachine).State = System.Data.Entity.EntityState.Modified;
+                _db.SaveChanges();
+            }
 
-            return Json( JsonRequestBehavior.AllowGet);
-
-
+            return Json(true,JsonRequestBehavior.AllowGet);
         }
-
+        public ActionResult UsedMachineDelete(int usedMachines_ID)
+        {
+            return Json(true,JsonRequestBehavior.AllowGet);
+        }
         #endregion
 
         #region Services Actions
