@@ -85,5 +85,27 @@ namespace ComputerServicesWeb.Controllers
             }
             return RedirectToAction("Index");
          }
+
+        public ActionResult AddTypes() 
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult AddTypes(FormCollection form)
+        {
+            var obj = new TypeModel
+            {
+                TypeName = form["typename"].ToString(),
+
+            };
+
+            _db.types.Add(obj);
+            _db.SaveChanges();
+
+            TempData["Message"] = "Type Add Successfully ";
+
+            return View();
+        }
     }
 }

@@ -3,12 +3,14 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Web;
+using System.Web.Mvc;
 
 namespace ComputerServicesWeb.Models
 {
     public class UsedMachineModels
     {
         public int id { get; set; }
+        public long usedmachineId { get; set; }
         public string  PicturePath { get; set; }
         public string  Type { get; set; }
         public string  Brand { get; set; }
@@ -21,6 +23,8 @@ namespace ComputerServicesWeb.Models
 
         [NotMapped]
         public string existingpicturepath { get; set; }
-    
+        [NotMapped]
+        public SelectList Types { get; set; }
+
     }
 }

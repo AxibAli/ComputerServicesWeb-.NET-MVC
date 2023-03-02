@@ -20,51 +20,54 @@ namespace ComputerServicesWeb.Controllers
         #region Used Machines
         public ActionResult Index()
         {
-            return View();
+            UsedMachineModels obj = new UsedMachineModels();
+
+            obj.Types = new SelectList(_db.types.ToList(), "id", "TypeName");
+            return View(obj);
         }
         [HttpPost]
         public ActionResult MachineInformation(FormCollection form, HttpPostedFileBase file)
         {
-         
-                string _path = "";
-                string FileName = "";
 
-                if (file.ContentLength > 0)
-                {
-                    FileName = Path.GetFileNameWithoutExtension(file.FileName);
-                    string Extension = Path.GetExtension(file.FileName);
+            string _path = "";
+            string FileName = "";
 
-                    FileName = FileName + DateTime.Now.ToString("yymmssfff") + Extension;
+            if (file.ContentLength > 0)
+            {
+                FileName = Path.GetFileNameWithoutExtension(file.FileName);
+                string Extension = Path.GetExtension(file.FileName);
+
+                FileName = FileName + DateTime.Now.ToString("yymmssfff") + Extension;
 
 
-                    _path = Path.Combine(Server.MapPath("~/Uploads"), FileName);
-                    file.SaveAs(_path);
-                }
+                _path = Path.Combine(Server.MapPath("~/Uploads"), FileName);
+                file.SaveAs(_path);
+            }
 
-                var obj = new UsedMachineModels
-                {
-                    Brand = form["Brand"].ToString(),
-                    Harddisk = form["Harddisk"].ToString(),
-                    PicturePath = $"/Uploads/{FileName}",
-                    ModelNo = form["ModelNo"].ToString(),
-                    OtherInformation=form["OtherInformation"].ToString(),
-                    Processor=form["Processor"].ToString(),
-                    Ram=form["Ram"].ToString(),
-                    ScreenSize=form["ScreenSize"].ToString(),
-                    Type=form["Type"].ToString()
+            var obj = new UsedMachineModels
+            {
+                Brand = form["Brand"].ToString(),
+                Harddisk = form["Harddisk"].ToString(),
+                PicturePath = $"/Uploads/{FileName}",
+                ModelNo = form["ModelNo"].ToString(),
+                OtherInformation = form["OtherInformation"].ToString(),
+                Processor = form["Processor"].ToString(),
+                Ram = form["Ram"].ToString(),
+                ScreenSize = form["ScreenSize"].ToString(),
+                Type = form["ListofType"].ToString()
 
-                };
+            };
 
-                _db.usedMachines.Add(obj);
-                _db.SaveChanges();
-           
-                TempData["Message"] = "Post Posted Successfully ";
-           
+            _db.usedMachines.Add(obj);
+            _db.SaveChanges();
+
+            TempData["Message"] = "Post Posted Successfully ";
+
             return RedirectToAction("GetAllUsedMachines");
         }
-        public ActionResult GetAllUsedMachines() 
+        public ActionResult GetAllUsedMachines()
         {
-            var model = _db.usedMachines.OrderByDescending(x=>x.id).ToList();
+            var model = _db.usedMachines.OrderByDescending(x => x.id).ToList();
             return View(model);
         }
         [HttpGet]
@@ -89,7 +92,7 @@ namespace ComputerServicesWeb.Controllers
             string FileName = "";
             string _path = "";
 
-            if (file!=null)
+            if (file != null)
             {
                 if (file.ContentLength > 0)
                 {
@@ -129,7 +132,7 @@ namespace ComputerServicesWeb.Controllers
                 _db.SaveChanges();
             }
 
-            return Json(true,JsonRequestBehavior.AllowGet);
+            return Json(true, JsonRequestBehavior.AllowGet);
         }
         public ActionResult UsedMachineDelete(int usedMachine_ID)
         {
@@ -137,48 +140,48 @@ namespace ComputerServicesWeb.Controllers
             _db.usedMachines.Remove(usedMachine);
             _db.SaveChanges();
 
-            return Json(true,JsonRequestBehavior.AllowGet);
+            return Json(true, JsonRequestBehavior.AllowGet);
         }
         #endregion
 
         #region Services Actions
-        public ActionResult Services() 
+        public ActionResult Services()
         {
             return View();
         }
         [HttpPost]
         public ActionResult Services(FormCollection form, HttpPostedFileBase file)
         {
-          
-                string _path = "";
-                string FileName = "";
-                if (file.ContentLength > 0)
-                {
-                    FileName = Path.GetFileNameWithoutExtension(file.FileName);
-                    string Extension = Path.GetExtension(file.FileName);
 
-                    FileName = FileName + DateTime.Now.ToString("yymmssfff") + Extension;
+            string _path = "";
+            string FileName = "";
+            if (file.ContentLength > 0)
+            {
+                FileName = Path.GetFileNameWithoutExtension(file.FileName);
+                string Extension = Path.GetExtension(file.FileName);
+
+                FileName = FileName + DateTime.Now.ToString("yymmssfff") + Extension;
 
 
-                    _path = Path.Combine(Server.MapPath("~/Uploads"), FileName);
-                    file.SaveAs(_path);
-                }
+                _path = Path.Combine(Server.MapPath("~/Uploads"), FileName);
+                file.SaveAs(_path);
+            }
 
-                var obj = new ServicesModel
-                {
-                    Name = form["Name"].ToString(),
-                    Description = form["Description"].ToString(),
-                    PicturePath = $"/Uploads/{FileName}",
-                };
+            var obj = new ServicesModel
+            {
+                Name = form["Name"].ToString(),
+                Description = form["Description"].ToString(),
+                PicturePath = $"/Uploads/{FileName}",
+            };
 
-                _db.services.Add(obj);
-                _db.SaveChanges();
-            
-          
+            _db.services.Add(obj);
+            _db.SaveChanges();
+
+
             return RedirectToAction("GetAllServices");
         }
 
-        public ActionResult GetAllServices() 
+        public ActionResult GetAllServices()
         {
             var model = _db.services.OrderByDescending(x => x.id).ToList();
             return View(model);

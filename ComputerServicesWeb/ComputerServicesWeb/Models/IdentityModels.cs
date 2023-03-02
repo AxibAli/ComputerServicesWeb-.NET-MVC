@@ -53,6 +53,7 @@ namespace ComputerServicesWeb.Models
         public DbSet<IdentityUserLogin> Logins { get; set; }
         public DbSet<UsedMachineModels> usedMachines { get; set; }
         public DbSet<ServicesModel> services { get; set; }
+        public DbSet<TypeModel> types { get; set; }
 
     }
 }
