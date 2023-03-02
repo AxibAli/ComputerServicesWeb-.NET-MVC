@@ -73,7 +73,7 @@
                     </div>
                     <div class="col-6">
                         <label  class="form-label"><b>:يكتب</b></label>
-                        @Html.DropDownList("ListofType", Model.Types, "الرجاء تحديد أي نوع", new { @class = "form-control" })
+                        @Html.DropDownList("ListofType", Model.Types, "الرجاء تحديد أي نوع", new { @class = "form-control", dir = "rtl" })
                     </div>
                 </div>
                 <div class="row fv-row">
@@ -83,7 +83,7 @@
                     </div>
                     <div class="col-6">
                         <label for="ArabicRam" class="form-label"><b>:كبش</b></label>
-                        @Html.TextBoxFor(m => m.ArabicRam, new { @class = "form-control", id = "ArabicRam" })
+                        @Html.TextBoxFor(m => m.ArabicRam, new { @class = "form-control", id = "ArabicRam", dir = "rtl" })
                     </div>
                 </div>
                 <div class="row fv-row">
@@ -93,7 +93,7 @@
                     </div>
                     <div class="col-6">
                         <label for="ArabicHarddisk" class="form-label"><b>:القرص الصلب</b></label>
-                        @Html.TextBoxFor(m => m.ArabicHarddisk, new { @class = "form-control", id = "ArabicHarddisk" })
+                        @Html.TextBoxFor(m => m.ArabicHarddisk, new { @class = "form-control", id = "ArabicHarddisk", dir = "rtl" })
                     </div>
                 </div>
                 <div class="row fv-row">
@@ -103,7 +103,7 @@
                     </div>
                     <div class="col-6">
                         <label for="ArabicScreenSize" class="form-label"><b>:حجم الشاشة</b></label>
-                        @Html.TextBoxFor(m => m.ArabicScreenSize, new { @class = "form-control", id = "ArabicScreenSize" })
+                        @Html.TextBoxFor(m => m.ArabicScreenSize, new { @class = "form-control", id = "ArabicScreenSize", dir = "rtl" })
                     </div>
                 </div>
                 <div class="row fv-row">
@@ -113,7 +113,7 @@
                     </div>
                     <div class="col-6">
                         <label for="ArabicModelNo" class="form-label"><b>:نموذج رقم</b></label>
-                        @Html.TextBoxFor(m => m.ArabicModelNo, new { @class = "form-control", id = "ArabicModelNo" })
+                        @Html.TextBoxFor(m => m.ArabicModelNo, new { @class = "form-control", id = "ArabicModelNo", dir = "rtl" })
                     </div>
                 </div>
                 <div class="row fv-row">
@@ -123,7 +123,7 @@
                     </div>
                     <div class="col-6">
                         <label for="ArabicProcessor" class="form-label"><b>:المعالج</b></label>
-                        @Html.TextBoxFor(m => m.ArabicProcessor, new { @class = "form-control", id = "ArabicProcessor" })
+                        @Html.TextBoxFor(m => m.ArabicProcessor, new { @class = "form-control", id = "ArabicProcessor", dir = "rtl" })
                     </div>
                 </div>
                 <div class="row fv-row">
@@ -132,12 +132,12 @@
                         @Html.TextAreaFor(m => m.OtherInformation, new { @class = "form-control", id = "OtherInfo", maxlength = "50" })
                     </div>
                     <div class="col-6">
-                        <label for="ArabicOtherInformation" class="form-label">:معلومات أخرى</label>
-                        @Html.TextAreaFor(m => m.ArabicOtherInformation, new { @class = "form-control", id = "ArabicOtherInformation", maxlength = "50" })
+                        <label for="ArabicOtherInformation" class="form-label"><b>:معلومات أخرى</b></label>
+                        @Html.TextAreaFor(m => m.ArabicOtherInformation, new { @class = "form-control", id = "ArabicOtherInformation", maxlength = "50", dir = "rtl" })
                     </div>
                 </div>
                 <div class="text-center pt-15">
-                    <button type="submit" class="btn btn-primary">Submit/يُقدِّم</button>
+                    <button type="submit" class="btn btn-primary">Submit/<b>يُقدِّم</b></button>
                 </div>
             }
 
