@@ -19,7 +19,7 @@
     <link href="~/Content/assets/css/style.bundle.css" rel="stylesheet" type="text/css" />
     <!--end::Global Stylesheets Bundle-->
 
-   
+
 </head>
 <body id="kt_app_body" data-kt-app-layout="dark-sidebar" data-kt-app-header-fixed="true" data-kt-app-sidebar-enabled="true" data-kt-app-sidebar-fixed="true" data-kt-app-sidebar-hoverable="true" data-kt-app-sidebar-push-header="true" data-kt-app-sidebar-push-toolbar="true" data-kt-app-sidebar-push-footer="true" data-kt-app-toolbar-enabled="true" class="app-default">
     <script>var defaultThemeMode = "light"; var themeMode; if (document.documentElement) { if (document.documentElement.hasAttribute("data-bs-theme-mode")) { themeMode = document.documentElement.getAttribute("data-bs-theme-mode"); } else { if (localStorage.getItem("data-bs-theme") !== null) { themeMode = localStorage.getItem("data-bs-theme"); } else { themeMode = defaultThemeMode; } } if (themeMode === "system") { themeMode = window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light"; } document.documentElement.setAttribute("data-bs-theme", themeMode); }</script>
@@ -310,7 +310,7 @@
                                     <!--begin::Menu item-->
                                     <div class="menu-item px-5">
 
-                                        <a  href="#" data-bs-toggle="modal" data-bs-target="#kt_modal_logout"  class="menu-link px-5">Sign Out</a>
+                                        <a href="#" data-bs-toggle="modal" data-bs-target="#kt_modal_logout" class="menu-link px-5">Sign Out</a>
 
                                         @*@Html.ActionLink("Sign out", "LogOff", "Account", null, new { @class = "menu-link px-5" })*@
                                     </div>
@@ -413,25 +413,26 @@
                                     </div>
                                     <!--end:Menu sub-->
                                     <!--begin:Menu sub-->
-                                    <div class="menu-sub menu-sub-accordion">
-                                        <!--begin:Menu item-->
-                                        <div class="menu-item">
-                                            <!--begin:Menu link-->
-                                            <a class="menu-link" href="@Url.Action("Index", "Role")">
-                                                <span class="menu-bullet">
-                                                    <span class="bullet bullet-line"></span>
-                                                </span>
-                                                <span class="menu-title">Create Role</span>
-                                            </a>
-                                            <!--end:Menu link-->
-                                        </div>
-                                    </div>
+                                    @* <div class="menu-sub menu-sub-accordion">
+                                            <!--begin:Menu item-->
+                                            <div class="menu-item">
+                                                <!--begin:Menu link-->
+                                                <a class="menu-link" href="@Url.Action("Index", "Role")">
+                                                    <span class="menu-bullet">
+                                                        <span class="bullet bullet-line"></span>
+                                                    </span>
+                                                    <span class="menu-title">Create Role</span>
+                                                </a>
+                                                <!--end:Menu link-->
+                                            </div>
+                                        </div>*@
                                     <!--end:Menu sub-->
                                     <div class="menu-sub menu-sub-accordion">
                                         <!--begin:Menu item-->
                                         <div class="menu-item">
                                             <!--begin:Menu link-->
                                             <a class="menu-link" href="@Url.Action("AddTypes", "Admin")">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-chat-square-text" viewBox="0 0 16 16"> <path d="M14 1a1 1 0 0 1 1 1v8a1 1 0 0 1-1 1h-2.5a2 2 0 0 0-1.6.8L8 14.333 6.1 11.8a2 2 0 0 0-1.6-.8H2a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h12zM2 0a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h2.5a1 1 0 0 1 .8.4l1.9 2.533a1 1 0 0 0 1.6 0l1.9-2.533a1 1 0 0 1 .8-.4H14a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2z" /> <path d="M3 3.5a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5zM3 6a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9A.5.5 0 0 1 3 6zm0 2.5a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5z" /> </svg>
                                                 <span class="menu-bullet">
                                                     <span class="bullet bullet-line"></span>
                                                 </span>
@@ -442,19 +443,19 @@
                                     </div>
                                     <!--end:Menu sub-->
                                     <!--begin:Menu sub-->
-                                    <div class="menu-sub menu-sub-accordion">
-                                        <!--begin:Menu item-->
-                                        <div class="menu-item">
-                                            <!--begin:Menu link-->
-                                            <a class="menu-link" href="@Url.Action("Index", "AssignRole")">
-                                                <span class="menu-bullet">
-                                                    <span class="bullet bullet-line"></span>
-                                                </span>
-                                                <span class="menu-title">Assign Role</span>
-                                            </a>
-                                            <!--end:Menu link-->
-                                        </div>
-                                    </div>
+                                    @*    <div class="menu-sub menu-sub-accordion">
+                                            <!--begin:Menu item-->
+                                            <div class="menu-item">
+                                                <!--begin:Menu link-->
+                                                <a class="menu-link" href="@Url.Action("Index", "AssignRole")">
+                                                    <span class="menu-bullet">
+                                                        <span class="bullet bullet-line"></span>
+                                                    </span>
+                                                    <span class="menu-title">Assign Role</span>
+                                                </a>
+                                                <!--end:Menu link-->
+                                            </div>
+                                        </div>*@
                                     <!--end:Menu sub-->
                                     <!--begin:Menu sub-->
                                     <div class="menu-sub menu-sub-accordion">
@@ -462,6 +463,7 @@
                                         <div class="menu-item">
                                             <!--begin:Menu link-->
                                             <a class="menu-link" href="@Url.Action("Index","UsedMachines")">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-folder-plus" viewBox="0 0 16 16"> <path d="m.5 3 .04.87a1.99 1.99 0 0 0-.342 1.311l.637 7A2 2 0 0 0 2.826 14H9v-1H2.826a1 1 0 0 1-.995-.91l-.637-7A1 1 0 0 1 2.19 4h11.62a1 1 0 0 1 .996 1.09L14.54 8h1.005l.256-2.819A2 2 0 0 0 13.81 3H9.828a2 2 0 0 1-1.414-.586l-.828-.828A2 2 0 0 0 6.172 1H2.5a2 2 0 0 0-2 2zm5.672-1a1 1 0 0 1 .707.293L7.586 3H2.19c-.24 0-.47.042-.683.12L1.5 2.98a1 1 0 0 1 1-.98h3.672z" /> <path d="M13.5 10a.5.5 0 0 1 .5.5V12h1.5a.5.5 0 1 1 0 1H14v1.5a.5.5 0 1 1-1 0V13h-1.5a.5.5 0 0 1 0-1H13v-1.5a.5.5 0 0 1 .5-.5z" /> </svg>
                                                 <span class="menu-bullet">
                                                     <span class="bullet bullet-line"></span>
                                                 </span>
@@ -477,6 +479,7 @@
                                         <div class="menu-item">
                                             <!--begin:Menu link-->
                                             <a class="menu-link" href="@Url.Action("GetAllUsedMachines","UsedMachines")">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-grid-3x2-gap" viewBox="0 0 16 16"> <path d="M4 4v2H2V4h2zm1 7V9a1 1 0 0 0-1-1H2a1 1 0 0 0-1 1v2a1 1 0 0 0 1 1h2a1 1 0 0 0 1-1zm0-5V4a1 1 0 0 0-1-1H2a1 1 0 0 0-1 1v2a1 1 0 0 0 1 1h2a1 1 0 0 0 1-1zm5 5V9a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1v2a1 1 0 0 0 1 1h2a1 1 0 0 0 1-1zm0-5V4a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1v2a1 1 0 0 0 1 1h2a1 1 0 0 0 1-1zM9 4v2H7V4h2zm5 0h-2v2h2V4zM4 9v2H2V9h2zm5 0v2H7V9h2zm5 0v2h-2V9h2zm-3-5a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v2a1 1 0 0 1-1 1h-2a1 1 0 0 1-1-1V4zm1 4a1 1 0 0 0-1 1v2a1 1 0 0 0 1 1h2a1 1 0 0 0 1-1V9a1 1 0 0 0-1-1h-2z" /> </svg>
                                                 <span class="menu-bullet">
                                                     <span class="bullet bullet-line"></span>
                                                 </span>
@@ -492,6 +495,7 @@
                                         <div class="menu-item">
                                             <!--begin:Menu link-->
                                             <a class="menu-link" href="@Url.Action("Services","UsedMachines")">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-folder-plus" viewBox="0 0 16 16"> <path d="m.5 3 .04.87a1.99 1.99 0 0 0-.342 1.311l.637 7A2 2 0 0 0 2.826 14H9v-1H2.826a1 1 0 0 1-.995-.91l-.637-7A1 1 0 0 1 2.19 4h11.62a1 1 0 0 1 .996 1.09L14.54 8h1.005l.256-2.819A2 2 0 0 0 13.81 3H9.828a2 2 0 0 1-1.414-.586l-.828-.828A2 2 0 0 0 6.172 1H2.5a2 2 0 0 0-2 2zm5.672-1a1 1 0 0 1 .707.293L7.586 3H2.19c-.24 0-.47.042-.683.12L1.5 2.98a1 1 0 0 1 1-.98h3.672z" /> <path d="M13.5 10a.5.5 0 0 1 .5.5V12h1.5a.5.5 0 1 1 0 1H14v1.5a.5.5 0 1 1-1 0V13h-1.5a.5.5 0 0 1 0-1H13v-1.5a.5.5 0 0 1 .5-.5z" /> </svg>
                                                 <span class="menu-bullet">
                                                     <span class="bullet bullet-line"></span>
                                                 </span>
@@ -507,6 +511,7 @@
                                         <div class="menu-item">
                                             <!--begin:Menu link-->
                                             <a class="menu-link" href="@Url.Action("GetAllServices","UsedMachines")">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-grid-3x2-gap" viewBox="0 0 16 16"> <path d="M4 4v2H2V4h2zm1 7V9a1 1 0 0 0-1-1H2a1 1 0 0 0-1 1v2a1 1 0 0 0 1 1h2a1 1 0 0 0 1-1zm0-5V4a1 1 0 0 0-1-1H2a1 1 0 0 0-1 1v2a1 1 0 0 0 1 1h2a1 1 0 0 0 1-1zm5 5V9a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1v2a1 1 0 0 0 1 1h2a1 1 0 0 0 1-1zm0-5V4a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1v2a1 1 0 0 0 1 1h2a1 1 0 0 0 1-1zM9 4v2H7V4h2zm5 0h-2v2h2V4zM4 9v2H2V9h2zm5 0v2H7V9h2zm5 0v2h-2V9h2zm-3-5a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v2a1 1 0 0 1-1 1h-2a1 1 0 0 1-1-1V4zm1 4a1 1 0 0 0-1 1v2a1 1 0 0 0 1 1h2a1 1 0 0 0 1-1V9a1 1 0 0 0-1-1h-2z" /> </svg>
                                                 <span class="menu-bullet">
                                                     <span class="bullet bullet-line"></span>
                                                 </span>
@@ -579,19 +584,17 @@
                             <!--end::Modal header-->
                             <!--begin::Modal body-->
                             <div class="modal-body scroll-y mx-5 mx-xl-15 my-7">
-                                    <h4>Select "Logout" below if you are ready to end your current session.</h4>
-                                    <div class="text-center pt-15">
-                                        <button class="btn btn-primary" onclick="location.href='@Url.Action("LogOff", "Account")'">Logout</button>
-                                    </div>
+                                <h4>Select "Logout" below if you are ready to end your current session.</h4>
+                                <div class="text-center pt-15">
+                                    <button class="btn btn-primary" onclick="location.href='@Url.Action("LogOff", "Account")'">Logout</button>
                                 </div>
                             </div>
-                            <!--end::Modal body-->
                         </div>
-                        <!--end::Modal content-->
+                        <!--end::Modal body-->
                     </div>
-                    <!--end::Modal dialog-->
-
-
+                    <!--end::Modal content-->
+                </div>
+                <!--end::Modal dialog-->
                 <!--begin::Footer-->
                 <div id="kt_app_footer" class="app-footer">
                     <!--begin::Footer container-->

@@ -9,5 +9,6 @@ namespace ComputerServicesWeb.Models
     {
         public int id { get; set; }
         public string TypeName { get; set; }
+        public string ArabicTypeName { get; set; }
     }
 }

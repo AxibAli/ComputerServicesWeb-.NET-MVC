@@ -12,7 +12,6 @@ namespace ComputerServicesWeb.Models
         public int id { get; set; }
         public long usedmachineId { get; set; }
         public string  PicturePath { get; set; }
-        public string  Type { get; set; }
         public string  Brand { get; set; }
         public string  Ram { get; set; }
         public string  Harddisk { get; set; }
@@ -21,10 +20,26 @@ namespace ComputerServicesWeb.Models
         public string  Processor { get; set; }
         public string  OtherInformation { get; set; }
 
+        public string ArabicBrand { get; set; }
+        public string ArabicRam { get; set; }
+        public string ArabicHarddisk { get; set; }
+        public string ArabicScreenSize { get; set; }
+        public string ArabicModelNo { get; set; }
+        public string ArabicProcessor { get; set; }
+        public string ArabicOtherInformation { get; set; }
+
+
+
         [NotMapped]
         public string existingpicturepath { get; set; }
         [NotMapped]
         public SelectList Types { get; set; }
+        public SelectList ArabicTypes { get; set; }
+
+        [ForeignKey("TypeModel")]
+        public int Type { get; set; }
+        public virtual TypeModel TypeModel { get; set; }
+
 
     }
 }

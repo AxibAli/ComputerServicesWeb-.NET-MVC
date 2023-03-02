@@ -26,35 +26,59 @@ namespace ComputerServicesWeb.Controllers
             return View(obj);
         }
         [HttpPost]
-        public ActionResult MachineInformation(FormCollection form, HttpPostedFileBase file)
+        public ActionResult MachineInformation(FormCollection form, HttpPostedFileBase[] file)
         {
 
             string _path = "";
             string FileName = "";
+            string combinefilenames = "";
 
-            if (file.ContentLength > 0)
+            if(file.Length >0) 
             {
-                FileName = Path.GetFileNameWithoutExtension(file.FileName);
-                string Extension = Path.GetExtension(file.FileName);
+                foreach (var item in file)
+                {
+                    FileName = Path.GetFileNameWithoutExtension(item.FileName);
+                    string Extension = Path.GetExtension(item.FileName);
 
-                FileName = FileName + DateTime.Now.ToString("yymmssfff") + Extension;
+                    FileName = FileName + DateTime.Now.ToString("yymmssfff") + Extension;
 
 
-                _path = Path.Combine(Server.MapPath("~/Uploads"), FileName);
-                file.SaveAs(_path);
+                    _path = Path.Combine(Server.MapPath("~/Uploads"), FileName);
+                    item.SaveAs(_path);
+                    if (combinefilenames == "") 
+                    { 
+                        combinefilenames += "/Uploads/" + FileName; 
+                    }
+                    else { 
+                        combinefilenames += "," + "/Uploads/" + FileName; 
+                    }
+                    
+                }
             }
+
+            //if (file.ContentLength > 0)
+            //{
+            //    FileName = Path.GetFileNameWithoutExtension(file.FileName);
+            //    string Extension = Path.GetExtension(file.FileName);
+
+            //    FileName = FileName + DateTime.Now.ToString("yymmssfff") + Extension;
+
+
+            //    _path = Path.Combine(Server.MapPath("~/Uploads"), FileName);
+            //    file.SaveAs(_path);
+            //}
 
             var obj = new UsedMachineModels
             {
                 Brand = form["Brand"].ToString(),
                 Harddisk = form["Harddisk"].ToString(),
-                PicturePath = $"/Uploads/{FileName}",
+                PicturePath = combinefilenames,
                 ModelNo = form["ModelNo"].ToString(),
                 OtherInformation = form["OtherInformation"].ToString(),
                 Processor = form["Processor"].ToString(),
                 Ram = form["Ram"].ToString(),
                 ScreenSize = form["ScreenSize"].ToString(),
-                Type = form["ListofType"].ToString()
+                Type = Convert.ToInt32(form["ListofType"])
 
             };
 
@@ -64,6 +88,7 @@ namespace ComputerServicesWeb.Controllers
             TempData["Message"] = "Post Posted Successfully ";
 
             return RedirectToAction("GetAllUsedMachines");
+          
         }
         public ActionResult GetAllUsedMachines()
         {

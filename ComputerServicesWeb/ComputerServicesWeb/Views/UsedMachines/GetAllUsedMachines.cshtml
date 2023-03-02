@@ -9,6 +9,12 @@
 }
 
 <link href="~/Content/assets/css/CardsStyle.css" rel="stylesheet" />
+@*<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">*@
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.6.3/dist/jquery.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
+
+
 
 <!--begin::Toolbar-->
 <div id="kt_app_toolbar" class="app-toolbar py-3 py-lg-6">
@@ -52,34 +58,92 @@
                 <div class="row">
                     @if (Model.Count() > 0)
                     {
+
+
                         foreach (var item in Model)
                         {
-                            <div class="card">
-                                <div class="inner-card">
-                                    <div class="img-wrapper">
-                                        <img src="@item.PicturePath" alt="">
-                                    </div>
-                                    <div class="content">
-                                        <h1 class="card-heading">@item.Brand</h1>
-                                        <p><b>Description</b></p>
-                                        <ul id="" class="highlights text-left hidden-xs">
-                                            <li><b>Ram </b>@item.Ram</li>
-                                            <li><b>Hard Disk </b>@item.Harddisk</li>
-                                            <li><b>Screen Size </b>@item.ScreenSize</li>
-                                            <li><b>Type </b>@item.Type</li>
-                                            <li><b>Processor </b>@item.Processor</li>
-                                            <li><b>Model No </b>@item.ModelNo</li>
-                                        </ul>
-                                    </div>
+                            if (item.PicturePath.Contains(","))
+                            {
+                                var allpic = item.PicturePath.Split(new string[] { "," }, StringSplitOptions.RemoveEmptyEntries);
 
-                                    <div class="btn-wrapper">
-                                        <button class="view-btn" data-bs-toggle="modal" data-bs-target="#kt_modal_Used_Machine" onclick="loadDescription('@item.OtherInformation')">More Detail</button>
-                                        <a href="#" data-bs-toggle="modal" data-bs-target="#kt_modal_Update_UsedMachine" onclick="EditRecord(@item.id)"><svg width="24" stroke-width="1.5" height="32" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"> <path d="M20 12V5.74853C20 5.5894 19.9368 5.43679 19.8243 5.32426L16.6757 2.17574C16.5632 2.06321 16.4106 2 16.2515 2H4.6C4.26863 2 4 2.26863 4 2.6V21.4C4 21.7314 4.26863 22 4.6 22H11" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" /> <path d="M8 10H16M8 6H12M8 14H11" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" /> <path d="M16 5.4V2.35355C16 2.15829 16.1583 2 16.3536 2C16.4473 2 16.5372 2.03725 16.6036 2.10355L19.8964 5.39645C19.9628 5.46275 20 5.55268 20 5.64645C20 5.84171 19.8417 6 19.6464 6H16.6C16.2686 6 16 5.73137 16 5.4Z" fill="currentColor" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" /> <path d="M17.9541 16.9394L18.9541 15.9394C19.392 15.5015 20.102 15.5015 20.5399 15.9394V15.9394C20.9778 16.3773 20.9778 17.0873 20.5399 17.5252L19.5399 18.5252M17.9541 16.9394L14.963 19.9305C14.8131 20.0804 14.7147 20.2741 14.6821 20.4835L14.4394 22.0399L15.9957 21.7973C16.2052 21.7646 16.3988 21.6662 16.5487 21.5163L19.5399 18.5252M17.9541 16.9394L19.5399 18.5252" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" /></svg></a>
-                                        <a href="#" onclick="DeleteRecord(@item.id)"><svg width="24" stroke-width="1.5" height="32" xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16"> <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z" /> <path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z" /> </svg></a>
+                                <div class="card">
+                                    <div class="inner-card">
+                                        <div class="img-wrapper">
+                                            <div id="carouselExampleFade" class="carousel slide carousel-fade" data-ride="carousel">
+                                                <div class="carousel-inner">
+                                                    <div class="img-wrapper carousel-item active">
+                                                        <img src="@allpic[0]"  alt="...">
+                                                    </div>
+                                                    <div class="img-wrapper carousel-item">
+                                                        <img src="@allpic[1]"  alt="...">
+                                                    </div>
+                                                    <div class="img-wrapper carousel-item">
+                                                        <img src="@allpic[2]" class="img-wrapper" alt="...">
+                                                    </div>
+                                                    <div class="img-wrapper carousel-item">
+                                                        <img src="@allpic[3]" class="img-wrapper" alt="...">
+                                                    </div>
+                                                </div>
+                                                <a class="carousel-control-prev" href="#carouselExampleFade" role="button" data-slide="prev">
+                                                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                                    <span class="sr-only">Previous</span>
+                                                </a>
+                                                <a class="carousel-control-next" href="#carouselExampleFade" role="button" data-slide="next">
+                                                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                                    <span class="sr-only">Next</span>
+                                                </a>
+                                            </div>
+                                        </div>
+                                        <div class="content">
+                                            <h1 class="card-heading">@item.Brand</h1>
+                                            <p><b>Description</b></p>
+                                            <ul id="" class="highlights text-left hidden-xs">
+                                                <li><b>Ram </b>@item.Ram</li>
+                                                <li><b>Hard Disk </b>@item.Harddisk</li>
+                                                <li><b>Screen Size </b>@item.ScreenSize</li>
+                                                <li><b>Type </b>@item.Type</li>
+                                                <li><b>Processor </b>@item.Processor</li>
+                                                <li><b>Model No </b>@item.ModelNo</li>
+                                            </ul>
+                                        </div>
+                                        <div class="btn-wrapper">
+                                            <button class="view-btn" data-bs-toggle="modal" data-bs-target="#kt_modal_Used_Machine" onclick="loadDescription('@item.OtherInformation')">More Detail</button>
+                                            <a href="#" data-bs-toggle="modal" data-bs-target="#kt_modal_Update_UsedMachine" onclick="EditRecord(@item.id)"><svg width="24" stroke-width="1.5" height="32" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"> <path d="M20 12V5.74853C20 5.5894 19.9368 5.43679 19.8243 5.32426L16.6757 2.17574C16.5632 2.06321 16.4106 2 16.2515 2H4.6C4.26863 2 4 2.26863 4 2.6V21.4C4 21.7314 4.26863 22 4.6 22H11" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" /> <path d="M8 10H16M8 6H12M8 14H11" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" /> <path d="M16 5.4V2.35355C16 2.15829 16.1583 2 16.3536 2C16.4473 2 16.5372 2.03725 16.6036 2.10355L19.8964 5.39645C19.9628 5.46275 20 5.55268 20 5.64645C20 5.84171 19.8417 6 19.6464 6H16.6C16.2686 6 16 5.73137 16 5.4Z" fill="currentColor" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" /> <path d="M17.9541 16.9394L18.9541 15.9394C19.392 15.5015 20.102 15.5015 20.5399 15.9394V15.9394C20.9778 16.3773 20.9778 17.0873 20.5399 17.5252L19.5399 18.5252M17.9541 16.9394L14.963 19.9305C14.8131 20.0804 14.7147 20.2741 14.6821 20.4835L14.4394 22.0399L15.9957 21.7973C16.2052 21.7646 16.3988 21.6662 16.5487 21.5163L19.5399 18.5252M17.9541 16.9394L19.5399 18.5252" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" /></svg></a>
+                                            <a href="#" onclick="DeleteRecord(@item.id)"><svg width="24" stroke-width="1.5" height="32" xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16"> <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z" /> <path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z" /> </svg></a>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
+                            }
+                            else
+                            {
+                                <div class="card">
+                                    <div class="inner-card">
+                                        <div class="img-wrapper">
+                                            @*for (int i = 0; i < allpic.Length; i++)*@
+                                            @*<img src="@allpic[0]" alt="">*@
+                                            <img src="@item.PicturePath" alt="Post Picture" />
+                                        </div>
+                                        <div class="content">
+                                            <h1 class="card-heading">@item.Brand</h1>
+                                            <p><b>Description</b></p>
+                                            <ul id="" class="highlights text-left hidden-xs">
+                                                <li><b>Ram </b>@item.Ram</li>
+                                                <li><b>Hard Disk </b>@item.Harddisk</li>
+                                                <li><b>Screen Size </b>@item.ScreenSize</li>
+                                                <li><b>Type </b>@item.Type</li>
+                                                <li><b>Processor </b>@item.Processor</li>
+                                                <li><b>Model No </b>@item.ModelNo</li>
+                                            </ul>
+                                        </div>
 
+                                        <div class="btn-wrapper">
+                                            <button class="view-btn" data-bs-toggle="modal" data-bs-target="#kt_modal_Used_Machine" onclick="loadDescription('@item.OtherInformation')">More Detail</button>
+                                            <a href="#" data-bs-toggle="modal" data-bs-target="#kt_modal_Update_UsedMachine" onclick="EditRecord(@item.id)"><svg width="24" stroke-width="1.5" height="32" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"> <path d="M20 12V5.74853C20 5.5894 19.9368 5.43679 19.8243 5.32426L16.6757 2.17574C16.5632 2.06321 16.4106 2 16.2515 2H4.6C4.26863 2 4 2.26863 4 2.6V21.4C4 21.7314 4.26863 22 4.6 22H11" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" /> <path d="M8 10H16M8 6H12M8 14H11" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" /> <path d="M16 5.4V2.35355C16 2.15829 16.1583 2 16.3536 2C16.4473 2 16.5372 2.03725 16.6036 2.10355L19.8964 5.39645C19.9628 5.46275 20 5.55268 20 5.64645C20 5.84171 19.8417 6 19.6464 6H16.6C16.2686 6 16 5.73137 16 5.4Z" fill="currentColor" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" /> <path d="M17.9541 16.9394L18.9541 15.9394C19.392 15.5015 20.102 15.5015 20.5399 15.9394V15.9394C20.9778 16.3773 20.9778 17.0873 20.5399 17.5252L19.5399 18.5252M17.9541 16.9394L14.963 19.9305C14.8131 20.0804 14.7147 20.2741 14.6821 20.4835L14.4394 22.0399L15.9957 21.7973C16.2052 21.7646 16.3988 21.6662 16.5487 21.5163L19.5399 18.5252M17.9541 16.9394L19.5399 18.5252" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" /></svg></a>
+                                            <a href="#" onclick="DeleteRecord(@item.id)"><svg width="24" stroke-width="1.5" height="32" xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16"> <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z" /> <path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z" /> </svg></a>
+                                        </div>
+                                    </div>
+                                </div>
+                            }
                         }
                     }
                     else
@@ -224,7 +288,6 @@
 
                     <div class="text-center pt-15">
                         <button type="reset" id="kt_modal_new_card_cancel" class="btn btn-light me-3">Discard</button>
-
                         <a class="btn btn-primary" href="#" id="UpdateRecord">Update Details</a>
                     </div>
                 </form>
@@ -236,9 +299,6 @@
     </div>
     <!--end::Modal dialog-->
 </div>
-
-
-
 
 
 
@@ -337,4 +397,5 @@
 </script>
 
 @Scripts.Render("~/Content/assets/js/pagination.js")
+
 

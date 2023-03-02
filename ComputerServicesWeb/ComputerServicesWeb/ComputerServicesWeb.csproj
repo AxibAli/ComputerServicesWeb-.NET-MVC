@@ -219,6 +219,14 @@
     <Compile Include="DataBase\Migrations\202303020558128_AddTableType_ColumninUsedMachine.designer.cs">
       <DependentUpon>202303020558128_AddTableType_ColumninUsedMachine.cs</DependentUpon>
     </Compile>
+    <Compile Include="DataBase\Migrations\202303020654398_addFKUsedMachinetoType.cs" />
+    <Compile Include="DataBase\Migrations\202303020654398_addFKUsedMachinetoType.designer.cs">
+      <DependentUpon>202303020654398_addFKUsedMachinetoType.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DataBase\Migrations\202303021330020_arabicColumnAdd.cs" />
+    <Compile Include="DataBase\Migrations\202303021330020_arabicColumnAdd.designer.cs">
+      <DependentUpon>202303021330020_arabicColumnAdd.cs</DependentUpon>
+    </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -2561,6 +2569,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="DataBase\Migrations\202303020558128_AddTableType_ColumninUsedMachine.resx">
       <DependentUpon>202303020558128_AddTableType_ColumninUsedMachine.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DataBase\Migrations\202303020654398_addFKUsedMachinetoType.resx">
+      <DependentUpon>202303020654398_addFKUsedMachinetoType.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DataBase\Migrations\202303021330020_arabicColumnAdd.resx">
+      <DependentUpon>202303021330020_arabicColumnAdd.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

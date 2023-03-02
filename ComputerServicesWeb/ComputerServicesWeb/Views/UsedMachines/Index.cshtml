@@ -46,50 +46,99 @@
 
             @using (Html.BeginForm("MachineInformation", "UsedMachines", FormMethod.Post, new { enctype = "multipart/form-data" }))
             {
+                <div class="mb-3">
+                    <label for="usedMachineId" class="form-label">Post ID:/:بعد معرف</label>
+                    @Html.TextBoxFor(m => m.usedmachineId, new { @class = "form-control", id = "usedMachineId" })
+                </div>
+                <div class="row fv-row">
+                    <div class="col-6">
+                        <label for="BrandName" class="form-label">Brand Name:</label>
+                        @Html.TextBoxFor(m => m.Brand, new { @class = "form-control", id = "BrandName" })
+                    </div>
+                    <div class="col-6">
+                        <label for="ArabicBrandName" class="form-label"><b>:اسم العلامة التجارية</b></label>
+                        @Html.TextBoxFor(m => m.ArabicBrand, new { @class = "form-control", id = "ArabicBrandName", dir = "rtl" })
+                    </div>
+                </div>
 
                 <div class="mb-3">
-                    <label for="BrandName" class="form-label">Brand name:</label>
-                    @Html.TextBoxFor(m => m.Brand, new { @class = "form-control", id = "BrandName" })
+                    <label for="SelectPicture" class="form-label">Upload Picture:/:تحميل الصورة</label>
+                    @Html.TextBox("file", "", new { type = "file", @class = "form-control", id = "SelectPicture", multiple = "multiple" })
                 </div>
-                <div class="mb-3">
-                    <label for="SelectPicture" class="form-label">Upload Picture:</label>
-                    @Html.TextBox("file", "", new { type = "file", @class = "form-control", id = "SelectPicture" })
+
+                <div class="row fv-row">
+                    <div class="col-6">
+                        <label  class="form-label">Type:</label>
+                        @Html.DropDownList("ListofType", Model.Types, "Please Select Any Type", new { @class = "form-control" })
+                    </div>
+                    <div class="col-6">
+                        <label  class="form-label"><b>:يكتب</b></label>
+                        @Html.DropDownList("ListofType", Model.Types, "الرجاء تحديد أي نوع", new { @class = "form-control" })
+                    </div>
                 </div>
-                <div class="mb-3">
-                    <label for="Type" class="form-label">Type:</label>
-                    @*@Html.DropDownListFor(m => m.Type, new List<SelectListItem>
-               { new SelectListItem { Text = "Desktop All in One", Value = "Desktop All in One" },
-                   new SelectListItem { Text = "Desktop Case", Value = "Desktop Case" },
-                   new SelectListItem { Text = "Monitor", Value = "Monitor" }
-                   , new SelectListItem { Text = "Laptop", Value = "Laptop" }
-               }, "Please select", new { @class = "form-control" })*@
-                    @Html.DropDownList("ListofType",Model.Types,"Please Select Any Type", new { @class = "form-control" })
+                <div class="row fv-row">
+                    <div class="col-6">
+                        <label for="Ram" class="form-label">Ram:</label>
+                        @Html.TextBoxFor(m => m.Ram, new { @class = "form-control", id = "Ram" })
+                    </div>
+                    <div class="col-6">
+                        <label for="ArabicRam" class="form-label"><b>:كبش</b></label>
+                        @Html.TextBoxFor(m => m.ArabicRam, new { @class = "form-control", id = "ArabicRam" })
+                    </div>
                 </div>
-                <div class="mb-3">
-                    <label for="Ram" class="form-label">Ram:</label>
-                    @Html.TextBoxFor(m => m.Ram, new { @class = "form-control", id = "Ram" })
+                <div class="row fv-row">
+                    <div class="col-6">
+                        <label for="Harddisk" class="form-label">Hard Disk:</label>
+                        @Html.TextBoxFor(m => m.Harddisk, new { @class = "form-control", id = "Harddisk" })
+                    </div>
+                    <div class="col-6">
+                        <label for="ArabicHarddisk" class="form-label"><b>:القرص الصلب</b></label>
+                        @Html.TextBoxFor(m => m.ArabicHarddisk, new { @class = "form-control", id = "ArabicHarddisk" })
+                    </div>
                 </div>
-                <div class="mb-3">
-                    <label for="Harddisk" class="form-label">Hard disk:</label>
-                    @Html.TextBoxFor(m => m.Harddisk, new { @class = "form-control", id = "Harddisk" })
+                <div class="row fv-row">
+                    <div class="col-6">
+                        <label for="ScreenSize" class="form-label">Screen Size:</label>
+                        @Html.TextBoxFor(m => m.ScreenSize, new { @class = "form-control", id = "ScreenSize" })
+                    </div>
+                    <div class="col-6">
+                        <label for="ArabicScreenSize" class="form-label"><b>:حجم الشاشة</b></label>
+                        @Html.TextBoxFor(m => m.ArabicScreenSize, new { @class = "form-control", id = "ArabicScreenSize" })
+                    </div>
                 </div>
-                <div class="mb-3">
-                    <label for="ScreenSize" class="form-label">Screen size:</label>
-                    @Html.TextBoxFor(m => m.ScreenSize, new { @class = "form-control", id = "ScreenSize" })
+                <div class="row fv-row">
+                    <div class="col-6">
+                        <label for="ModelNo" class="form-label">Model No:</label>
+                        @Html.TextBoxFor(m => m.ModelNo, new { @class = "form-control", id = "ModelNo" })
+                    </div>
+                    <div class="col-6">
+                        <label for="ArabicModelNo" class="form-label"><b>:نموذج رقم</b></label>
+                        @Html.TextBoxFor(m => m.ArabicModelNo, new { @class = "form-control", id = "ArabicModelNo" })
+                    </div>
                 </div>
-                <div class="mb-3">
-                    <label for="ModelNo" class="form-label">Model no:</label>
-                    @Html.TextBoxFor(m => m.ModelNo, new { @class = "form-control", id = "ModelNo" })
+                <div class="row fv-row">
+                    <div class="col-6">
+                        <label for="Processor" class="form-label">Processor:</label>
+                        @Html.TextBoxFor(m => m.Processor, new { @class = "form-control", id = "Processor" })
+                    </div>
+                    <div class="col-6">
+                        <label for="ArabicProcessor" class="form-label"><b>:المعالج</b></label>
+                        @Html.TextBoxFor(m => m.ArabicProcessor, new { @class = "form-control", id = "ArabicProcessor" })
+                    </div>
                 </div>
-                <div class="mb-3">
-                    <label for="Processor" class="form-label">Processor:</label>
-                    @Html.TextBoxFor(m => m.Processor, new { @class = "form-control", id = "Processor" })
+                <div class="row fv-row">
+                    <div class="col-6">
+                        <label for="OtherInfo" class="form-label">Other Information:</label>
+                        @Html.TextAreaFor(m => m.OtherInformation, new { @class = "form-control", id = "OtherInfo", maxlength = "50" })
+                    </div>
+                    <div class="col-6">
+                        <label for="ArabicOtherInformation" class="form-label">:معلومات أخرى</label>
+                        @Html.TextAreaFor(m => m.ArabicOtherInformation, new { @class = "form-control", id = "ArabicOtherInformation", maxlength = "50" })
+                    </div>
                 </div>
-                <div class="mb-3">
-                    <label for="OtherInfo" class="form-label">Other Information:</label>
-                    @Html.TextAreaFor(m => m.OtherInformation, new { @class = "form-control", id = "OtherInfo", maxlength = "50" })
+                <div class="text-center pt-15">
+                    <button type="submit" class="btn btn-primary">Submit/يُقدِّم</button>
                 </div>
-                <button type="submit" class="btn btn-primary">Submit</button>
             }
 
         </div>
