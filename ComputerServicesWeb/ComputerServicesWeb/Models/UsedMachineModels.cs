@@ -34,6 +34,7 @@ namespace ComputerServicesWeb.Models
         public string existingpicturepath { get; set; }
         [NotMapped]
         public SelectList Types { get; set; }
+        [NotMapped]
         public SelectList ArabicTypes { get; set; }
 
         [ForeignKey("TypeModel")]

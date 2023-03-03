@@ -15,6 +15,7 @@ namespace ComputerServicesWeb.Controllers
         public ActionResult Index()
         {
             HomeViewModel homeViewModel = new HomeViewModel();
+
             homeViewModel.usedMachines = _db.usedMachines.ToList();
             homeViewModel.services = _db.services.ToList();
             return View(homeViewModel);

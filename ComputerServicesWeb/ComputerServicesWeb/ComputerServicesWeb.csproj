@@ -227,6 +227,10 @@
     <Compile Include="DataBase\Migrations\202303021330020_arabicColumnAdd.designer.cs">
       <DependentUpon>202303021330020_arabicColumnAdd.cs</DependentUpon>
     </Compile>
+    <Compile Include="DataBase\Migrations\202303022211155_removeArabicTypeColumn.cs" />
+    <Compile Include="DataBase\Migrations\202303022211155_removeArabicTypeColumn.designer.cs">
+      <DependentUpon>202303022211155_removeArabicTypeColumn.cs</DependentUpon>
+    </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -2575,6 +2579,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="DataBase\Migrations\202303021330020_arabicColumnAdd.resx">
       <DependentUpon>202303021330020_arabicColumnAdd.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DataBase\Migrations\202303022211155_removeArabicTypeColumn.resx">
+      <DependentUpon>202303022211155_removeArabicTypeColumn.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
