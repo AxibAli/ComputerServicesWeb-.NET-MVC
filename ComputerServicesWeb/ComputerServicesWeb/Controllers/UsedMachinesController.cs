@@ -23,6 +23,7 @@ namespace ComputerServicesWeb.Controllers
             UsedMachineModels obj = new UsedMachineModels();
 
             obj.Types = new SelectList(_db.types.ToList(), "id", "TypeName");
+            obj.ArabicTypes=new SelectList(_db.types.ToList(), "id", "ArabicTypeName");
             return View(obj);
         }
         [HttpPost]
@@ -33,7 +34,7 @@ namespace ComputerServicesWeb.Controllers
             string FileName = "";
             string combinefilenames = "";
 
-            if(file.Length >0) 
+            if (file.Length > 0)
             {
                 foreach (var item in file)
                 {
@@ -45,31 +46,32 @@ namespace ComputerServicesWeb.Controllers
 
                     _path = Path.Combine(Server.MapPath("~/Uploads"), FileName);
                     item.SaveAs(_path);
-                    if (combinefilenames == "") 
-                    { 
-                        combinefilenames += "/Uploads/" + FileName; 
+                    if (combinefilenames == "")
+                    {
+                        combinefilenames += "/Uploads/" + FileName;
                     }
-                    else { 
-                        combinefilenames += "," + "/Uploads/" + FileName; 
+                    else
+                    {
+                        combinefilenames += "," + "/Uploads/" + FileName;
                     }
-                    
+
                 }
             }
 
-            //if (file.ContentLength > 0)
-            //{
-            //    FileName = Path.GetFileNameWithoutExtension(file.FileName);
-            //    string Extension = Path.GetExtension(file.FileName);
+            var type=0;
 
-            //    FileName = FileName + DateTime.Now.ToString("yymmssfff") + Extension;
+            if (form["ListofType"]!=null)
+            {
+                 type = Convert.ToInt32(form["ListofType"]);
 
-
-            //    _path = Path.Combine(Server.MapPath("~/Uploads"), FileName);
-            //    file.SaveAs(_path);
-            //}
-
+            }
+            else if (form["ArabicListofType"] != null)
+            {
+                type = Convert.ToInt32(form["ArabicListofType"]);
+            }
             var obj = new UsedMachineModels
             {
+                usedmachineId = Convert.ToInt32(form["usedmachineId"]),
                 Brand = form["Brand"].ToString(),
                 Harddisk = form["Harddisk"].ToString(),
                 PicturePath = combinefilenames,
@@ -78,7 +80,14 @@ namespace ComputerServicesWeb.Controllers
                 Processor = form["Processor"].ToString(),
                 Ram = form["Ram"].ToString(),
                 ScreenSize = form["ScreenSize"].ToString(),
-                Type = Convert.ToInt32(form["ListofType"])
+                Type = type,
+                ArabicBrand = form["ArabicBrand"].ToString(),
+                ArabicHarddisk = form["ArabicHarddisk"].ToString(),
+                ArabicModelNo = form["ArabicModelNo"].ToString(),
+                ArabicOtherInformation = form["ArabicOtherInformation"].ToString(),
+                ArabicProcessor = form["ArabicProcessor"].ToString(),
+                ArabicRam = form["ArabicRam"].ToString(),
+                ArabicScreenSize = form["ArabicScreenSize"].ToString()
 
             };
 
@@ -88,7 +97,7 @@ namespace ComputerServicesWeb.Controllers
             TempData["Message"] = "Post Posted Successfully ";
 
             return RedirectToAction("GetAllUsedMachines");
-          
+
         }
         public ActionResult GetAllUsedMachines()
         {

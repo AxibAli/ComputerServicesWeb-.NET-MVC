@@ -97,6 +97,7 @@ namespace ComputerServicesWeb.Controllers
             var obj = new TypeModel
             {
                 TypeName = form["typename"].ToString(),
+                ArabicTypeName = form["arabictypename"].ToString()
 
             };
 

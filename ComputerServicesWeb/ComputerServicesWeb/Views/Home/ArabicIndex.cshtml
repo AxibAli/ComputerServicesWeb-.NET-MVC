@@ -1,7 +1,7 @@
 ﻿@model ComputerServicesWeb.Models.HomeViewModel
 
 @{
-    ViewBag.Title = "Home";
+    ViewBag.Title = "ArabicIndex";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
@@ -13,7 +13,7 @@
     <section class="container">
         <div class="title"><span>OUR</span> Services</div>
         <div class="row">
-            @if (Model.services.Count() > 0)
+            @if (Model.services.Count() > 0  )
             {
                 foreach (var item in Model.services)
                 {
@@ -23,6 +23,7 @@
                         </div>
                         <div class="product-title">
                             <div class="title">
+                               
                                 <h3>@item.Name</h3>
                             </div>
                             <div class="title-description">
@@ -59,20 +60,20 @@
                         </div>
                         <div class="product-title">
                             <div class="title-description">
-                                <h5>@item.Brand</h5>
-                                <p>@item.OtherInformation</p>
+                                <h5>@item.ArabicBrand</h5>
+                                <p>@item.ArabicOtherInformation</p>
                                 <ul id="" class="highlights text-left hidden-xs">
-                                    <li>@item.Ram</li>
-                                    <li>@item.ScreenSize</li>
+                                    <li>@item.ArabicRam</li>
+                                    <li>@item.ArabicScreenSize</li>
                                     <li>@item.Type</li>
-                                    <li>@item.Processor</li>
-                                    <li>@item.ModelNo</li>
+                                    <li>@item.ArabicProcessor</li>
+                                    <li>@item.ArabicModelNo</li>
                                     <li></li>
                                 </ul>
                             </div>
-                            
+
                         </div>
-                   </div>
+                    </div>
                 }
             }
         </div>

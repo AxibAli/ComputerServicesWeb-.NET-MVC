@@ -48,7 +48,7 @@
             {
                 <div class="mb-3">
                     <label for="usedMachineId" class="form-label">Post ID:/:بعد معرف</label>
-                    @Html.TextBoxFor(m => m.usedmachineId, new { @class = "form-control", id = "usedMachineId" })
+                    @Html.TextBoxFor(m => m.usedmachineId,"", new { @class = "form-control", id = "usedMachineId",type="number" })
                 </div>
                 <div class="row fv-row">
                     <div class="col-6">
@@ -73,7 +73,7 @@
                     </div>
                     <div class="col-6">
                         <label  class="form-label"><b>:يكتب</b></label>
-                        @Html.DropDownList("ListofType", Model.Types, "الرجاء تحديد أي نوع", new { @class = "form-control", dir = "rtl" })
+                        @Html.DropDownList("ArabicListofType", Model.ArabicTypes, "الرجاء تحديد أي نوع", new { @class = "form-control", dir = "rtl" })
                     </div>
                 </div>
                 <div class="row fv-row">

@@ -2535,6 +2535,7 @@
     <Content Include="Views\UsedMachines\Services.cshtml" />
     <Content Include="Views\UsedMachines\GetAllServices.cshtml" />
     <Content Include="Views\Admin\AddTypes.cshtml" />
+    <Content Include="Views\Home\ArabicIndex.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -3,6 +3,7 @@ using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text.RegularExpressions;
 using System.Web;
 using System.Web.Mvc;
 
@@ -18,6 +19,15 @@ namespace ComputerServicesWeb.Controllers
 
             homeViewModel.usedMachines = _db.usedMachines.ToList();
             homeViewModel.services = _db.services.ToList();
+            return View(homeViewModel);
+        }
+        public ActionResult ArabicIndex()
+        {
+            HomeViewModel homeViewModel = new HomeViewModel();
+
+            homeViewModel.usedMachines = _db.usedMachines.Where(x => x.ArabicBrand != null).ToList();
+            homeViewModel.services = _db.services.Where(x => x.Name != null).ToList();
+          
             return View(homeViewModel);
         }
 

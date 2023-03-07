@@ -46,11 +46,15 @@
             @using (Html.BeginForm("AddTypes", "Admin", FormMethod.Post))
             {
                 <div class="form-group">
-                    <label for="typename" class="form-label">Write Type Name Below:</label>
-                    @Html.TextBoxFor(m => m.TypeName, new { type = "text",name="typename", @class = "form-control form-control-lg form-control-solid mb-3 mb-lg-0", placeholder = "Write Type Name Here" })
+                    <label for="typename" class="form-label">Write the Type Name Below:</label>
+                    @Html.TextBoxFor(m => m.TypeName, new { type = "text", name = "typename", @class = "form-control form-control-lg form-control-solid mb-3 mb-lg-0", placeholder = "Write the Type Name Here" })
+                </div>
+                <div class="form-group">
+                    <label for="typename" class="form-label">:اكتب اسم النوع أدناه</label>
+                    @Html.TextBoxFor(m => m.ArabicTypeName, new { type = "text", name = "arabictypename", @class = "form-control form-control-lg form-control-solid mb-3 mb-lg-0", placeholder = "اكتب اسم النوع أدناه", dir = "rtl" })
                 </div>
                 <br />
-                <button type="submit" class="btn btn-primary">ADD Type</button>
+                <button type="submit" class="btn btn-primary">ADD Type/نوع الإضافة</button>
 
             }
         </div>
