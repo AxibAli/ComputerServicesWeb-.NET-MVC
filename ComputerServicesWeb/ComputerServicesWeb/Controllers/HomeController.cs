@@ -27,7 +27,8 @@ namespace ComputerServicesWeb.Controllers
 
             homeViewModel.usedMachines = _db.usedMachines.Where(x => x.ArabicBrand != null).ToList();
             homeViewModel.services = _db.services.Where(x => x.Name != null).ToList();
-          
+     
+
             return View(homeViewModel);
         }
 
