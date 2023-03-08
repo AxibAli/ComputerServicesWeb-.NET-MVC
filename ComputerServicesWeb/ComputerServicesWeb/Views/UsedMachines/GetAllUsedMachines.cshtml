@@ -72,10 +72,10 @@
                                             <div id="carouselExampleFade" class="carousel slide carousel-fade" data-ride="carousel">
                                                 <div class="carousel-inner">
                                                     <div class="img-wrapper carousel-item active">
-                                                        <img src="@allpic[0]"  alt="...">
+                                                        <img src="@allpic[0]" alt="...">
                                                     </div>
                                                     <div class="img-wrapper carousel-item">
-                                                        <img src="@allpic[1]"  alt="...">
+                                                        <img src="@allpic[1]" alt="...">
                                                     </div>
                                                     <div class="img-wrapper carousel-item">
                                                         <img src="@allpic[2]" class="img-wrapper" alt="...">
@@ -104,6 +104,7 @@
                                                 <li><b>Type </b>@item.Type</li>
                                                 <li><b>Processor </b>@item.Processor</li>
                                                 <li><b>Model No </b>@item.ModelNo</li>
+                                                <li><b>Status </b>@item.Status</li>
                                             </ul>
                                         </div>
                                         <div class="btn-wrapper">
@@ -133,6 +134,7 @@
                                                 <li><b>Type </b>@item.Type</li>
                                                 <li><b>Processor </b>@item.Processor</li>
                                                 <li><b>Model No </b>@item.ModelNo</li>
+                                                <li><b>Status </b>@item.Status</li>
                                             </ul>
                                         </div>
 
@@ -233,38 +235,65 @@
             <div class="modal-body scroll-y mx-5 mx-xl-15 my-7">
                 <!--begin::Form-->
                 <form id="kt_modal_new_card_form" class="form" action="#">
-                    <div class="mb-3">
-                        <label for="BrandName" class="form-label">Brand name:</label>
-                        <input type="text" class="form-control form-control-solid" placeholder="" id="BrandName" />
+
+                    <div class="row fv-row">
+                        <div class="col-6">
+                            <label for="BrandName" class="form-label">Brand name:</label>
+                            <input type="text" class="form-control form-control-solid" placeholder="" id="BrandName" />
+                        </div>
+                        <div class="col-6">
+                            <label for="ArabicBrandName" class="form-label"><b>:اسم العلامة التجارية</b></label>
+                            <input type="text" class="form-control form-control-solid" id="ArabicBrandName" dir="rtl" />
+                        </div>
                     </div>
                     <div class="mb-3">
                         <label for="SelectPicture" class="form-label">Upload Picture:</label>
-
-                        @Html.TextBox("file", "", new { type = "file", @class = "form-control", id = "SelectPicture" })
+                        @Html.TextBox("file", "", new { type = "file", @class = "form-control", id = "SelectPicture", multiple = "multiple" })
                     </div>
+
+
                     <div class="row fv-row">
                         <div class="col-6">
-                            <label for="Type" class="form-label">Type:</label>
-                            <select class="form-select form-select-solid" id="Type">
-                                <option value="Desktop All in One">Desktop All in One</option>
-                                <option value="Desktop Case">Desktop Case</option>
-                                <option value="Monitor">Monitor</option>
-                                <option value="Laptop">Laptop</option>
+                            <label for="MachineType" class="form-label">Type:</label>
+                            <select class="form-select form-select-solid" id="MachineType">
                             </select>
                         </div>
+                        <div class="col-6">
+                            <label for="ArabicMachineType" class="form-label">:يكتب</label>
+                            <select class="form-select form-select-solid" id="ArabicMachineType">
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="row fv-row">
                         <div class="col-6">
                             <label for="Ram" class="form-label">Ram:</label>
                             <input type="text" class="form-control form-control-solid" placeholder="" id="Ram" />
                         </div>
+                        <div class="col-6">
+                            <label for="Ram" class="form-label">:كبش</label>
+                            <input type="text" class="form-control form-control-solid" placeholder="" id="ArabicRam" dir="rtl" />
+                        </div>
                     </div>
+
                     <div class="row fv-row">
                         <div class="col-6">
                             <label for="Harddisk" class="form-label">Hard disk:</label>
                             <input type="text" class="form-control form-control-solid" placeholder="" id="HardDisk" />
                         </div>
                         <div class="col-6">
+                            <label for="Harddisk" class="form-label">:القرص الصلب</label>
+                            <input type="text" class="form-control form-control-solid" placeholder="" id="ArabicHardDisk" dir="rtl" />
+                        </div>
+                    </div>
+                    <div class="row fv-row">
+                        <div class="col-6">
                             <label for="ScreenSize" class="form-label">Screen size:</label>
                             <input type="text" class="form-control form-control-solid" placeholder="" id="ScreenSize" />
+                        </div>
+                        <div class="col-6">
+                            <label for="ScreenSize" class="form-label">:حجم الشاشة</label>
+                            <input type="text" class="form-control form-control-solid" placeholder="" id="ArabicScreenSize" dir="rtl" />
                         </div>
                     </div>
                     <div class="row fv-row">
@@ -273,19 +302,40 @@
                             <input type="text" class="form-control form-control-solid" placeholder="" id="ModelNo" />
                         </div>
                         <div class="col-6">
+                            <label for="ModelNo" class="form-label">:نموذج رقم</label>
+                            <input type="text" class="form-control form-control-solid" placeholder="" id="ArabicModelNo" dir="rtl" />
+                        </div>
+                    </div>
+                    <div class="row fv-row">
+                        <div class="col-6">
                             <label for="Processor" class="form-label">Processor:</label>
                             <input type="text" class="form-control form-control-solid" placeholder="" id="Processor" />
                         </div>
+                        <div class="col-6">
+                            <label for="Processor" class="form-label">:المعالج</label>
+                            <input type="text" class="form-control form-control-solid" placeholder="" id="ArabicProcessor" dir="rtl" />
+                        </div>
+                    </div>
+                    <div class="row fv-row">
+                        <div class="col-6">
+                            <label for="OtherInfo" class="form-label">Other Information:</label>
+                            <input type="text" class="form-control form-control-solid" placeholder="" maxlength="50" id="OtherInformation" />
+                            <input type="hidden" id="postid">
+                            <input type="hidden" id="ExistingPicture">
+                        </div>
+                        <div class="col-6">
+                            <label for="ArabicOtherInfo" class="form-label">:معلومات أخرى</label>
+                            <input type="text" class="form-control form-control-solid" placeholder="" maxlength="50" id="ArabicOtherInformation" dir="rtl" />
+                        </div>
                     </div>
                     <div class="mb-3">
-                        <label for="OtherInfo" class="form-label">Other Information:</label>
-                        <input type="text" class="form-control form-control-solid" placeholder="" maxlength="50" id="OtherInformation" />
-                        <input type="hidden" id="postid">
-                        <input type="hidden" id="ExistingPicture">
-
-
+                        <label for="Status" class="form-label">Status:</label>
+                        <select class="form-select form-select-solid" id="Status">
+                            <option value="Active">Active</option>
+                            <option value="Sold">Sold</option>
+                            <option value="Deactivated">Deactivated</option>
+                        </select>
                     </div>
-
                     <div class="text-center pt-15">
                         <button type="reset" id="kt_modal_new_card_cancel" class="btn btn-light me-3">Discard</button>
                         <a class="btn btn-primary" href="#" id="UpdateRecord">Update Details</a>
@@ -312,6 +362,40 @@
 @Scripts.Render("~/Scripts/jquery-3.4.1.min.js")
 
 <script>
+    //For Dropdown
+
+    $(function () {
+        var ddlCustomers = $("#MachineType");
+        ddlCustomers.empty().append('<option selected="selected" value="0" disabled = "disabled">Loading.....</option>');
+        $.ajax({
+            type: "POST",
+            url: "/UsedMachines/AjaxMethodForDropDown",
+            data: '{}',
+            success: function (response) {
+                ddlCustomers.empty().append('<option selected="selected" value="0">Please select</option>');
+                $.each(response, function () {
+                    ddlCustomers.append($("<option></option>").val(this['Value']).html(this['Text']));
+                });
+            }
+        });
+    });
+
+    $(function () {
+        var ddlCustomers = $("#ArabicMachineType");
+        ddlCustomers.empty().append('<option selected="selected" value="0" disabled = "disabled">Loading.....</option>');
+        $.ajax({
+            type: "POST",
+            url: "/UsedMachines/AjaxMethodForArabicDropDown",
+            data: '{}',
+            success: function (response) {
+                ddlCustomers.empty().append('<option selected="selected" value="0">الرجاء التحديد</option>');
+                $.each(response, function () {
+                    ddlCustomers.append($("<option></option>").val(this['Value']).html(this['Text']));
+                });
+            }
+        });
+    });
+
     function loadDescription(description) {
         $("#desc").html(description);
     }
@@ -329,18 +413,30 @@
                 var obj = JSON.parse(data);
                 $("#postid").val(obj.id);
                 $("#BrandName").val(obj.Brand);
-                $("#Type").val(obj.Type);
+                $("#MachineType").val(obj.Type);
+                $("#ArabicMachineType").val(obj.Type);
                 $("#Ram").val(obj.Ram);
                 $("#HardDisk").val(obj.Harddisk);
                 $("#ScreenSize").val(obj.ScreenSize);
                 $("#ModelNo").val(obj.ModelNo);
                 $("#Processor").val(obj.Processor);
                 $("#OtherInformation").val(obj.OtherInformation);
+                $("#ArabicBrandName").val(obj.ArabicBrand);
+                $("#ArabicType").val(obj.ArabicType);
+                $("#ArabicRam").val(obj.ArabicRam);
+                $("#ArabicHardDisk").val(obj.ArabicHarddisk);
+                $("#ArabicScreenSize").val(obj.ArabicScreenSize);
+                $("#ArabicModelNo").val(obj.ArabicModelNo);
+                $("#ArabicProcessor").val(obj.ArabicProcessor);
+                $("#ArabicOtherInformation").val(obj.ArabicOtherInformation);
+                $('#Status').val(obj.Status);
                 $("#ExistingPicture").val(obj.PicturePath);
 
             }
         })
     }
+
+
 
     //For Update  Record
     $("#UpdateRecord").click(function () {
@@ -349,13 +445,22 @@
         var data = {
             id: $('#postid').val(),
             brand: $('#BrandName').val(),
-            type: $('#Type').val(),
+            type: $('#MachineType').val(),
+            arabictype: $('#ArabicMachineType').val(),
             ram: $('#Ram').val(),
             harddisk: $('#HardDisk').val(),
             screensize: $('#ScreenSize').val(),
             modelno: $('#ModelNo').val(),
             processor: $('#Processor').val(),
             otherinformation: $('#OtherInformation').val(),
+            arabicbrand: $('#ArabicBrandName').val(),
+            arabicram: $('#ArabicRam').val(),
+            arabicharddisk: $('#ArabicHardDisk').val(),
+            arabicscreensize: $('#ArabicScreenSize').val(),
+            arabicmodelno: $('#ArabicModelNo').val(),
+            arabicprocessor: $('#ArabicProcessor').val(),
+            arabicotherinformation: $('#ArabicOtherInformation').val(),
+            status: $('#Status').val(),
             existingpicturepath: $('#ExistingPicture').val(),
         }
 

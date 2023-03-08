@@ -47,21 +47,33 @@
 
             @using (Html.BeginForm("Services", "UsedMachines", FormMethod.Post, new { enctype = "multipart/form-data" }))
             {
-
-                <div class="mb-3">
-                    <label for="ServiceName" class="form-label">Service Name:</label>
-                    @Html.TextBoxFor(m => m.Name, new { @class = "form-control", id = "ServiceName" })
+                <div class="row fv-row">
+                    <div class="col-6">
+                        <label for="ServiceName" class="form-label">Service Name:</label>
+                        @Html.TextBoxFor(m => m.Name, new { @class = "form-control", id = "ServiceName" })
+                    </div>
+                    <div class="col-6">
+                        <label for="ServiceName" class="form-label">:اسم الخدمة</label>
+                        @Html.TextBoxFor(m => m.ArabicName, new { @class = "form-control", id = "ArabicServiceName", dir = "rtl" })
+                    </div>
                 </div>
                 <div class="mb-3">
                     <label for="SelectPicture" class="form-label">Upload Picture:</label>
                     @Html.TextBox("file", "", new { type = "file", @class = "form-control", id = "SelectPicture" })
                 </div>
-                <div class="mb-3">
-                    <label for="Description" class="form-label">Services Description:</label>
-                    @Html.TextBoxFor(m => m.Description, new { @class = "form-control", id = "Description" })
+                <div class="row fv-row">
+                    <div class="col-6">
+                        <label for="Description" class="form-label">Services Description:</label>
+                        @Html.TextBoxFor(m => m.Description, new { @class = "form-control", id = "Description" })
+                    </div>
+                    <div class="col-6">
+                        <label for="Description" class="form-label">:وصف الخدمات</label>
+                        @Html.TextBoxFor(m => m.ArabicDescription, new { @class = "form-control", id = "ArabicDescription", dir = "rtl" })
+                    </div>
                 </div>
-                
-                <button type="submit" class="btn btn-primary">Submit</button>
+                <div class="text-center pt-15">
+                    <button type="submit" class="btn btn-primary">Submit/يُقدِّم</button>
+                </div>
             }
 
         </div>

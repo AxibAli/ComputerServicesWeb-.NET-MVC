@@ -19,7 +19,6 @@ namespace ComputerServicesWeb.Models
         public string  ModelNo { get; set; }
         public string  Processor { get; set; }
         public string  OtherInformation { get; set; }
-
         public string ArabicBrand { get; set; }
         public string ArabicRam { get; set; }
         public string ArabicHarddisk { get; set; }
@@ -27,8 +26,7 @@ namespace ComputerServicesWeb.Models
         public string ArabicModelNo { get; set; }
         public string ArabicProcessor { get; set; }
         public string ArabicOtherInformation { get; set; }
-
-
+        public string Status { get; set; } 
 
         [NotMapped]
         public string existingpicturepath { get; set; }
@@ -40,7 +38,6 @@ namespace ComputerServicesWeb.Models
         [ForeignKey("TypeModel")]
         public int Type { get; set; }
         public virtual TypeModel TypeModel { get; set; }
-
 
     }
 }

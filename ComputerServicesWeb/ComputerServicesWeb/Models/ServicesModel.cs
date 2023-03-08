@@ -11,7 +11,10 @@ namespace ComputerServicesWeb.Models
         public int id { get; set; }
         public string PicturePath { get; set; }
         public string Name { get; set; }
+        public string ArabicName { get; set; }
         public string Description { get; set; }
+        public string ArabicDescription { get; set; }
+        public string Status { get; set; }
 
         [NotMapped]
         public string existingpicturepath { get; set; }

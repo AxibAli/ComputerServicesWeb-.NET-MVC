@@ -17,18 +17,16 @@ namespace ComputerServicesWeb.Controllers
         {
             HomeViewModel homeViewModel = new HomeViewModel();
 
-            homeViewModel.usedMachines = _db.usedMachines.ToList();
-            homeViewModel.services = _db.services.ToList();
+            homeViewModel.usedMachines = _db.usedMachines.Where(x => x.Status == "Active").OrderByDescending(x => x.id).ToList();
+            homeViewModel.services = _db.services.Where(x => x.Status == "Active").OrderByDescending(x => x.id).ToList();
             return View(homeViewModel);
         }
         public ActionResult ArabicIndex()
         {
             HomeViewModel homeViewModel = new HomeViewModel();
 
-            homeViewModel.usedMachines = _db.usedMachines.Where(x => x.ArabicBrand != null).ToList();
-            homeViewModel.services = _db.services.Where(x => x.Name != null).ToList();
-     
-
+            homeViewModel.usedMachines = _db.usedMachines.Where(x => x.ArabicBrand != null && x.Status=="Active").OrderByDescending(x => x.id).ToList();
+            homeViewModel.services = _db.services.Where(x => x.ArabicName != null && x.Status=="Active" ).OrderByDescending(x => x.id).ToList();
             return View(homeViewModel);
         }
 
@@ -38,16 +36,6 @@ namespace ComputerServicesWeb.Controllers
             return View(model);
         }
 
-        public ActionResult ServiceForhome()
-        {
-            var model = _db.services.OrderByDescending(x=>x.id).ToList();
-            string value = string.Empty;
-            value = JsonConvert.SerializeObject(model, Formatting.Indented, new JsonSerializerSettings
-            {
-                ReferenceLoopHandling = ReferenceLoopHandling.Ignore
-            });
-            return Json(value, JsonRequestBehavior.AllowGet);
-        }
 
     }
 }

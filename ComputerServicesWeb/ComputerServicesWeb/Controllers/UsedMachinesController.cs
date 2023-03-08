@@ -23,7 +23,7 @@ namespace ComputerServicesWeb.Controllers
             UsedMachineModels obj = new UsedMachineModels();
 
             obj.Types = new SelectList(_db.types.ToList(), "id", "TypeName");
-            obj.ArabicTypes=new SelectList(_db.types.ToList(), "id", "ArabicTypeName");
+            obj.ArabicTypes = new SelectList(_db.types.ToList(), "id", "ArabicTypeName");
             return View(obj);
         }
         [HttpPost]
@@ -58,11 +58,11 @@ namespace ComputerServicesWeb.Controllers
                 }
             }
 
-            var type=0;
+            var type = 0;
 
-            if (form["ListofType"]!=null)
+            if (form["ListofType"] != null)
             {
-                 type = Convert.ToInt32(form["ListofType"]);
+                type = Convert.ToInt32(form["ListofType"]);
 
             }
             else if (form["ArabicListofType"] != null)
@@ -87,7 +87,8 @@ namespace ComputerServicesWeb.Controllers
                 ArabicOtherInformation = form["ArabicOtherInformation"].ToString(),
                 ArabicProcessor = form["ArabicProcessor"].ToString(),
                 ArabicRam = form["ArabicRam"].ToString(),
-                ArabicScreenSize = form["ArabicScreenSize"].ToString()
+                ArabicScreenSize = form["ArabicScreenSize"].ToString(),
+                Status = "Active"
 
             };
 
@@ -146,6 +147,15 @@ namespace ComputerServicesWeb.Controllers
                     usedmachine.Processor = model.Processor;
                     usedmachine.OtherInformation = model.OtherInformation;
                     usedmachine.ModelNo = model.ModelNo;
+                    usedmachine.ArabicBrand = model.ArabicBrand;
+                    usedmachine.ArabicHarddisk = model.ArabicHarddisk;
+                    usedmachine.ArabicScreenSize = model.ArabicScreenSize;
+                    usedmachine.ArabicRam = model.ArabicRam;
+                    usedmachine.ArabicProcessor = model.ArabicProcessor;
+                    usedmachine.ArabicOtherInformation = model.ArabicOtherInformation;
+                    usedmachine.ArabicModelNo = model.ArabicModelNo;
+                    usedmachine.Status = model.Status;
+
                     _db.Entry(usedmachine).State = System.Data.Entity.EntityState.Modified;
                     _db.SaveChanges();
                 }
@@ -162,6 +172,14 @@ namespace ComputerServicesWeb.Controllers
                 usedmachine.Processor = model.Processor;
                 usedmachine.OtherInformation = model.OtherInformation;
                 usedmachine.ModelNo = model.ModelNo;
+                usedmachine.ArabicBrand = model.ArabicBrand;
+                usedmachine.ArabicHarddisk = model.ArabicHarddisk;
+                usedmachine.ArabicScreenSize = model.ArabicScreenSize;
+                usedmachine.ArabicRam = model.ArabicRam;
+                usedmachine.ArabicProcessor = model.ArabicProcessor;
+                usedmachine.ArabicOtherInformation = model.ArabicOtherInformation;
+                usedmachine.Status = model.Status;
+                usedmachine.ArabicModelNo = model.ArabicModelNo;
                 _db.Entry(usedmachine).State = System.Data.Entity.EntityState.Modified;
                 _db.SaveChanges();
             }
@@ -176,6 +194,33 @@ namespace ComputerServicesWeb.Controllers
 
             return Json(true, JsonRequestBehavior.AllowGet);
         }
+
+        [HttpPost]
+        public JsonResult AjaxMethodForDropDown(string name)
+        {
+            List<SelectListItem> dropdown = (from dropdowns in this._db.types.Take(20)
+                                             select new SelectListItem
+                                             {
+                                                 Value = dropdowns.id.ToString(),
+                                                 Text = dropdowns.TypeName,
+
+                                             }).ToList();
+            return Json(dropdown);
+        }
+
+        [HttpPost]
+        public JsonResult AjaxMethodForArabicDropDown(string name)
+        {
+            List<SelectListItem> dropdown = (from dropdowns in this._db.types.Take(20)
+                                             select new SelectListItem
+                                             {
+                                                 Value = dropdowns.id.ToString(),
+                                                 Text = dropdowns.ArabicTypeName,
+
+                                             }).ToList();
+            return Json(dropdown);
+        }
+
         #endregion
 
         #region Services Actions
@@ -204,7 +249,10 @@ namespace ComputerServicesWeb.Controllers
             var obj = new ServicesModel
             {
                 Name = form["Name"].ToString(),
+                ArabicName = form["ArabicName"].ToString(),
                 Description = form["Description"].ToString(),
+                ArabicDescription = form["ArabicDescription"].ToString(),
+                Status = "Active",
                 PicturePath = $"/Uploads/{FileName}",
             };
 

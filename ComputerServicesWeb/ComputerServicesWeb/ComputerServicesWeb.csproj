@@ -231,6 +231,14 @@
     <Compile Include="DataBase\Migrations\202303022211155_removeArabicTypeColumn.designer.cs">
       <DependentUpon>202303022211155_removeArabicTypeColumn.cs</DependentUpon>
     </Compile>
+    <Compile Include="DataBase\Migrations\202303080704406_addColumnArabicinService.cs" />
+    <Compile Include="DataBase\Migrations\202303080704406_addColumnArabicinService.designer.cs">
+      <DependentUpon>202303080704406_addColumnArabicinService.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DataBase\Migrations\202303080809434_addColumnStatusinBothTables.cs" />
+    <Compile Include="DataBase\Migrations\202303080809434_addColumnStatusinBothTables.designer.cs">
+      <DependentUpon>202303080809434_addColumnStatusinBothTables.cs</DependentUpon>
+    </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -2583,6 +2591,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="DataBase\Migrations\202303022211155_removeArabicTypeColumn.resx">
       <DependentUpon>202303022211155_removeArabicTypeColumn.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DataBase\Migrations\202303080704406_addColumnArabicinService.resx">
+      <DependentUpon>202303080704406_addColumnArabicinService.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DataBase\Migrations\202303080809434_addColumnStatusinBothTables.resx">
+      <DependentUpon>202303080809434_addColumnStatusinBothTables.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
