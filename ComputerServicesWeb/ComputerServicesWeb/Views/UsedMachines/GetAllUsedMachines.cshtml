@@ -105,6 +105,7 @@
                                                 <li><b>Processor </b>@item.Processor</li>
                                                 <li><b>Model No </b>@item.ModelNo</li>
                                                 <li><b>Status </b>@item.Status</li>
+                                                @if (item.Price != null) {<li><b>Sold Price </b>@item.Price</li> }
                                             </ul>
                                         </div>
                                         <div class="btn-wrapper">
@@ -135,6 +136,7 @@
                                                 <li><b>Processor </b>@item.Processor</li>
                                                 <li><b>Model No </b>@item.ModelNo</li>
                                                 <li><b>Status </b>@item.Status</li>
+                                                @if (item.Price != null){<li><b>Sold Price </b>@item.Price</li>}
                                             </ul>
                                         </div>
 
@@ -328,13 +330,19 @@
                             <input type="text" class="form-control form-control-solid" placeholder="" maxlength="50" id="ArabicOtherInformation" dir="rtl" />
                         </div>
                     </div>
-                    <div class="mb-3">
-                        <label for="Status" class="form-label">Status:</label>
-                        <select class="form-select form-select-solid" id="Status">
-                            <option value="Active">Active</option>
-                            <option value="Sold">Sold</option>
-                            <option value="Deactivated">Deactivated</option>
-                        </select>
+                    <div class="row fv-row">
+                        <div class="col-6">
+                            <label for="Status" class="form-label">Status:</label>
+                            <select class="form-select form-select-solid" id="Status">
+                                <option value="Active">Active</option>
+                                <option value="Sold">Sold</option>
+                                <option value="Deactivated">Deactivated</option>
+                            </select>
+                        </div>
+                        <div class="col-6">
+                            <label for="Price" class="form-label">Sold Price:</label>
+                            <input type="number" class="form-control form-control-solid" placeholder="" maxlength="10" id="Price" />
+                        </div>
                     </div>
                     <div class="text-center pt-15">
                         <button type="reset" id="kt_modal_new_card_cancel" class="btn btn-light me-3">Discard</button>
@@ -430,6 +438,7 @@
                 $("#ArabicProcessor").val(obj.ArabicProcessor);
                 $("#ArabicOtherInformation").val(obj.ArabicOtherInformation);
                 $('#Status').val(obj.Status);
+                $('#Price').val(obj.Price);
                 $("#ExistingPicture").val(obj.PicturePath);
 
             }
@@ -461,6 +470,7 @@
             arabicprocessor: $('#ArabicProcessor').val(),
             arabicotherinformation: $('#ArabicOtherInformation').val(),
             status: $('#Status').val(),
+            Price: $('#Price').val(),
             existingpicturepath: $('#ExistingPicture').val(),
         }
 

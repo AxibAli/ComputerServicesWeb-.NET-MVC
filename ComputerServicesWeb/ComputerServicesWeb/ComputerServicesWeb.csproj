@@ -239,6 +239,10 @@
     <Compile Include="DataBase\Migrations\202303080809434_addColumnStatusinBothTables.designer.cs">
       <DependentUpon>202303080809434_addColumnStatusinBothTables.cs</DependentUpon>
     </Compile>
+    <Compile Include="DataBase\Migrations\202303081413374_AddColumnSoldPrice.cs" />
+    <Compile Include="DataBase\Migrations\202303081413374_AddColumnSoldPrice.designer.cs">
+      <DependentUpon>202303081413374_AddColumnSoldPrice.cs</DependentUpon>
+    </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -2597,6 +2601,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="DataBase\Migrations\202303080809434_addColumnStatusinBothTables.resx">
       <DependentUpon>202303080809434_addColumnStatusinBothTables.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DataBase\Migrations\202303081413374_AddColumnSoldPrice.resx">
+      <DependentUpon>202303081413374_AddColumnSoldPrice.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

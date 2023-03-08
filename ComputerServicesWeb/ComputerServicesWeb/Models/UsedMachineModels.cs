@@ -27,6 +27,7 @@ namespace ComputerServicesWeb.Models
         public string ArabicProcessor { get; set; }
         public string ArabicOtherInformation { get; set; }
         public string Status { get; set; } 
+        public string Price { get; set; } 
 
         [NotMapped]
         public string existingpicturepath { get; set; }

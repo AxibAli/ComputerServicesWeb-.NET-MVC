@@ -155,6 +155,7 @@ namespace ComputerServicesWeb.Controllers
                     usedmachine.ArabicOtherInformation = model.ArabicOtherInformation;
                     usedmachine.ArabicModelNo = model.ArabicModelNo;
                     usedmachine.Status = model.Status;
+                    usedmachine.Price = model.Price;
 
                     _db.Entry(usedmachine).State = System.Data.Entity.EntityState.Modified;
                     _db.SaveChanges();
@@ -180,6 +181,8 @@ namespace ComputerServicesWeb.Controllers
                 usedmachine.ArabicOtherInformation = model.ArabicOtherInformation;
                 usedmachine.Status = model.Status;
                 usedmachine.ArabicModelNo = model.ArabicModelNo;
+                usedmachine.Price = model.Price;
+
                 _db.Entry(usedmachine).State = System.Data.Entity.EntityState.Modified;
                 _db.SaveChanges();
             }
