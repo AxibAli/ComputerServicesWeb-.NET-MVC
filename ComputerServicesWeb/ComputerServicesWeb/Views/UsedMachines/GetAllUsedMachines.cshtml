@@ -80,18 +80,6 @@
                                                             <img src="@allpic[j]" alt="">
                                                         </div>
                                                     }
-                                                    @*<div class="img-wrapper carousel-item active">
-                                                        <img src="@allpic[0]" alt="...">
-                                                    </div>
-                                                    <div class="img-wrapper carousel-item">
-                                                    <img src="@allpic[1]" alt="...">
-                                                    </div>
-                                                    <div class="img-wrapper carousel-item">
-                                                        <img src="@allpic[2]" class="img-wrapper" alt="...">
-                                                    </div>
-                                                    <div class="img-wrapper carousel-item">
-                                                        <img src="@allpic[3]" class="img-wrapper" alt="...">
-                                                     </div>*@
                                                 </div>
                                                 <a class="carousel-control-prev" href="#carouselExampleFade" role="button" data-slide="prev">
                                                     <span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -114,7 +102,7 @@
                                                 <li><b>Processor </b>@item.Processor</li>
                                                 <li><b>Model No </b>@item.ModelNo</li>
                                                 <li><b>Status </b>@item.Status</li>
-                                                @if (item.Price != null) {<li><b>Sold Price </b>@item.Price</li> }
+                                                @if (item.Status == "Sold") {<li><b>Sold Price </b>@item.Price</li> }
                                             </ul>
                                         </div>
                                         <div class="btn-wrapper">
@@ -130,8 +118,6 @@
                                 <div class="card">
                                     <div class="inner-card">
                                         <div class="img-wrapper">
-                                            @*for (int i = 0; i < allpic.Length; i++)*@
-                                            @*<img src="@allpic[0]" alt="">*@
                                             <img src="@item.PicturePath" alt="Post Picture" />
                                         </div>
                                         <div class="content">
@@ -145,7 +131,7 @@
                                                 <li><b>Processor </b>@item.Processor</li>
                                                 <li><b>Model No </b>@item.ModelNo</li>
                                                 <li><b>Status </b>@item.Status</li>
-                                                @if (item.Price != null){<li><b>Sold Price </b>@item.Price</li>}
+                                                @if (item.Status == "Sold"){<li><b>Sold Price </b>@item.Price</li>}
                                             </ul>
                                         </div>
 

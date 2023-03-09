@@ -54,9 +54,6 @@
     <section class="container">
         <div class="title">PRODUCTS</div>
         <div class="row">
-
-
-
             @if (Model.usedMachines.Count() > 0)
             {
                 foreach (var item in Model.usedMachines)
@@ -69,18 +66,15 @@
                             <div class="product-banner c-cap">
                                 <div id="carouselExampleFade" class="carousel slide carousel-fade" data-ride="carousel">
                                     <div class="carousel-inner">
-                                        <div class="product-banner c-cap carousel-item active">
-                                            <img src="@allpic[0]" alt="...">
-                                        </div>
-                                        <div class="product-banner c-cap carousel-item">
-                                            <img src="@allpic[1]" alt="...">
-                                        </div>
-                                        <div class="product-banner c-cap carousel-item">
-                                            <img src="@allpic[2]" class="img-wrapper" alt="...">
-                                        </div>
-                                        <div class="product-banner c-cap carousel-item">
-                                            <img src="@allpic[3]" class="img-wrapper" alt="...">
-                                        </div>
+                                        @{int i = 0;}
+                                        @for (int j = 0; j < allpic.Length; j++)
+                                        {
+                                            i++;
+                                            var active = i == 1 ? "active" : "";
+                                            <div class="product-banner c-cap carousel-item @active">
+                                                <img src="@allpic[j]" alt="">
+                                            </div>
+                                        }
                                     </div>
                                     <a class="carousel-control-prev" href="#carouselExampleFade" role="button" data-slide="prev">
                                         <span class="carousel-control-prev-icon" aria-hidden="true"></span>

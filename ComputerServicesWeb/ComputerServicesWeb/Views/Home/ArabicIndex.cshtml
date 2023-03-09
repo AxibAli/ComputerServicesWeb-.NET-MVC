@@ -13,7 +13,7 @@
     <section class="container">
         <div class="title"><span>OUR</span> Services</div>
         <div class="row">
-            @if (Model.services.Count() > 0  )
+            @if (Model.services.Count() > 0)
             {
                 foreach (var item in Model.services)
                 {
@@ -23,7 +23,7 @@
                         </div>
                         <div class="product-title">
                             <div class="title">
-                               
+
                                 <h3>@item.ArabicName</h3>
                             </div>
                             <div class="title-description">
@@ -47,37 +47,84 @@
     <section class="container">
         <div class="title">PRODUCTS</div>
         <div class="row">
-
-
-
             @if (Model.usedMachines.Count() > 0)
             {
                 foreach (var item in Model.usedMachines)
                 {
-                    <div class="col-lg-3 col-md-4 col-sm-6 col-6">
-                        <div class="product-banner c-cap">
-                            <img src="@item.PicturePath" alt="">
-                        </div>
-                        <div class="product-title">
-                            <div class="title-description">
-                                <h5>@item.ArabicBrand</h5>
-                                <p>@item.ArabicOtherInformation</p>
-                                <ul id="" class="highlights text-left hidden-xs">
-                                    <li>@item.ArabicRam</li>
-                                    <li>@item.ArabicScreenSize</li>
-                                    <li>@item.Type</li>
-                                    <li>@item.ArabicProcessor</li>
-                                    <li>@item.ArabicModelNo</li>
-                                </ul>
-                            </div>
+                    if (item.PicturePath.Contains(","))
+                    {
+                        var allpic = item.PicturePath.Split(new string[] { "," }, StringSplitOptions.RemoveEmptyEntries);
 
+                        <div class="col-lg-3 col-md-4 col-sm-6 col-6">
+                            <div class="product-banner c-cap">
+                                <div id="carouselExampleFade" class="carousel slide carousel-fade" data-ride="carousel">
+                                    <div class="carousel-inner">
+                                        @{int i = 0;}
+                                        @for (int j = 0; j < allpic.Length; j++)
+                                        {
+                                            i++;
+                                            var active = i == 1 ? "active" : "";
+                                            <div class="product-banner c-cap carousel-item @active">
+                                                <img src="@allpic[j]" alt="">
+                                            </div>
+                                        }
+                                    </div>
+                                    <a class="carousel-control-prev" href="#carouselExampleFade" role="button" data-slide="prev">
+                                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                        <span class="sr-only">Previous</span>
+                                    </a>
+                                    <a class="carousel-control-next" href="#carouselExampleFade" role="button" data-slide="next">
+                                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                        <span class="sr-only">Next</span>
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="product-title">
+                                <div class="title-description">
+                                    <h5>@item.ArabicBrand</h5>
+                                    <p>@item.ArabicOtherInformation</p>
+                                    <ul id="" class="highlights text-left hidden-xs">
+                                        <li><b>Ram </b>@item.ArabicRam</li>
+                                        <li><b>Hard Disk </b>@item.ArabicHarddisk</li>
+                                        <li><b>Screen Size </b>@item.ArabicScreenSize</li>
+                                        <li><b>Type </b>@item.Type</li>
+                                        <li><b>Processor </b>@item.ArabicProcessor</li>
+                                        <li><b>Model No </b>@item.ArabicModelNo</li>
+                                    </ul>
+                                </div>
+
+                            </div>
                         </div>
-                    </div>
+                    }
+                    else
+                    {
+                        <div class="col-lg-3 col-md-4 col-sm-6 col-6">
+                            <div class="product-banner c-cap">
+                                <img src="@item.PicturePath" alt="">
+                            </div>
+                            <div class="product-title">
+                                <div class="title-description">
+                                    <h5>@item.ArabicBrand</h5>
+                                    <p>@item.ArabicOtherInformation</p>
+                                    <ul id="" class="highlights text-left hidden-xs">
+                                        <li><b>Ram </b>@item.ArabicRam</li>
+                                        <li><b>Hard Disk </b>@item.ArabicHarddisk</li>
+                                        <li><b>Screen Size </b>@item.ArabicScreenSize</li>
+                                        <li><b>Type </b>@item.Type</li>
+                                        <li><b>Processor </b>@item.ArabicProcessor</li>
+                                        <li><b>Model No </b>@item.ArabicModelNo</li>
+                                    </ul>
+                                </div>
+
+                            </div>
+                        </div>
+                    }
                 }
             }
         </div>
     </section>
 </div>
+
 
 <section class="container faqs-section" id="faqs">
     <div class="title">Frequently asked <span>questions</span> </div>
