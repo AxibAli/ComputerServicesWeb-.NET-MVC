@@ -169,7 +169,7 @@ namespace ComputerServicesWeb.Controllers
         {
             if (ModelState.IsValid)
             {
-                var user = new ApplicationUser { UserName = model.Username, Email = model.Email, IsActive=true, CreatedOn=DateTime.Now };
+                var user = new ApplicationUser { UserName = model.Username, Email = model.Email, IsActive=true,UserPicturePath= "~/Uploads/UserPictures/blank.png", CreatedOn =DateTime.Now };
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
