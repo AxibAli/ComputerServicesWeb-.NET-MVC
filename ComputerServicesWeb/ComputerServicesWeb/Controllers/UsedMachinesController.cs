@@ -121,71 +121,71 @@ namespace ComputerServicesWeb.Controllers
             });
             return Json(value, JsonRequestBehavior.AllowGet);
         }
-        public ActionResult UpdateusedMachine(string data, HttpPostedFileBase file)
+        public ActionResult UpdateusedMachine(string data, HttpPostedFileBase[] file)
         {
-            UsedMachineModels model = JsonConvert.DeserializeObject<UsedMachineModels>(data);
-            string FileName = "";
-            string _path = "";
+            //UsedMachineModels model = JsonConvert.DeserializeObject<UsedMachineModels>(data);
+            //string FileName = "";
+            //string _path = "";
 
-            if (file != null)
-            {
-                if (file.ContentLength > 0)
-                {
-                    FileName = Path.GetFileNameWithoutExtension(file.FileName);
-                    string Extension = Path.GetExtension(file.FileName);
-                    FileName = FileName + DateTime.Now.ToString("yymmssfff") + Extension;
-                    _path = Path.Combine(Server.MapPath("~/Uploads"), FileName);
-                    file.SaveAs(_path);
+            //if (file != null)
+            //{
+            //    if (file.ContentLength > 0)
+            //    {
+            //        FileName = Path.GetFileNameWithoutExtension(file.FileName);
+            //        string Extension = Path.GetExtension(file.FileName);
+            //        FileName = FileName + DateTime.Now.ToString("yymmssfff") + Extension;
+            //        _path = Path.Combine(Server.MapPath("~/Uploads"), FileName);
+            //        file.SaveAs(_path);
 
-                    var usedmachine = _db.usedMachines.Where(x => x.id == model.id).FirstOrDefault();
-                    usedmachine.PicturePath = $"/Uploads/{FileName}";
-                    usedmachine.Brand = model.Brand;
-                    usedmachine.Harddisk = model.Harddisk;
-                    usedmachine.Type = model.Type;
-                    usedmachine.ScreenSize = model.ScreenSize;
-                    usedmachine.Ram = model.Ram;
-                    usedmachine.Processor = model.Processor;
-                    usedmachine.OtherInformation = model.OtherInformation;
-                    usedmachine.ModelNo = model.ModelNo;
-                    usedmachine.ArabicBrand = model.ArabicBrand;
-                    usedmachine.ArabicHarddisk = model.ArabicHarddisk;
-                    usedmachine.ArabicScreenSize = model.ArabicScreenSize;
-                    usedmachine.ArabicRam = model.ArabicRam;
-                    usedmachine.ArabicProcessor = model.ArabicProcessor;
-                    usedmachine.ArabicOtherInformation = model.ArabicOtherInformation;
-                    usedmachine.ArabicModelNo = model.ArabicModelNo;
-                    usedmachine.Status = model.Status;
-                    usedmachine.Price = model.Price;
+            //        var usedmachine = _db.usedMachines.Where(x => x.id == model.id).FirstOrDefault();
+            //        usedmachine.PicturePath = $"/Uploads/{FileName}";
+            //        usedmachine.Brand = model.Brand;
+            //        usedmachine.Harddisk = model.Harddisk;
+            //        usedmachine.Type = model.Type;
+            //        usedmachine.ScreenSize = model.ScreenSize;
+            //        usedmachine.Ram = model.Ram;
+            //        usedmachine.Processor = model.Processor;
+            //        usedmachine.OtherInformation = model.OtherInformation;
+            //        usedmachine.ModelNo = model.ModelNo;
+            //        usedmachine.ArabicBrand = model.ArabicBrand;
+            //        usedmachine.ArabicHarddisk = model.ArabicHarddisk;
+            //        usedmachine.ArabicScreenSize = model.ArabicScreenSize;
+            //        usedmachine.ArabicRam = model.ArabicRam;
+            //        usedmachine.ArabicProcessor = model.ArabicProcessor;
+            //        usedmachine.ArabicOtherInformation = model.ArabicOtherInformation;
+            //        usedmachine.ArabicModelNo = model.ArabicModelNo;
+            //        usedmachine.Status = model.Status;
+            //        usedmachine.Price = model.Price;
 
-                    _db.Entry(usedmachine).State = System.Data.Entity.EntityState.Modified;
-                    _db.SaveChanges();
-                }
-            }
-            else
-            {
-                var usedmachine = _db.usedMachines.Where(x => x.id == model.id).FirstOrDefault();
-                usedmachine.PicturePath = model.existingpicturepath;
-                usedmachine.Brand = model.Brand;
-                usedmachine.Harddisk = model.Harddisk;
-                usedmachine.Type = model.Type;
-                usedmachine.ScreenSize = model.ScreenSize;
-                usedmachine.Ram = model.Ram;
-                usedmachine.Processor = model.Processor;
-                usedmachine.OtherInformation = model.OtherInformation;
-                usedmachine.ModelNo = model.ModelNo;
-                usedmachine.ArabicBrand = model.ArabicBrand;
-                usedmachine.ArabicHarddisk = model.ArabicHarddisk;
-                usedmachine.ArabicScreenSize = model.ArabicScreenSize;
-                usedmachine.ArabicRam = model.ArabicRam;
-                usedmachine.ArabicProcessor = model.ArabicProcessor;
-                usedmachine.ArabicOtherInformation = model.ArabicOtherInformation;
-                usedmachine.Status = model.Status;
-                usedmachine.ArabicModelNo = model.ArabicModelNo;
-                usedmachine.Price = model.Price;
+            //        _db.Entry(usedmachine).State = System.Data.Entity.EntityState.Modified;
+            //        _db.SaveChanges();
+            //    }
+            //}
+            //else
+            //{
+            //    var usedmachine = _db.usedMachines.Where(x => x.id == model.id).FirstOrDefault();
+            //    usedmachine.PicturePath = model.existingpicturepath;
+            //    usedmachine.Brand = model.Brand;
+            //    usedmachine.Harddisk = model.Harddisk;
+            //    usedmachine.Type = model.Type;
+            //    usedmachine.ScreenSize = model.ScreenSize;
+            //    usedmachine.Ram = model.Ram;
+            //    usedmachine.Processor = model.Processor;
+            //    usedmachine.OtherInformation = model.OtherInformation;
+            //    usedmachine.ModelNo = model.ModelNo;
+            //    usedmachine.ArabicBrand = model.ArabicBrand;
+            //    usedmachine.ArabicHarddisk = model.ArabicHarddisk;
+            //    usedmachine.ArabicScreenSize = model.ArabicScreenSize;
+            //    usedmachine.ArabicRam = model.ArabicRam;
+            //    usedmachine.ArabicProcessor = model.ArabicProcessor;
+            //    usedmachine.ArabicOtherInformation = model.ArabicOtherInformation;
+            //    usedmachine.Status = model.Status;
+            //    usedmachine.ArabicModelNo = model.ArabicModelNo;
+            //    usedmachine.Price = model.Price;
 
-                _db.Entry(usedmachine).State = System.Data.Entity.EntityState.Modified;
-                _db.SaveChanges();
-            }
+            //    _db.Entry(usedmachine).State = System.Data.Entity.EntityState.Modified;
+            //    _db.SaveChanges();
+            //}
 
             return Json(true, JsonRequestBehavior.AllowGet);
         }

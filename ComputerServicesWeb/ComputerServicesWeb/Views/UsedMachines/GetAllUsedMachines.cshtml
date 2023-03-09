@@ -476,8 +476,11 @@
 
         formData.append("data", JSON.stringify(data));
 
-        var file = document.getElementById('SelectPicture').files[0];
-        formData.append("file", file);
+        var files_length = document.getElementById('SelectPicture').files.length;
+        for (var i = 0; i < files_length; i++) {
+            formData.append("file", document.getElementById('SelectPicture').files[i]);
+        }
+       
 
         $.ajax({
             type: "POST",
