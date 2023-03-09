@@ -243,12 +243,17 @@
     <Compile Include="DataBase\Migrations\202303081413374_AddColumnSoldPrice.designer.cs">
       <DependentUpon>202303081413374_AddColumnSoldPrice.cs</DependentUpon>
     </Compile>
+    <Compile Include="DataBase\Migrations\202303090831364_changeDataTypeofColumn.cs" />
+    <Compile Include="DataBase\Migrations\202303090831364_changeDataTypeofColumn.designer.cs">
+      <DependentUpon>202303090831364_changeDataTypeofColumn.cs</DependentUpon>
+    </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Infrastructure\CustomAuthFilter.cs" />
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\AdminDashboardModel.cs" />
     <Compile Include="Models\DisplayUserInfo.cs" />
     <Compile Include="Models\HomeViewModel.cs" />
     <Compile Include="Models\IdentityModels.cs" />
@@ -2604,6 +2609,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="DataBase\Migrations\202303081413374_AddColumnSoldPrice.resx">
       <DependentUpon>202303081413374_AddColumnSoldPrice.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DataBase\Migrations\202303090831364_changeDataTypeofColumn.resx">
+      <DependentUpon>202303090831364_changeDataTypeofColumn.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

@@ -13,80 +13,116 @@ namespace ComputerServicesWeb.Controllers
     public class AdminController : Controller
     {
         ApplicationDbContext _db = new ApplicationDbContext();
-        
+
         // GET: Admin
         public ActionResult Index()
         {
-            return View();
+            try
+            {
+                AdminDashboardModel model = new AdminDashboardModel();
+
+                model.TotalAdmins = _db.Users.Count();
+                model.TotalServices = _db.services.Count();
+                model.DeactivatedPost = _db.usedMachines.Where(x => x.Status == "Deactivated").Count();
+                model.ActivePost = _db.usedMachines.Where(x => x.Status == "Active").Count();
+                model.SoldPost = _db.usedMachines.Where(x => x.Status == "Sold").Count();
+                model.ToatalPosts = _db.usedMachines.Count();
+
+                return View(model);
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+
         }
 
         public ActionResult MyProfile()
         {
-            string user_id = Session["UserId"].ToString();
-            var user_info = _db.Users.Where(m => m.Id == user_id).FirstOrDefault();
-
-            var model = new ProfileModel
+            try
             {
-                Email= user_info.Email,
-                PhoneNumber= user_info.PhoneNumber,
-                UserName=user_info.UserName
+                string user_id = Session["UserId"].ToString();
+                var user_info = _db.Users.Where(m => m.Id == user_id).FirstOrDefault();
 
-            };
+                var model = new ProfileModel
+                {
+                    Email = user_info.Email,
+                    PhoneNumber = user_info.PhoneNumber,
+                    UserName = user_info.UserName
 
-            return View(model);
+                };
+
+                return View(model);
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+
         }
 
         [HttpPost]
-        public ActionResult UpdateProfile(ProfileModel model,HttpPostedFileBase file)
+        public ActionResult UpdateProfile(ProfileModel model, HttpPostedFileBase file)
         {
-            string user_id = Session["UserId"].ToString();
-
-            if (file != null)
+            try
             {
-                string _path = "";
-                string FileName = "";
+                string user_id = Session["UserId"].ToString();
 
-                if (file.ContentLength > 0)
+                if (file != null)
                 {
-                    FileName = Path.GetFileNameWithoutExtension(file.FileName);
-                    string Extension = Path.GetExtension(file.FileName);
+                    string _path = "";
+                    string FileName = "";
 
-                    FileName = FileName + DateTime.Now.ToString("yymmssfff") + Extension;
+                    if (file.ContentLength > 0)
+                    {
+                        FileName = Path.GetFileNameWithoutExtension(file.FileName);
+                        string Extension = Path.GetExtension(file.FileName);
+
+                        FileName = FileName + DateTime.Now.ToString("yymmssfff") + Extension;
 
 
-                    _path = Path.Combine(Server.MapPath("~/Uploads/UserPictures/"), FileName);
-                    file.SaveAs(_path);
+                        _path = Path.Combine(Server.MapPath("~/Uploads/UserPictures/"), FileName);
+                        file.SaveAs(_path);
+                    }
+
+                    var user = _db.Users.Where(x => x.Id == user_id).FirstOrDefault();
+                    user.UserPicturePath = $"/Uploads/UserPictures/{FileName}";
+                    user.Email = model.Email;
+                    user.PhoneNumber = model.PhoneNumber;
+                    user.UserName = model.UserName;
+
+                    _db.Entry(user).State = System.Data.Entity.EntityState.Modified;
+                    _db.SaveChanges();
+
+                    DisplayUserInfo.profile_picture_path = $"/Uploads/UserPictures/{FileName}";
+                    DisplayUserInfo.email = model.Email;
+                    DisplayUserInfo.Username = model.UserName;
                 }
+                else
+                {
+                    var user = _db.Users.Where(x => x.Id == user_id).FirstOrDefault();
+                    user.PhoneNumber = model.PhoneNumber;
+                    user.Email = model.Email;
+                    user.UserName = model.UserName;
+                    _db.Entry(user).State = System.Data.Entity.EntityState.Modified;
+                    _db.SaveChanges();
 
-                var user = _db.Users.Where(x => x.Id == user_id).FirstOrDefault();
-                user.UserPicturePath = $"/Uploads/UserPictures/{FileName}";
-                user.Email = model.Email;
-                user.PhoneNumber = model.PhoneNumber;
-                user.UserName = model.UserName;
-
-                _db.Entry(user).State = System.Data.Entity.EntityState.Modified;
-                _db.SaveChanges();
-
-                DisplayUserInfo.profile_picture_path = $"/Uploads/UserPictures/{FileName}";
-                DisplayUserInfo.email = model.Email;
-                DisplayUserInfo.Username = model.UserName;
+                    DisplayUserInfo.email = model.Email;
+                    DisplayUserInfo.Username = model.UserName;
+                }
+                return RedirectToAction("Index");
             }
-            else
+            catch (Exception)
             {
-                var user = _db.Users.Where(x => x.Id == user_id).FirstOrDefault();
-                user.PhoneNumber = model.PhoneNumber;
-                user.Email = model.Email;
-                user.UserName = model.UserName;
-                _db.Entry(user).State = System.Data.Entity.EntityState.Modified;
-                _db.SaveChanges();
 
-                DisplayUserInfo.email = model.Email;
-                DisplayUserInfo.Username = model.UserName;
+                throw;
             }
-            return RedirectToAction("Index");
-         }
 
-        public ActionResult AddTypes() 
+        }
+
+        public ActionResult AddTypes()
         {
             return View();
         }
@@ -94,19 +130,28 @@ namespace ComputerServicesWeb.Controllers
         [HttpPost]
         public ActionResult AddTypes(FormCollection form)
         {
-            var obj = new TypeModel
+            try
             {
-                TypeName = form["typename"].ToString(),
-                ArabicTypeName = form["arabictypename"].ToString()
+                var obj = new TypeModel
+                {
+                    TypeName = form["typename"].ToString(),
+                    ArabicTypeName = form["arabictypename"].ToString()
 
-            };
+                };
 
-            _db.types.Add(obj);
-            _db.SaveChanges();
+                _db.types.Add(obj);
+                _db.SaveChanges();
 
-            TempData["Message"] = "Type Add Successfully ";
+                TempData["Message"] = "Type Add Successfully ";
 
-            return View();
+                return View();
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+
         }
     }
 }

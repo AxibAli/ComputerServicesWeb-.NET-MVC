@@ -170,28 +170,40 @@
             <div class="modal-body scroll-y mx-5 mx-xl-15 my-7">
                 <!--begin::Form-->
                 <form id="kt_modal_new_card_form" class="form" action="#">
-                    <div class="mb-3">
-                        <label for="BrandName" class="form-label">Service Name:</label>
-                        <input type="text" class="form-control form-control-solid" placeholder="" id="ServiceName" />
+                    <div class="row fv-row">
+                        <div class="col-6">
+                            <label for="ServiceName" class="form-label">Service Name:</label>
+                            <input type="text" class="form-control form-control-solid" placeholder="" id="ServiceName" />
+                        </div>
+                        <div class="col-6">
+                            <label for="ArabicServiceName" class="form-label">:اسم الخدمة</label>
+                            <input type="text" class="form-control form-control-solid" placeholder="" id="ArabicServiceName" />
+                        </div>
                     </div>
                     <div class="mb-3">
                         <label for="SelectPicture" class="form-label">Upload Picture:</label>
-
                         @Html.TextBox("file", "", new { type = "file", @class = "form-control", id = "SelectPicture" })
                     </div>
-                
-                    <div class="mb-3">
-                        <label for="OtherInfo" class="form-label">Other Information:</label>
-                        <input type="text" class="form-control form-control-solid" placeholder="" maxlength="50" id="ServiceDescription" />
-                        <input type="hidden" id="postid">
-                        <input type="hidden" id="ExistingPicture">
+
+                    <div class="row fv-row">
+                        <div class="col-6">
+                            <label for="OtherInfo" class="form-label">Other Information:</label>
+                            <input type="text" class="form-control form-control-solid" placeholder="" maxlength="50" id="ServiceDescription" />
+                            <input type="hidden" id="postid">
+                            <input type="hidden" id="ExistingPicture">
+                        </div>
+                        <div class="col-6">
+                            <label for="ArabicServiceDescription" class="form-label">:وصف الخدمات</label>
+                            <input type="text" class="form-control form-control-solid" placeholder="" maxlength="50" id="ArabicServiceDescription" />
+
+                        </div>
                     </div>
 
                     <div class="text-center pt-15">
                         <button type="reset" id="kt_modal_new_card_cancel" class="btn btn-light me-3">Discard</button>
-
                         <a class="btn btn-primary" href="#" id="UpdateRecord">Update Details</a>
                     </div>
+
                 </form>
                 <!--end::Form-->
             </div>
@@ -230,6 +242,8 @@
                 $("#postid").val(obj.id);
                 $("#ServiceName").val(obj.Name);
                 $("#ServiceDescription").val(obj.Description);
+                $("#ArabicServiceName").val(obj.ArabicName);
+                $("#ArabicServiceDescription").val(obj.ArabicDescription);
                 $("#ExistingPicture").val(obj.PicturePath);
 
             }
@@ -244,6 +258,8 @@
             id: $('#postid').val(),
             Name: $('#ServiceName').val(),
             Description: $('#ServiceDescription').val(),
+            ArabicName: $('#ArabicServiceName').val(),
+            ArabicDescription: $('#ArabicServiceDescription').val(),
             existingpicturepath: $('#ExistingPicture').val(),
         }
 

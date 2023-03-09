@@ -10,7 +10,7 @@ namespace ComputerServicesWeb.Models
     public class UsedMachineModels
     {
         public int id { get; set; }
-        public long usedmachineId { get; set; }
+        public string usedmachineId { get; set; }
         public string  PicturePath { get; set; }
         public string  Brand { get; set; }
         public string  Ram { get; set; }
