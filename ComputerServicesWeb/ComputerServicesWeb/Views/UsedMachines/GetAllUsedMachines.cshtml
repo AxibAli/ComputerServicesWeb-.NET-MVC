@@ -71,18 +71,27 @@
                                         <div class="img-wrapper">
                                             <div id="carouselExampleFade" class="carousel slide carousel-fade" data-ride="carousel">
                                                 <div class="carousel-inner">
-                                                    <div class="img-wrapper carousel-item active">
+                                                    @{int i = 0;}
+                                                    @for (int j=0;j<allpic.Length;j++)
+                                                    {
+                                                        i++;
+                                                        var active = i == 1 ? "active" : "";
+                                                        <div class="img-wrapper carousel-item @active">
+                                                            <img src="@allpic[j]" alt="">
+                                                        </div>
+                                                    }
+                                                    @*<div class="img-wrapper carousel-item active">
                                                         <img src="@allpic[0]" alt="...">
                                                     </div>
                                                     <div class="img-wrapper carousel-item">
-                                                        <img src="@allpic[1]" alt="...">
+                                                    <img src="@allpic[1]" alt="...">
                                                     </div>
                                                     <div class="img-wrapper carousel-item">
                                                         <img src="@allpic[2]" class="img-wrapper" alt="...">
                                                     </div>
                                                     <div class="img-wrapper carousel-item">
                                                         <img src="@allpic[3]" class="img-wrapper" alt="...">
-                                                    </div>
+                                                     </div>*@
                                                 </div>
                                                 <a class="carousel-control-prev" href="#carouselExampleFade" role="button" data-slide="prev">
                                                     <span class="carousel-control-prev-icon" aria-hidden="true"></span>
