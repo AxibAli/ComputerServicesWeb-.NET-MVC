@@ -236,7 +236,7 @@
             <!--begin::Modal body-->
             <div class="modal-body scroll-y mx-5 mx-xl-15 my-7">
                 <!--begin::Form-->
-                <form id="kt_modal_new_card_form" class="form" action="#" enctype="multipart/form-data" method="post">
+                <form id="kt_modal_new_card_form" class="form" action="#">
 
                     <div class="row fv-row">
                         <div class="col-6">
@@ -449,6 +449,7 @@
 
     //For Update  Record
     $("#UpdateRecord").click(function () {
+        debugger;
         var formData = new FormData();
         var data = {
             id: $('#postid').val(),
@@ -472,11 +473,14 @@
             Price: $('#Price').val(),
             existingpicturepath: $('#ExistingPicture').val(),
         }
-        debugger;
-        formData.append("data", JSON.stringify(data));
-        var file = document.getElementById('SelectPicture').files[0];
-        formData.append("file", file);
 
+        formData.append("data", JSON.stringify(data));
+
+        var files_length = document.getElementById('SelectPicture').files.length;
+        for (var i = 0; i < files_length; i++) {
+            formData.append("file", document.getElementById('SelectPicture').files[i]);
+        }
+       
 
         $.ajax({
             type: "POST",
