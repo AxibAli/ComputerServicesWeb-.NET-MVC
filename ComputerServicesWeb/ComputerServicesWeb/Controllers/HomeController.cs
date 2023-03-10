@@ -3,6 +3,7 @@ using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Text.RegularExpressions;
 using System.Web;
 using System.Web.Mvc;
@@ -16,8 +17,8 @@ namespace ComputerServicesWeb.Controllers
         public ActionResult Index()
         {
             HomeViewModel homeViewModel = new HomeViewModel();
-
             homeViewModel.usedMachines = _db.usedMachines.Where(x => x.Status == "Active").OrderByDescending(x => x.id).ToList();
+            //var query = _db.usedMachines.Join(_db.types, um => um.Type, t => t.id, (um, t) => new { UsedMachineModels = um, TypeModel = t }).Where(x => x.UsedMachineModels.Status == "Active").OrderByDescending(x => x.UsedMachineModels.id).ToList();
             homeViewModel.services = _db.services.Where(x => x.Status == "Active").OrderByDescending(x => x.id).ToList();
             return View(homeViewModel);
         }
