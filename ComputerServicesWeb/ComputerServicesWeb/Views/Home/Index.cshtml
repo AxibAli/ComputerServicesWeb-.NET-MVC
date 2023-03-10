@@ -112,14 +112,35 @@
                             <div class="product-title">
                                 <div class="title-description">
                                     <h5>@item.Brand</h5>
-                                    <p>@item.OtherInformation</p>
+                                    @if (item.OtherInformation != "")
+                                    {
+                                        <p>@item.OtherInformation</p>
+                                    }
                                     <ul id="" class="highlights text-left hidden-xs">
-                                        <li><b>Ram </b>@item.Ram</li>
-                                        <li><b>Hard Disk </b>@item.Harddisk</li>
-                                        <li><b>Screen Size </b>@item.ScreenSize</li>
-                                        <li><b>Type </b>@item.TypeModel.TypeName</li>
-                                        <li><b>Processor </b>@item.Processor</li>
-                                        <li><b>Model No </b>@item.ModelNo</li>
+                                        @if (item.Ram != "")
+                                        {
+                                            <li><b>Ram </b>@item.Ram</li>
+                                        }
+                                        @if (item.Harddisk != "")
+                                        {
+                                            <li><b>Hard Disk </b>@item.Harddisk</li>
+                                        }
+                                        @if (item.ScreenSize != "")
+                                        {
+                                            <li><b>Screen Size </b>@item.ScreenSize</li>
+                                        }
+                                        @if (item.TypeModel.TypeName != "")
+                                        {
+                                            <li><b>Type </b>@item.TypeModel.TypeName</li>
+                                        }
+                                        @if (item.Processor != "")
+                                        {
+                                            <li><b>Processor </b>@item.Processor</li>
+                                        }
+                                        @if (item.ModelNo != "")
+                                        {
+                                            <li><b>Model No </b>@item.ModelNo</li>
+                                        }
                                     </ul>
                                 </div>
 

@@ -50,16 +50,16 @@
                 <div class="row fv-row">
                     <div class="col-6">
                         <label for="ServiceName" class="form-label">Service Name:</label>
-                        @Html.TextBoxFor(m => m.Name, new { @class = "form-control", id = "ServiceName" })
+                        @Html.TextBoxFor(m => m.Name, new { @class = "form-control", id = "ServiceName", required = "required" })
                     </div>
                     <div class="col-6">
-                        <label for="ServiceName" class="form-label">:اسم الخدمة</label>
+                        <label for="ServiceName" class="form-label" >:اسم الخدمة</label>
                         @Html.TextBoxFor(m => m.ArabicName, new { @class = "form-control", id = "ArabicServiceName", dir = "rtl" })
                     </div>
                 </div>
                 <div class="mb-3">
                     <label for="SelectPicture" class="form-label">Upload Picture:</label>
-                    @Html.TextBox("file", "", new { type = "file", @class = "form-control", id = "SelectPicture" })
+                    @Html.TextBox("file", "", new { type = "file", @class = "form-control", id = "SelectPicture", required = "required" })
                 </div>
                 <div class="row fv-row">
                     <div class="col-6">
