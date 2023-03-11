@@ -208,9 +208,10 @@ namespace ComputerServicesWeb.Controllers
 
             return Json(true, JsonRequestBehavior.AllowGet);
         }
-        public ActionResult UsedMachineDelete(int usedMachine_ID)
+        [HttpPost]
+        public ActionResult UsedMachineDelete(int id)
         {
-            var usedMachine = _db.usedMachines.Where(x => x.id == usedMachine_ID).FirstOrDefault();
+            var usedMachine = _db.usedMachines.Where(x => x.id == id).FirstOrDefault();
             _db.usedMachines.Remove(usedMachine);
             _db.SaveChanges();
 
